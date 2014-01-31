@@ -1,0 +1,141 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import "bootstrap";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "font-awesome";
+
+html {
+  height: 100%;
+}
+
+body {
+  padding-top: 70px;
+  background-color: white;
+  height: 100%;
+  font-family: "Helvetica Neue";
+}
+
+h2 {
+  color: #5e5e60;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+.navbar {
+  height: 81px;
+  border-top: 13px solid #f9a535;
+  border-bottom: 1px solid #e7e6e6; /* stroke */
+  background-color: #fff; /* layer fill content */
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMDUgODMiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iaGF0MCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iLTEuNDIxMDg1NDcxNTIwMmUtMTQlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NlY2JjYiIgc3RvcC1vcGFjaXR5PSIwLjY1Ii8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwLjY1Ii8+CiAgIDwvbGluZWFyR3JhZGllbnQ+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwNSIgaGVpZ2h0PSI4MyIgZmlsbD0idXJsKCNoYXQwKSIgLz4KPC9zdmc+); /* gradient overlay */
+  background-image: -moz-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  background-image: -o-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  background-image: -webkit-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  background-image: linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  
+  .navbar-brand {
+    background-image: asset-url('logo.png');
+    background-repeat: no-repeat;
+    width: 164px;
+    line-height: 28px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+}
+
+.container#login {
+  background: #68686b asset-url('login-pattern-bg.png') repeat top left;
+  position: relative;
+  
+  #arciplex-graphic {
+    @include size(518px, 810px);
+    background: transparent asset-url('login-bg.png') no-repeat top left;
+    position: absolute;
+    left: 0px;
+    top: -150px;
+    @include opacity(.3);
+  }
+  
+  .devise-login {
+    border: 1px solid #c1c0c0; /* stroke */
+    -moz-border-radius: 10px / 7px;
+    -webkit-border-radius: 10px / 7px;
+    border-radius: 10px / 7px; /* border radius */
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; /* prevents bg color from leaking outside the border */
+    background-color: #fff; /* layer fill content */
+    -moz-box-shadow: 3px 4px 5px rgba(0,0,0,.2), inset 0 0 3px rgba(0,0,0,.75); /* drop shadow and inner shadow */
+    -webkit-box-shadow: 3px 4px 5px rgba(0,0,0,.2), inset 0 0 3px rgba(0,0,0,.75); /* drop shadow and inner shadow */
+    box-shadow: 3px 4px 5px rgba(0,0,0,.2), inset 0 0 3px rgba(0,0,0,.75); /* drop shadow and inner shadow */
+    margin-top: 150px;
+    padding: 10px 30px;
+    position: relative;
+    
+    form {
+      .input-group-addon {
+        background-color: #ededed;
+      }
+      input[type="email"], input[type="password"] {
+        border: 1px solid #cbcbcb; /* stroke */
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box; /* prevents bg color from leaking outside the border */
+        background-color: #fdfdfd; /* layer fill content */
+      }
+    }
+    
+    .form-signin-heading {
+      margin-bottom: 20px;
+    }
+    
+    .input-group {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+#footer {
+  color: white;
+  border-top: 1px solid white;
+  margin-top: 275px;
+  font-size: 11px;
+  padding: 15px 0;
+  
+  #social {
+    margin-right: 100px;
+    
+    a {
+      color: white;
+      font-size: 20px;
+    }
+  }
+}
+
+#copyright {
+  padding: 14px 0;
+  background-color: #5e5e60;
+  color: white;
+  font-size: 11px;
+  background: rgb(94, 94, 96);
+  background: rgba(94, 94, 96, .6);
+}

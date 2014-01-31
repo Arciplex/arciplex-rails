@@ -4,7 +4,7 @@ require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+Bundler.require(:default, :assets, Rails.env)
 
 module Arciplex
   class Application < Rails::Application
@@ -19,5 +19,11 @@ module Arciplex
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.i18n.enforce_available_locales = false
+    
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+      Devise::PasswordsController.layout "devise"
+    end
   end
 end
