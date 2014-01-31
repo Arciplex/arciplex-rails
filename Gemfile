@@ -19,14 +19,16 @@ end
 
 group :development, :test do
   gem 'debugger'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
 end
 
 group :test do
-  gem 'spork-rails'
   gem 'faker'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem "database_cleaner"
-  gem 'guard-rspec'
   gem "shoulda-matchers"
+  gem "capybara"
 end

@@ -1,6 +1,7 @@
 <div class="row">
   <div class="devise-login col-md-6 col-md-offset-3">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "login-form", role: "form" }) do |f| %>
+      <%= flash_messages %>
       <h2 class="form-signin-heading">Please, sign into your account</h2>
       <div class="input-group">
         <span class="input-group-addon"><%= fa_icon "user" %></span>

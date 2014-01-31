@@ -5,4 +5,6 @@ Arciplex::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
     root to: "devise/sessions#new"
   end
+  
+  resources :service_requests, path: "service-requests"
 end

@@ -26,6 +26,10 @@ body {
   background-color: white;
   height: 100%;
   font-family: "Helvetica Neue";
+  
+  &.signed-in {
+    padding-top: 100px;
+  }
 }
 
 h2 {
@@ -60,11 +64,40 @@ h2 {
     display: inline-block;
     margin-top: 20px;
   }
+  
+  ul.nav {
+    margin-right: 35px;
+    margin-top: 20px;
+    
+    a {
+      color: #959595;
+      padding-bottom: 13px;
+      
+      &:hover {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background-color: #fefdfd;
+        background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,.24), rgba(255,255,255,.24));
+        background-image: -moz-linear-gradient(bottom, rgba(0,0,0,.24), rgba(255,255,255,.24));
+        background-image: -o-linear-gradient(bottom, rgba(0,0,0,.24), rgba(255,255,255,.24));
+        background-image: linear-gradient(to top, rgba(0,0,0,.24), rgba(255,255,255,.24));
+      }
+    }
+    
+    li {
+      margin-right: 45px;
+    }
+  }
 }
 
 .container#login {
   background: #68686b asset-url('login-pattern-bg.png') repeat top left;
   position: relative;
+  
+  .form-control {
+    height: 36px;
+  }
   
   #arciplex-graphic {
     @include size(518px, 810px);
