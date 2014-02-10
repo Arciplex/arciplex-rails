@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="breadcrumbs">
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-2">
@@ -9,6 +9,8 @@
       
       <div class="col-md-9 col-md-offset-1">
         <%= page_heading t("#{params[:controller].underscore}.title") %>
+        
+        <%= flash_messages %>
       </div>
     </div>
   </div>

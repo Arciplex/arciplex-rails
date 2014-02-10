@@ -1,11 +1,9 @@
 <%= render 'shared/header' %>
 
-<%= render 'shared/breadcrumbs' %>
+<%= render 'shared/page_title_and_crumbs' %>
 
 <div class="container">
-  <div class="row">
-    <%= yield %>
-  </div>
+  <%= yield %>
 </div>
 
 <%= render 'shared/footer' %>

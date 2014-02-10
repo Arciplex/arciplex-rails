@@ -1,0 +1,49 @@
+.container#login {
+  background: transparent asset-url('login-bg-full.png') no-repeat top left;
+  height: auto !important;
+  min-height: 100%;
+  height: 100%;
+  position: relative;
+  
+  .form-control {
+    height: 36px;
+  }
+  
+  .devise-login {
+    border: 1px solid #c1c0c0; /* stroke */
+    -moz-border-radius: 10px / 7px;
+    -webkit-border-radius: 10px / 7px;
+    border-radius: 10px / 7px; /* border radius */
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; /* prevents bg color from leaking outside the border */
+    background-color: #fff; /* layer fill content */
+    -moz-box-shadow: 3px 4px 5px rgba(0,0,0,.2), inset 0 0 3px rgba(0,0,0,.75); /* drop shadow and inner shadow */
+    -webkit-box-shadow: 3px 4px 5px rgba(0,0,0,.2), inset 0 0 3px rgba(0,0,0,.75); /* drop shadow and inner shadow */
+    box-shadow: 3px 4px 5px rgba(0,0,0,.2), inset 0 0 3px rgba(0,0,0,.75); /* drop shadow and inner shadow */
+    margin-top: 150px;
+    padding: 10px 30px;
+    position: relative;
+    
+    form {
+      .input-group-addon {
+        background-color: #ededed;
+      }
+      input[type="email"], input[type="password"] {
+        border: 1px solid #cbcbcb; /* stroke */
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box; /* prevents bg color from leaking outside the border */
+        background-color: #fdfdfd; /* layer fill content */
+      }
+    }
+    
+    .form-signin-heading {
+      margin-bottom: 20px;
+    }
+    
+    .input-group {
+      margin-bottom: 15px;
+    }
+  }
+}

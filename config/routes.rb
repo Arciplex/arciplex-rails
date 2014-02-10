@@ -6,5 +6,6 @@ Arciplex::Application.routes.draw do
     root to: "devise/sessions#new"
   end
   
+  resources :customers
   resources :service_requests, path: "service-requests"
 end

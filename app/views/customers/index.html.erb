@@ -1,0 +1,23 @@
+<div class="row">
+  
+  <div class="col-md-9 col-md-offset-3">
+    <% if @customers.empty? %>
+      <%= link_to "Create New Customer", new_customer_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Create New Customer", new_customer_path, class: "btn btn-primary pull-right" %>
+      <p>Your current Customers</p>
+      
+      <table class="table table-striped table-condensed" id="customer-table">
+        <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Phone Number</td>
+          <td>Actions</td>
+        </tr>
+        <%= render @customers %>
+      </table>
+      
+    <% end %>
+  </div>
+  
+</div>

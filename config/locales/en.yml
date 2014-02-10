@@ -1,3 +1,5 @@
 en:
   service_requests:
     title: "Warranty Service Request"
+  customers:
+    title: "Customers"

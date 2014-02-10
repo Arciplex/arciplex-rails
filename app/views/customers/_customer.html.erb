@@ -1,0 +1,10 @@
+<tr data-customer-id="<%= customer.id %>">
+  <td><%= customer.full_name %></td>
+  <td><%= customer.contact_email %></td>
+  <td><%= customer.phone_number %></td>
+  <td>
+      <%= link_to "View", customer_path(customer), class: "btn-sm btn-warning" %> 
+      <%= link_to "Edit", edit_customer_path(customer), class: "btn-sm btn-warning" %>
+      <%= link_to "Remove", customer_path(customer), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
+  </td>
+</tr>

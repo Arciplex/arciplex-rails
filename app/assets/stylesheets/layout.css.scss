@@ -1,0 +1,95 @@
+html {
+  height: 100%;
+}
+
+body {
+  padding-top: 70px;
+  background-color: white;
+  height: 100%;
+  font-family: "Helvetica Neue";
+  
+  &.signed-in {
+    padding-top: 100px;
+  }
+}
+
+h2 {
+  color: #5e5e60;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+.navbar {
+  height: 81px;
+  border-top: 13px solid #f9a535;
+  border-bottom: 1px solid #e7e6e6; /* stroke */
+  background-color: #fff; /* layer fill content */
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMDUgODMiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iaGF0MCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iLTEuNDIxMDg1NDcxNTIwMmUtMTQlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NlY2JjYiIgc3RvcC1vcGFjaXR5PSIwLjY1Ii8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwLjY1Ii8+CiAgIDwvbGluZWFyR3JhZGllbnQ+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwNSIgaGVpZ2h0PSI4MyIgZmlsbD0idXJsKCNoYXQwKSIgLz4KPC9zdmc+); /* gradient overlay */
+  background-image: -moz-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  background-image: -o-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  background-image: -webkit-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  background-image: linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
+  
+  .navbar-brand {
+    background-image: asset-url('logo.png');
+    background-repeat: no-repeat;
+    width: 164px;
+    line-height: 28px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  ul.nav {
+    margin-right: 35px;
+    margin-top: 20px;
+    
+    a {
+      color: #959595;
+      padding-bottom: 11px;
+      
+      &:hover {
+        box-sizing: border-box;
+        -moz-box-sizing:border-box;
+        background-color: transparent;
+        border-bottom: 2px solid #b2b0b0;
+      }
+    }
+    
+    li {
+      margin-right: 45px;
+    }
+  }
+}
+
+#footer {
+  color: white;
+  border-top: 1px solid white;
+  margin-top: 450px;
+  font-size: 11px;
+  padding: 5px 0 0 0;
+  
+  #social {
+    margin-right: 100px;
+    
+    a {
+      color: white;
+      font-size: 20px;
+    }
+  }
+}
+
+#copyright {
+  line-height: 24px;
+  background-color: #5e5e60;
+  color: white;
+  font-size: 11px;
+  background: rgb(94, 94, 96);
+  background: rgba(94, 94, 96, .6);
+}
