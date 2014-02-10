@@ -7,11 +7,11 @@ class Customer < ActiveRecord::Base
   
   delegate :address, :address2, :city, :state, :country, :zip_code, :address_type, to: :shipping_information
   
-  validates :user_id, :company_id, :contact_email, presence: true
+  validates :user_id, :company_id, presence: true
   
   scope :in_company, ->(company_id) { where company_id: company_id }
   
   def full_name
-    "#{first_name} #{last_name}".squeeze
+    "#{first_name} #{last_name}".squish
   end
 end
