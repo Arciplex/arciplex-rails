@@ -8,6 +8,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'unicorn'
 gem 'devise'
 gem 'turbolinks'
+gem 'aasm'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
