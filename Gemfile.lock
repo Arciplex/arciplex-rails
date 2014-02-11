@@ -78,6 +78,7 @@ GEM
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
+    gritter (1.1.0)
     guard (2.3.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -220,6 +221,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-rails
+  gritter (= 1.1.0)
   guard-rspec
   guard-spork
   jquery-rails

@@ -5,14 +5,16 @@ module ApplicationHelper
   end
 
   def flash_messages(opts = {})
+    gritters = []
     flash.each do |msg_type, message|
-        concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} fade in") do 
-                concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
-                concat message 
-              end)
+      gritters << add_gritter(message, image: msg_type)
+        # concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} fade in") do 
+        #         concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+        #         concat message 
+        #       end)
     end
-      
-    nil
+    
+    gritters.join(", ")
   end
   
   def page_heading(title)

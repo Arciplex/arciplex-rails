@@ -1,0 +1,53 @@
+<%= form_for @service_request, html: { role: "form", class: "form-horizontal" } do |f| %>
+  <%= render 'shared/errors', object: @service_request if @service_request.errors.any? %>
+  
+  <div class="form-group">
+    <h2>Shipping Information</h2>
+    <%= f.collection_select :customer_id, @customers, :id, :full_name, {prompt: "Please select a customer"}, {id: nil} %>
+  </div>
+  
+  <div class="form-group">
+    <h2>Service Information</h2>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :troubleshooting_reference, class: "col-md-4 control-label" %>
+    <div class="col-md-5">
+      <%= f.select :troubleshooting_reference, troubleshooting_options, class: "form-control", id: nil, prompt: true %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :rma, "RMA", class: "col-md-4 control-label" %>
+    <div class="col-md-5">
+      <%= f.text_field :rma, class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <h2>Items</h2>
+  </div>
+  
+  <div id="template">
+    <%= render 'nested_form', f: f, child_index: Time.now.to_i %>
+  </div>
+  
+  <div id="blank_template" style="display: none">
+    <%= render 'nested_form', f: f, child_index: 'index_to_replace_with_js' %>
+  </div>
+  
+  <div id="nested_items"></div>
+  
+  <div class="form-group">
+    <div class="col-md-5 col-md-offset-8">
+      <%= link_to "Add More", "#", class: 'add_more' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-md-10">
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    </div>
+  </div>
+  
+<% end %>

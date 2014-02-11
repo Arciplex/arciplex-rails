@@ -6,6 +6,8 @@ $container-lg: $container-desktop;
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "font-awesome";
+@import "gritter";
+@import "bootstrap-select/bootstrap-select.min";
 @import "devise";
 @import "layout";
 @import "signed_in";

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   ROLES = %w[superadmin admin requestor]
          
   belongs_to :company
-  validates :company_id, presence: true
   has_many :customers
+  has_many :service_requests
+  
+  validates :company_id, presence: true
 end

@@ -9,6 +9,7 @@ gem 'unicorn'
 gem 'devise'
 gem 'turbolinks'
 gem 'aasm'
+gem "gritter", "1.1.0"
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
