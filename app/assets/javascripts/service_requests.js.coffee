@@ -1,4 +1,4 @@
-$ ->
+ready = ->
   if $('body').hasClass 'service_requests'
     template = $('#blank_template').html()
     
@@ -8,3 +8,6 @@ $ ->
       $('#nested_items').append '<div class="new_item">' + html + '</div>'
       $('.new_item select').selectpicker()
       event.preventDefault()
+      
+$(document).ready(ready)
+$(document).on('page:load', ready)

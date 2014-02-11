@@ -30,7 +30,8 @@ class ServiceRequestsController < ApplicationController
   
   private
     def service_request_params
-      params.require(:service_request).permit(:troubleshooting_reference, :rma, :customer_id,
-                                              line_items_attributes: [ :id, :item_type, :model_number, :serial_number ])
+      params.require(:service_request).permit(:troubleshooting_reference, :rma, :customer_id).tap do |whitelisted|
+        whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes]
+      end
     end
 end

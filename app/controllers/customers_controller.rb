@@ -51,6 +51,6 @@ class CustomersController < ApplicationController
   
     def customer_params
       params.require(:customer).permit(:prefix, :first_name, :last_name, :contact_email, :phone_number, 
-                                      shipping_information_attributes: [:address, :address2, :city, :state, :zip_code, :country, :address_type])
+                                      shipping_information_attributes: [:id, :address, :address2, :city, :state, :zip_code, :country, :address_type])
     end
 end
