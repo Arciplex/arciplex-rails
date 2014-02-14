@@ -1,5 +1,9 @@
 en:
   service_requests:
-    title: "Warranty Service Request"
+    index:
+      title: "Warranty Service Requests"
   customers:
-    title: "Customers"
+    index:
+      title: "Customers"
+    new:
+      title: "New Customer"

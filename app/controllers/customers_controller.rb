@@ -34,9 +34,11 @@ class CustomersController < ApplicationController
   end
   
   def destroy
-    @customer.destroy
-    flash[:notice] = "Customer destroyed!"
-    redirect_to customers_path
+    if @customer.destroy
+      redirect_to customers_path, notice: "Customer has been removed!"
+    else
+      redirect_to customers_path, notice: "An error occurred. Please try again!"
+    end
   end
   
   private

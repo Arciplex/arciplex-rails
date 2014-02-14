@@ -84,7 +84,7 @@
     <div class="form-group">
       <%= sh.label :address_type, class: "col-md-2 control-label" %>
       <div class="col-md-8">
-        <%= sh.text_field :address_type, class: "form-control" %>
+        <%= sh.select :address_type, address_type_options, class: "form-control" %>
       </div>
     </div>
     

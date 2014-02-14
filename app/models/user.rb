@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   has_many :service_requests
   
   validates :company_id, presence: true
+  
+  def has_role?(role_name)
+    role.eql? role_name.to_s
+  end
 end

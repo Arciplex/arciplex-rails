@@ -8,7 +8,7 @@
       </div>
       
       <div class="col-md-9 col-md-offset-1">
-        <%= page_heading t("#{params[:controller].underscore}.title") %>
+        <%= content_for?(:page_title) ? content_tag(:h1, content_for(:page_title)) : "Page Title" %>
         
         <%= js flash_messages %>
       </div>

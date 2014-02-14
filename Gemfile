@@ -10,6 +10,7 @@ gem 'devise'
 gem 'turbolinks'
 gem 'aasm'
 gem "gritter", "1.1.0"
+gem "cancan"
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
