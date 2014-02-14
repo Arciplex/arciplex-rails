@@ -13,6 +13,8 @@ gem 'aasm'
 gem "gritter", "1.1.0"
 gem "cancan"
 
+gem "rails_12factor", group: :production
+
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
   gem 'bootstrap-sass', '~> 3.0.3.0'
