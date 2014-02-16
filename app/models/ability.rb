@@ -6,7 +6,7 @@ class Ability
     
     if @user.has_role? :superadmin
       can :manage, :all
-    elsif @user.has_role? :requestor
+    else
       can :manage, ServiceRequest, user_id: @user.id
       can :manage, Customer, company_id: @user.company_id
     end

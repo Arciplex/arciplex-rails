@@ -7,5 +7,7 @@ Arciplex::Application.routes.draw do
   end
   
   resources :customers
-  resources :service_requests, path: "service-requests"
+  resources :service_requests do
+    resources :notes
+  end
 end

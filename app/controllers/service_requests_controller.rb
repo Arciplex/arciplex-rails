@@ -1,26 +1,26 @@
 class ServiceRequestsController < ApplicationController
   before_filter :authenticate_user!
+  authorize_resource except: :index
+  load_resource except: [:create, :update]
   
   respond_to :html, :js
   
   def index
-    @service_requests = current_user.service_requests
+    @service_requests = @service_requests.send(params[:status]) if params[:status]
   end
   
   def show
-    @service_request = current_user.service_requests.find(params[:id])
     respond_with @service_request
   end
   
   def new
     customers
-    @service_request = ServiceRequest.new
     @service_request.line_items.build
+    @service_request.build_note
   end
   
   def edit
     customers
-    @service_request = current_user.service_requests.find(params[:id])
     respond_with @service_request
   end
   
@@ -36,7 +36,9 @@ class ServiceRequestsController < ApplicationController
   end
   
   def update
-    @service_request = current_user.service_requests.find params[:id]
+    @service_request = ServiceRequest.find(params[:id])
+    
+    authorize! :update, @service_request
     
     if @service_request.update_attributes service_request_params
       redirect_to service_request_path(@service_request), notice: "#{@service_request.case_number} updated successfully!"
@@ -56,7 +58,7 @@ class ServiceRequestsController < ApplicationController
   
   private
     def service_request_params
-      params.require(:service_request).permit(:troubleshooting_reference, :rma, :customer_id).tap do |whitelisted|
+      params.require(:service_request).permit(:troubleshooting_reference, :rma, :customer_id, note_attributes: [:description, :id]).tap do |whitelisted|
         whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes]
       end
     end

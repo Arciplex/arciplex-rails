@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  Service Requests
+  <h2><%= params[:status].try(:capitalize) if params[:status] %> Service Requests</h2>
 <% end %>
 
 <div class="row">

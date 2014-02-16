@@ -8,19 +8,17 @@
             <li><%= link_to "Customers", customers_path %></li>
           <% end %>
           <% if can?(:manage, ServiceRequest) %>
-            <li><%= link_to "Service Requests", service_requests_path %></li>
-          <% end %>
-            <li><%= link_to "Dates", new_service_request_path %></li>
             <li class="dropdown">
-              <%= link_to "", class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
-                Notes <span class="caret"></span>
+              <%= link_to service_requests_path, class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
+                Service Requests <span class="caret"></span>
               <% end %>
-            
+              
               <ul class="dropdown-menu">
-                <li><%= link_to "Open", "#" %></li>
-                <li><%= link_to "Closed", "#" %></li>
+                <li><%= link_to "Open", service_requests_path(status: "pending") %></li>
+                <li><%= link_to "Closed", service_requests_path(status: "processed") %></li>
               </ul>
             </li>
+          <% end %>
           <li><%= link_to "Logout", logout_path %></li>
         </ul>
       </div>

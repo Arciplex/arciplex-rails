@@ -9,10 +9,15 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :customers
   has_many :service_requests
+  has_many :notes
   
   validates :company_id, presence: true
   
   def has_role?(role_name)
     role.eql? role_name.to_s
+  end
+  
+  def full_name
+    "#{first_name} #{last_name}".squeeze
   end
 end

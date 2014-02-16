@@ -1,10 +1,11 @@
 <div class="container" id="breadcrumbs">
   <div class="row">
     <div class="col-md-12">
-      <div class="col-md-2">
+      <div class="col-md-2" id="signed-in-info">
         <ol class="breadcrumb">
           <li><%= fa_icon "home"  %> Home</li>
         </ol>
+        <span>Welcome, <%= current_user.full_name %></span>
       </div>
       
       <div class="col-md-9 col-md-offset-1">
