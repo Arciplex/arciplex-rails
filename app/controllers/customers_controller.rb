@@ -10,13 +10,11 @@ class CustomersController < ApplicationController
   end
   
   def create
-    @customer = Customer.new(customer_params)
-    @customer.user_id = current_user.id
+    @customer = current_user.customers.new(customer_params)
     @customer.company_id = current_user.company.id
     
     if @customer.save
-      flash[:notice] = "Customer created successfully!"
-      redirect_to customers_path
+      redirect_to customers_path, notice: "Customer created successfully!"
     else
       render :new
     end
