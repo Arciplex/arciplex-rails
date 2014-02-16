@@ -26,6 +26,10 @@ class ServiceRequest < ActiveRecord::Base
     state :processed
   end
   
+  def formatted_time
+    created_at.strftime("%B #{created_at.day.ordinalize}, %Y")
+  end
+  
   private
     def generate_case_number
       self.case_number = SecureRandom.hex(4)
