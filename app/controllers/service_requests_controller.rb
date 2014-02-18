@@ -16,7 +16,6 @@ class ServiceRequestsController < ApplicationController
   def new
     customers
     @service_request.line_items.build
-    @service_request.build_note
   end
   
   def edit
@@ -40,8 +39,11 @@ class ServiceRequestsController < ApplicationController
     
     authorize! :update, @service_request
     
-    if @service_request.update_attributes service_request_params
-      redirect_to service_request_path(@service_request), notice: "#{@service_request.case_number} updated successfully!"
+    if @service_request.update_attributes(service_request_params)
+      respond_to do |format|
+        format.html { redirect_to service_request_path(@service_request), notice: "#{@service_request.case_number} updated successfully!" }
+        format.js
+      end
     else
       render :edit
     end
@@ -58,8 +60,8 @@ class ServiceRequestsController < ApplicationController
   
   private
     def service_request_params
-      params.require(:service_request).permit(:troubleshooting_reference, :rma, :customer_id, note_attributes: [:description, :id]).tap do |whitelisted|
-        whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes]
+      params.require(:service_request).permit(:id, :troubleshooting_reference, :rma, :customer_id, :additional_information).tap do |whitelisted|
+        whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes] if params[:service_request].has_key?(:line_items_attributes)
       end
     end
     

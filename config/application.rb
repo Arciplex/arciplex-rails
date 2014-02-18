@@ -21,6 +21,14 @@ module Arciplex
     # config.i18n.default_locale = :de
     config.i18n.enforce_available_locales = false
     
+    config.generators do |generator|
+      generator.helper false
+      generator.assets false
+      generator.views false
+      generator.view_specs false
+      generator.controller_specs false
+    end
+    
     config.to_prepare do
       Devise::SessionsController.layout "devise"
       Devise::PasswordsController.layout "devise"

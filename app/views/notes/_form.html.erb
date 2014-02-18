@@ -1,0 +1,26 @@
+<% note = service_request.note || Note.new %>
+<% path = note.new_record? ? service_request_notes_path(service_request) : service_request_note_path(service_request, note) %>
+
+<div class="modal fade" id="<%= service_request.case_number %>-note" tabindex="-1" role="dialog" aria-labelledby="addNoteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= form_for note, url: path, remote: true, html: { role: "form", class: "form-horizontal" } do |f|  %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add a Note for <%= service_request.case_number %></h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <div class="col-md-12">
+                <%= f.text_area :description, class: "form-control", rows: "10"  %>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+      </div><!-- /.modal-content -->
+    <% end %>
+  </div><!-- /.modal-dialog -->
+</div>
