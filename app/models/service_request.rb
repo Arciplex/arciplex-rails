@@ -8,6 +8,7 @@ class ServiceRequest < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   belongs_to :customer
   belongs_to :user
+  belongs_to :company
   has_one :note
   
   accepts_nested_attributes_for :line_items, 

@@ -55,6 +55,14 @@ namespace :service_requests do
       end
     end
   end
+  
+  task :update_company_id => :environment do
+    ServiceRequest.all.each do |sr|
+      u = User.find(sr.user_id)
+      sr.company_id = u.company_id
+      sr.save!
+    end
+  end
 end
 
 def determine_company(company)

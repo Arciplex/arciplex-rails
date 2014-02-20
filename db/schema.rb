@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220025626) do
+ActiveRecord::Schema.define(version: 20140220050229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140220025626) do
     t.text     "tracking_number"
     t.text     "carrier"
     t.datetime "completed_at"
+    t.integer  "company_id"
   end
 
   create_table "shipping_information", force: true do |t|
