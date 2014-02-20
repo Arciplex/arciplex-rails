@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
   respond_to :html, :js
   
   def index
-    @customers = Customer.in_company(current_user.company_id)
+    @customers = Customer.in_company(current_user.company_id).paginate(page: params[:page])
   end
   
   def create

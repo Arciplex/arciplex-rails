@@ -22,6 +22,8 @@
           <%= render @service_requests %>
         </table>
         
+        <%= will_paginate @service_requests, renderer: BootstrapPagination::Rails %>
+        
       <% end %>
   </div>
   
