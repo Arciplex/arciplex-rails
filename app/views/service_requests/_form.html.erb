@@ -53,6 +53,29 @@
     </div>
   </div>
   
+  <% if current_user.has_role?(:superadmin) %>
+    <div class="form-group">
+      <%= f.label :ship_date, class: "col-md-4 control-label" %>
+      <div class="col-md-5">
+        <%= f.date_select :ship_date, class: "form-control", prompt: { day: 'Select Day', month: 'Select Month', year: 'Select Year' } %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :carrier, class: "col-md-4 control-label" %>
+      <div class="col-md-5">
+        <%= f.text_field :carrier, class: "form-control" %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :tracking_number, class: "col-md-4 control-label" %>
+      <div class="col-md-5">
+        <%= f.text_field :tracking_number, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+  
   <div class="form-group">
     <div class="col-md-10">
       <%= f.submit "Submit", class: "btn btn-success" %>
