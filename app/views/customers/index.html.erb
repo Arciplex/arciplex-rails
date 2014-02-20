@@ -21,6 +21,8 @@
         <%= render @customers %>
       </table>
       
+      <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
+      
     <% end %>
   </div>
   

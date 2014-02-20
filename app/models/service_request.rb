@@ -3,10 +3,11 @@ require 'securerandom'
 class ServiceRequest < ActiveRecord::Base
   include AASM
   
-  self.per_page = 15
+  default_scope { order('created_at DESC') }
   
   has_many :line_items, dependent: :destroy
   belongs_to :customer
+  belongs_to :user
   has_one :note
   
   accepts_nested_attributes_for :line_items, 
@@ -26,12 +27,12 @@ class ServiceRequest < ActiveRecord::Base
     state :processed
   end
   
-  def formatted_time
-    created_at.strftime("%B #{created_at.day.ordinalize}, %Y")
+  def formatted_time(field = :created_at)
+    send(:created_at).strftime("%B #{created_at.day.ordinalize}, %Y")
   end
   
   private
     def generate_case_number
-      self.case_number = SecureRandom.hex(4)
+      self.case_number = SecureRandom.hex(4) unless case_number.present?
     end
 end

@@ -1,3 +1,48 @@
+<% sr = @service_request %>
+
 <% content_for :page_title do %>
-  <h2>Viewing Service Request <%= @service_request.case_number %></h2>
+  <h2>Viewing Service Request <%= sr.case_number %></h2>
+  <% if can?(:manage, sr) %>
+    <%= link_to "Edit Service Request", edit_service_request_path(sr), class: "btn btn-primary pull-right" %>
+  <% end %>
 <% end %>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-3">
+    <h3>Customer Information</h3>
+    <p>
+      <%= sr.full_name %><br />
+      <%= sr.customer.shipping_information.address %><br />
+      <% if sr.customer.shipping_information.address2.present? %>
+        <%= sr.customer.shipping_information.address2 %><br />
+      <% end %>
+      <%= sr.customer.shipping_information.city %>, <%= sr.customer.shipping_information.state %> <%= sr.customer.shipping_information.zip_code %><br />
+      <%= sr.customer.shipping_information.country %><br />
+      <%= sr.customer.contact_email %><br />
+      Address Type: <%= sr.customer.shipping_information.address_type %>
+    </p>
+    
+    <% if sr.processed? %>
+      <p>
+        Ship Date: <%= sr.formatted_time(:ship_date) %><br />
+        Carrier: <%= sr.carrier %><br />
+        Tracking Number: <%= sr.tracking_number %>
+      </p>
+    <% end %>
+    
+    <h3>
+  </div>
+  
+  <div class="col-md-4">
+    <h3>Case Information</h3>
+    <p>Case Number: <%= sr.case_number %></p>
+    <p>Company: <%= sr.customer.company.name %></p>
+    <p>T. Reference: <%= sr.troubleshooting_reference %></p>
+    <p>RMA: <%= sr.rma %></p>
+    <p>Representative: <%= sr.user.full_name %></p>
+    <p>Submit Date: <%= sr.formatted_time %></p>
+    <% if sr.processed? %>
+      <p>Completion Date: <%= sr.formatted_time(:completed_at) %></p>
+    <% end %>
+  </div>
+</div>
