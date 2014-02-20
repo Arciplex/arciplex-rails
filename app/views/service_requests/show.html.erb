@@ -2,9 +2,11 @@
 
 <% content_for :page_title do %>
   <h2>Viewing Service Request <%= sr.case_number %></h2>
+  
   <% if can?(:manage, sr) %>
     <%= link_to "Edit Service Request", edit_service_request_path(sr), class: "btn btn-primary pull-right" %>
   <% end %>
+  
 <% end %>
 
 <div class="row">
