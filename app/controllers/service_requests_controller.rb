@@ -1,6 +1,6 @@
 class ServiceRequestsController < ApplicationController
   before_filter :authenticate_user!
-  authorize_resource except: :index
+  authorize_resource except: [:index, :update]
   load_resource except: [:create, :update]
   
   respond_to :html, :js
@@ -11,6 +11,7 @@ class ServiceRequestsController < ApplicationController
   end
   
   def show
+    customers
     respond_with @service_request
   end
   
@@ -28,7 +29,7 @@ class ServiceRequestsController < ApplicationController
     @service_request = current_user.service_requests.new(service_request_params)
     
     if @service_request.save
-      redirect_to new_service_request_path, notice: "Serice Request successfully created!"
+      redirect_to service_request_path(@service_request), notice: "Serice Request successfully created!"
     else
       customers
       render :new
@@ -38,15 +39,16 @@ class ServiceRequestsController < ApplicationController
   def update
     @service_request = ServiceRequest.find(params[:id])
     
-    authorize! :update, @service_request
-    
     if @service_request.update_attributes(service_request_params)
       respond_to do |format|
         format.html { redirect_to service_request_path(@service_request), notice: "#{@service_request.case_number} updated successfully!" }
         format.js
       end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.js
+      end
     end
   end
   
@@ -56,6 +58,20 @@ class ServiceRequestsController < ApplicationController
       redirect_to service_requests_path, notice: "Service Request has been removed!"
     else
       redirect_to service_requests_path, notice: "An error occurred. Please try again!"
+    end
+  end
+  
+  def received
+    @service_request = ServiceRequest.find(params[:id])
+    
+    authorize! :manage, @service_request
+    
+    respond_to do |format|
+      if @service_request.received
+        format.js {}
+      else
+        format.js { render json: { success: false, error: "An error has occurred!" }, status: :unprocessable_entity }
+      end
     end
   end
   

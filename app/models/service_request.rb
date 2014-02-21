@@ -24,8 +24,19 @@ class ServiceRequest < ActiveRecord::Base
   before_create :generate_case_number
   
   aasm column: :status do
-    state :pending, initial: true
-    state :processed
+    state :opened, initial: true
+    
+    event :received, after: Proc.new { set_received_date } do
+      transitions from: :opened, to: :pending
+    end
+    
+    state :pending
+    
+    event :close do
+      transitions from: :pending, to: :closed
+    end
+    
+    state :closed
   end
   
   def formatted_time(field = :created_at)
@@ -35,5 +46,10 @@ class ServiceRequest < ActiveRecord::Base
   private
     def generate_case_number
       self.case_number = SecureRandom.hex(4) unless case_number.present?
+    end
+    
+    def set_received_date
+      self.received_at = Time.now
+      save!
     end
 end

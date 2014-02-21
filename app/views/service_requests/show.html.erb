@@ -11,20 +11,34 @@
 
 <div class="row">
   <div class="col-md-5 col-md-offset-3">
-    <h3>Customer Information</h3>
-    <p>
-      <%= sr.full_name %><br />
-      <%= sr.customer.shipping_information.address %><br />
-      <% if sr.customer.shipping_information.address2.present? %>
-        <%= sr.customer.shipping_information.address2 %><br />
-      <% end %>
-      <%= sr.customer.shipping_information.city %>, <%= sr.customer.shipping_information.state %> <%= sr.customer.shipping_information.zip_code %><br />
-      <%= sr.customer.shipping_information.country %><br />
-      <%= sr.customer.contact_email %><br />
-      Address Type: <%= sr.customer.shipping_information.address_type %>
-    </p>
     
-    <% if sr.processed? %>
+    <%= form_for sr, html: { role: "form", class: "form-horizontal hide", id: "change-shipping-info" }, remote: true do |f| %>
+      <div class="form-group">
+        <h2>Shipping Information</h2>
+        <%= f.collection_select :customer_id, @customers.uniq, :id, :contact_email, {prompt: "Please select a customer"}, {id: nil} %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit "Update", class: "btn btn-success", data: { disable_with: "Processing..." } %>
+      </div>
+    <% end %>
+    
+    <div id="customer-info">
+      <h3>Customer Information <%= link_to "Edit", "#", class: "badge", id: "edit-customer-info" if sr.opened? %></h3>
+      <p>
+        <%= sr.full_name %><br />
+        <%= sr.customer.shipping_information.address %><br />
+        <% if sr.customer.shipping_information.address2.present? %>
+          <%= sr.customer.shipping_information.address2 %><br />
+        <% end %>
+        <%= sr.customer.shipping_information.city %>, <%= sr.customer.shipping_information.state %> <%= sr.customer.shipping_information.zip_code %><br />
+        <%= sr.customer.shipping_information.country %><br />
+        <%= sr.customer.contact_email %><br />
+        Address Type: <%= sr.customer.shipping_information.address_type %>
+      </p>
+    </div>
+    
+    <% if sr.closed? %>
       <p>
         Ship Date: <%= sr.formatted_time(:ship_date) %><br />
         Carrier: <%= sr.carrier %><br />
@@ -38,13 +52,18 @@
   <div class="col-md-4">
     <h3>Case Information</h3>
     <p>Case Number: <%= sr.case_number %></p>
-    <p>Company: <%= sr.company.name %></p>
+    <p>Company: <%= sr.company.try(:name) %></p>
     <p>T. Reference: <%= sr.troubleshooting_reference %></p>
     <p>RMA: <%= sr.rma %></p>
     <p>Representative: <%= sr.user.full_name %></p>
     <p>Submit Date: <%= sr.formatted_time %></p>
-    <% if sr.processed? %>
+    <% if sr.closed? %>
       <p>Completion Date: <%= sr.formatted_time(:completed_at) %></p>
+    <% end %>
+    
+    <% if sr.note.present? %>
+      <h3>Note from ArciPlex</h3>
+      <p><%= sr.note.description %></p>
     <% end %>
   </div>
 </div>

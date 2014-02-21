@@ -12,8 +12,11 @@
     <% end %>
     
     <p>Use the form below to edit <%= @service_request.case_number %></p>
-    
-    <%= render 'form' %>
+    <% if can?(:manage, @service_request) %>
+      <%= render 'form' %>
+    <% else %>
+      <%= render :show %>
+    <% end %>
   </div>
   
 </div>

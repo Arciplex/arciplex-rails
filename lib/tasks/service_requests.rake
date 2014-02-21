@@ -35,17 +35,19 @@ namespace :service_requests do
         if shipping.save
           ship_date = determine_default_date(row[26])
           completed_at = row[25] == "0000-00-00" ? nil : row[25]
+          received_at = row[24] == "0000-00-00" ? nil : row[24]
           sr = ServiceRequest.new(
                                     customer_id: customer.id,
                                     user_id: user.id,
                                     case_number: row[1],
                                     troubleshooting_reference: row[21],
                                     rma: row[22],
+                                    received_at: received_at,
                                     completed_at: completed_at,
                                     ship_date: ship_date,
                                     tracking_number: row[27],
                                     carrier: row[28],
-                                    status: completed_at.nil? ? "pending" : "processed"
+                                    status: completed_at.nil? ? "opened" : "closed"
                                   )
                                 
           sr.save

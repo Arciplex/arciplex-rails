@@ -1,1 +1,7 @@
-$('#<%= @service_request.case_number %>-note').modal('hide')
+if($('#<%= @service_request.case_number %>-note').length)
+  $('#<%= @service_request.case_number %>-note').modal('hide');
+  
+if($('form#change-shipping-info').length) {
+  alert("Shipping Information Changed");
+  window.location = '/service_requests/<%= @service_request.id %>'
+}

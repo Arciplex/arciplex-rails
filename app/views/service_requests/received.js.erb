@@ -1,0 +1,4 @@
+alert("Service Request Updated!");
+sr = $('[data-id="<%= @service_request.id %>"]:first')
+sr.find('#sr-status').text("pending");
+sr.find('.received-btn').remove();
