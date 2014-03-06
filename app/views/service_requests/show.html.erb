@@ -55,6 +55,10 @@
     <p>Company: <%= sr.company.try(:name) %></p>
     <p>T. Reference: <%= sr.troubleshooting_reference %></p>
     <p>RMA: <%= sr.rma %></p>
+    <p>
+      Products: 
+        <%= render sr.line_items %>
+    </p>
     <p>Representative: <%= sr.user.full_name %></p>
     <p>Submit Date: <%= sr.formatted_time %></p>
     <% if sr.closed? %>

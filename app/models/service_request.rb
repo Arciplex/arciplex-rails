@@ -40,7 +40,7 @@ class ServiceRequest < ActiveRecord::Base
   end
   
   def formatted_time(field = :created_at)
-    send(:created_at).strftime("%B #{created_at.day.ordinalize}, %Y")
+    send(field).strftime("%B #{send(field).day.ordinalize}, %Y")
   end
   
   private

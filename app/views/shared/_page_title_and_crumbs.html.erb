@@ -3,7 +3,11 @@
     <div class="col-md-12">
       <div class="col-md-2" id="signed-in-info">
         <ol class="breadcrumb">
-          <li><%= fa_icon "home"  %> Home</li>
+          <li>
+            <%= link_to service_requests_path do %>
+              <%= fa_icon "home"  %> Home
+            <% end %>
+          </li>
         </ol>
         <span>Welcome, <%= current_user.full_name %></span>
       </div>

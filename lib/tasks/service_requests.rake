@@ -44,6 +44,7 @@ namespace :service_requests do
                                     rma: row[22],
                                     received_at: received_at,
                                     completed_at: completed_at,
+                                    created_at: row[23],
                                     ship_date: ship_date,
                                     tracking_number: row[27],
                                     carrier: row[28],

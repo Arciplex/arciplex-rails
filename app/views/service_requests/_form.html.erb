@@ -11,9 +11,9 @@
     </div>
   
     <div class="form-group">
-      <%= f.label :troubleshooting_reference, class: "col-md-4 control-label" %>
+      <%= f.label :troubleshooting_reference, "Explain what is wrong", class: "col-md-4 control-label" %>
       <div class="col-md-5">
-        <%= f.select :troubleshooting_reference, troubleshooting_options, class: "form-control", id: nil, prompt: true %>
+        <%= f.text_field :troubleshooting_reference, class: "form-control" %> 
       </div>
     </div>
   
