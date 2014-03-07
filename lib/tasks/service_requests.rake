@@ -10,11 +10,9 @@ namespace :service_requests do
       puts "Using #{user.email}"
       
       customer = Customer.where(
-                                  user_id: user.id,
-                                  company_id: user.company_id, 
                                   prefix: row[5], 
                                   first_name: row[6], 
-                                  last_name: row[7] || "",
+                                  last_name: row[8] || "",
                                   contact_email: row[18],
                                   phone_number: row[17]
                                 ).first_or_initialize
@@ -36,6 +34,14 @@ namespace :service_requests do
           ship_date = determine_default_date(row[26])
           completed_at = row[25] == "0000-00-00" ? nil : row[25]
           received_at = row[24] == "0000-00-00" ? nil : row[24]
+          status = if received_at.nil?
+            "pending"
+          elsif received_at.present? and completed_at.present?
+            "closed"
+          else
+            "opened"
+          end
+            
           sr = ServiceRequest.new(
                                     customer_id: customer.id,
                                     user_id: user.id,
@@ -48,7 +54,7 @@ namespace :service_requests do
                                     ship_date: ship_date,
                                     tracking_number: row[27],
                                     carrier: row[28],
-                                    status: completed_at.nil? ? "opened" : "closed"
+                                    status: status
                                   )
                                 
           sr.save

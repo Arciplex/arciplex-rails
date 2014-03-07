@@ -8,7 +8,7 @@
       <% if can?(:edit, service_request) %>
         <%= link_to "Edit", edit_service_request_path(service_request), class: "btn-sm btn-warning" %>
         
-        <% if service_request.opened? %>
+        <% if service_request.pending? %>
           <%= link_to "Received", service_request_received_path(service_request), method: :patch, remote: true, class: "btn-sm btn-warning received-btn" %>
         <% end %>
         

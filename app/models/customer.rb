@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
   
   delegate :address, :address2, :city, :state, :country, :zip_code, :address_type, to: :shipping_information
   
-  validates :user_id, :company_id, :first_name, :contact_email, :phone_number, presence: true
+  validates :first_name, :contact_email, :phone_number, presence: true
   
   scope :in_company, ->(company_id) { where company_id: company_id }
   

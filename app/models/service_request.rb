@@ -16,21 +16,23 @@ class ServiceRequest < ActiveRecord::Base
     
   accepts_nested_attributes_for :note,
     reject_if: proc { |note| note['description'].blank? }
+
+  accepts_nested_attributes_for :customer
     
-  validates :customer_id, :troubleshooting_reference, presence: true
+  validates :troubleshooting_reference, presence: true
   
   delegate :full_name, to: :customer
   
   before_create :generate_case_number
   
   aasm column: :status do
-    state :opened, initial: true
+    state :pending, initial: true
     
     event :received, after: Proc.new { set_received_date } do
-      transitions from: :opened, to: :pending
+      transitions from: :pending, to: :opened
     end
-    
-    state :pending
+
+    state :opened
     
     event :close do
       transitions from: :pending, to: :closed

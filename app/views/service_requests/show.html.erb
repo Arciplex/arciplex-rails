@@ -12,19 +12,8 @@
 <div class="row">
   <div class="col-md-5 col-md-offset-3">
     
-    <%= form_for sr, html: { role: "form", class: "form-horizontal hide", id: "change-shipping-info" }, remote: true do |f| %>
-      <div class="form-group">
-        <h2>Shipping Information</h2>
-        <%= f.collection_select :customer_id, @customers.uniq, :id, :contact_email, {prompt: "Please select a customer"}, {id: nil} %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.submit "Update", class: "btn btn-success", data: { disable_with: "Processing..." } %>
-      </div>
-    <% end %>
-    
     <div id="customer-info">
-      <h3>Customer Information <%= link_to "Edit", "#", class: "badge", id: "edit-customer-info" if sr.opened? %></h3>
+      <h3>Customer Information <%= link_to("Edit", "#", class: "badge", id: "edit-customer-info", data: { toggle: "modal", target: "#customer-info-#{sr.id}" }) if sr.pending? %></h3>
       <p>
         <%= sr.full_name %><br />
         <%= sr.customer.shipping_information.address %><br />
@@ -64,10 +53,24 @@
     <% if sr.closed? %>
       <p>Completion Date: <%= sr.formatted_time(:completed_at) %></p>
     <% end %>
-    
+
+    <h3>Note from ARCiPLEX</h3>
     <% if sr.note.present? %>
-      <h3>Note from ArciPlex</h3>
       <p><%= sr.note.description %></p>
     <% end %>
+    
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="customer-info-<%= sr.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit Customer Information for Service Request <%= sr.id %></h4>
+      </div>
+      <%= render 'customer_information_form', service_request: sr %>
+    </div>
   </div>
 </div>

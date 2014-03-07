@@ -1,0 +1,12 @@
+<%= form_for service_request, remote: true, html: { role: "form", class: "form-horizontal", id: "change-shipping-info" } do |sr| %>
+    <div class="modal-body">
+        <%= sr.fields_for :customer do |customer| %>
+            <%= render 'customers/form', f: customer %> 
+        <% end %>
+    </div>
+
+    <div class="modal-footer">
+        <%= sr.submit "Submit", class: "btn btn-primary" %> 
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+<% end %>

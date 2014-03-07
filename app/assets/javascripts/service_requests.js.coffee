@@ -10,12 +10,5 @@ ready = ->
       $('.new_item select').selectpicker()
       event.preventDefault()
       
-    $('#edit-customer-info').on 'click', (e)->
-      $('#customer-info').hide()
-      $('#change-shipping-info').toggleClass "hide"
-      
-      e.preventDefault()
-      false
-      
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -11,17 +11,15 @@ class ServiceRequestsController < ApplicationController
   end
   
   def show
-    customers
     respond_with @service_request
   end
   
   def new
-    customers
     @service_request.line_items.build
+    @service_request.build_customer
   end
   
   def edit
-    customers
     respond_with @service_request
   end
   
@@ -31,7 +29,6 @@ class ServiceRequestsController < ApplicationController
     if @service_request.save
       redirect_to service_request_path(@service_request), notice: "Serice Request successfully created!"
     else
-      customers
       render :new
     end
   end
@@ -77,12 +74,36 @@ class ServiceRequestsController < ApplicationController
   
   private
     def service_request_params
-      params.require(:service_request).permit(:id, :troubleshooting_reference, :rma, :customer_id, :additional_information).tap do |whitelisted|
-        whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes] if params[:service_request].has_key?(:line_items_attributes)
+      service_request_attributes = [
+        :id,
+        :troubleshooting_reference,
+        :rma,
+        :additional_information,
+        :ship_date,
+        :carrier,
+        :tracking_number,
+        customer_attributes: [
+          :prefix,
+          :first_name,
+          :last_name,
+          :contact_email,
+          :phone_number,
+          shipping_information_attributes: [
+            :address,
+            :address2,
+            :city,
+            :state,
+            :zip_code,
+            :country,
+            :address_type
+          ]
+        ]
+      ]
+
+      params.require(:service_request).permit(*service_request_attributes).tap do |whitelisted|
+        if params[:service_request].has_key?(:line_items_attributes)
+          whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes]
+        end
       end
-    end
-    
-    def customers
-      @customers = Customer.in_company(current_user.company_id)
     end
 end
