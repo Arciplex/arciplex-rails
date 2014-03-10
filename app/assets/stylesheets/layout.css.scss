@@ -42,12 +42,33 @@ h2 {
   background-image: linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
   
   .navbar-brand {
-    background-image: asset-url('logo.png');
     background-repeat: no-repeat;
     width: 164px;
     line-height: 28px;
-    display: inline-block;
-    margin-top: 20px;
+    display: block;
+    margin-top: 10px;
+    height: 50px;
+
+    &#arciplex {
+      background-image: asset-url('logo.png');
+    }
+
+    &#elan {
+      background-image: asset-url('logos/elan_logo.jpg');
+    }
+    &#educator {
+      height: 75px;
+      background-image: asset-url('logos/educator_logo.jpg');
+    }
+    &#enerchi {
+      background-image: asset-url('logos/enerchi_logo.jpg');
+    }
+    &#luxana {
+      background-image: asset-url('logos/luxana_logo.jpg');
+    }
+    &#vivid {
+      background-image: asset-url('logos/vivid_logo.jpg');
+    }
   }
   
   ul.dropdown-menu {

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   ROLES = %w[superadmin admin requestor]
+
+  delegate :name, to: :company, prefix: true
          
   belongs_to :company
   has_many :customers
