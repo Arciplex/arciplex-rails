@@ -1,0 +1,12 @@
+elan:
+  types: ['Controller', 'Pad']
+enerchi:
+  types: ['HandUnit']
+vivid:
+  types: ['Controller', 'Accessory', 'Paddle']
+luxana:
+  types: ['Unit', 'Light Bed', 'Sauna']
+educator:
+  types: ['Control Box']
+arciplex:
+  types: ['Controller', 'Pad', 'HandUnit', 'Accessory', 'Paddle', 'Unit', 'Light Bed', 'Sauna', 'Control Box']

@@ -14,10 +14,13 @@ module ServiceRequestsHelper
     ]
   end
   
-  def item_type_options
-    [
-      ['Controller', 'Controller'],
-      ['Pad', 'Pad']
-    ]
+  def item_type_options(client_name = nil)
+    if client_name.blank?
+      client_name = current_user.company_name.downcase
+    end
+
+    yaml = YAML.load_file("#{Rails.root}/config/client_sr_options.yml")
+
+    yaml[client_name]["types"]
   end
 end

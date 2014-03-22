@@ -1,8 +1,10 @@
+<% client_name = sr.new_record? ? current_user.company_name.downcase : sr.user.company_name.downcase %>
+
 <%= f.fields_for :line_items, (f.object.line_items.build if build_new), child_index: child_index do |item| %>
   <div class="form-group">
     <%= item.label :item_type, "Type", class: "col-md-4 control-label" %>
     <div class="col-md-5">
-      <%= item.select :item_type, item_type_options, class: "form-control", id: nil, prompt: true %>
+      <%= item.select :item_type, item_type_options(client_name), class: "form-control", id: nil, prompt: true %>
     </div>
   </div>
 
@@ -17,6 +19,13 @@
     <%= item.label :serial_number, class: "col-md-4 control-label" %>
     <div class="col-md-5">
       <%= item.text_field :serial_number, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= item.label :additional_information, class: "col-md-4 control-label" %>
+    <div class="col-md-5">
+      <%= item.text_field :additional_information, class: "form-control" %>
     </div>
   </div>
 <% end %>
