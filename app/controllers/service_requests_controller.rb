@@ -25,6 +25,7 @@ class ServiceRequestsController < ApplicationController
   
   def create
     @service_request = current_user.service_requests.new(service_request_params)
+    @service_request.company_id = current_user.company_id
     
     if @service_request.save
       redirect_to service_request_path(@service_request), notice: "Serice Request successfully created!"
