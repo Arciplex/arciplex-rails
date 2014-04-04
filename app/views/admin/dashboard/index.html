@@ -1,0 +1,14 @@
+<% content_for :page_title do %>
+  <h2>Admin Dashboard</h2>
+  <p>Select a company below to view it's Service Requests</p>
+<% end %>
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <ul class="list-inline companies">
+      <% @companies.each do |c| %>
+        <li><%= display_logo(c, true) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,4 +1,10 @@
-<% client_name = sr.new_record? ? current_user.company_name.downcase : sr.user.company_name.downcase %>
+<% client_name = 
+  if sr.new_record?
+    current_sessioned_company.present? ? current_sessioned_company.name.downcase : current_user.company_name.downcase
+  else
+    sr.user.company_name.downcase
+  end
+%>
 
 <%= f.fields_for :line_items, (f.object.line_items.build if build_new), child_index: child_index do |item| %>
   <div class="form-group">

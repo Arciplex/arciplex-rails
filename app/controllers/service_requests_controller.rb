@@ -7,6 +7,7 @@ class ServiceRequestsController < ApplicationController
   
   def index
     @service_requests = @service_requests.send(params[:status]) if params[:status]
+    @service_requests = @service_requests.for_company(session[:admin_company_id]) if session[:admin_company_id]
     @service_requests = @service_requests.paginate(page: params[:page])
   end
   
@@ -25,7 +26,7 @@ class ServiceRequestsController < ApplicationController
   
   def create
     @service_request = current_user.service_requests.new(service_request_params)
-    @service_request.company_id = current_user.company_id
+    @service_request.company_id = current_user.admin? ? session[:admin_company_id] : current_user.company_id
     
     if @service_request.save
       redirect_to service_request_path(@service_request), notice: "Serice Request successfully created!"

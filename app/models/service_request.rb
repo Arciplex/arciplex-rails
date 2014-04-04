@@ -4,6 +4,8 @@ class ServiceRequest < ActiveRecord::Base
   include AASM
   
   default_scope { order('created_at DESC') }
+
+  scope :for_company, ->(company_id) { where(company_id: company_id) }
   
   has_many :line_items, dependent: :destroy
   belongs_to :customer

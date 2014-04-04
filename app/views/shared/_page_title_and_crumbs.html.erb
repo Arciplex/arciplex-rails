@@ -10,6 +10,11 @@
           </li>
         </ol>
         <span>Welcome, <%= current_user.full_name %></span>
+        <% if current_user.admin? %>
+          <% if session[:admin_company_id] %>
+            <p class="company-logo"><%= display_logo(session[:admin_company_id]) %></p>
+          <% end %>
+        <% end %>
       </div>
       
       <div class="col-md-9 col-md-offset-1">
