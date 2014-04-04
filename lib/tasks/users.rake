@@ -18,4 +18,37 @@ namespace :users do
       })
     end
   end
+
+  task :import_client_logins => :environment do
+    csv = 'lib/data/arcClientLogins.csv'
+
+    CSV.foreach(csv) do |row|
+      company = Company.find_by_name(row[0])
+      User.create!({
+        email: row[1],
+        password: row[2],
+        password_confirmation: row[2],
+        receives_communication: row[3],
+        company_id: company.id
+      })
+    end
+  end
+
+  task :import_corporate_logins => :environment do
+    csv = 'lib/data/arcNewCorporateLogins.csv'
+
+    CSV.foreach(csv) do |row|
+      company = Company.find_by_name("ArciPlex")
+      User.create!({
+        first_name: row[0],
+        last_name: row[1],
+        email: row[2],
+        password: row[2],
+        password_confirmation: row[2],
+        role: row[4],
+        receives_communication: row[5],
+        company_id: company.id
+      })
+    end
+  end
 end
