@@ -4,15 +4,21 @@
       <div class="col-md-2" id="signed-in-info">
         <ol class="breadcrumb">
           <li>
-            <%= link_to service_requests_path do %>
-              <%= fa_icon "home"  %> Home
+            <% if current_user.admin? %> 
+              <%= link_to admin_path do %>
+                <%= fa_icon "home"  %> Home
+              <% end %>
+            <% else %>
+              <%= link_to company_service_requests_path(params[:company_id]) do %>
+                <%= fa_icon "home"  %> Home
+              <% end %>
             <% end %>
           </li>
         </ol>
         <span>Welcome, <%= current_user.full_name %></span>
         <% if current_user.admin? %>
-          <% if session[:admin_company_id] %>
-            <p class="company-logo"><%= display_logo(session[:admin_company_id]) %></p>
+          <% if params[:company_id] %>
+            <p class="company-logo"><%= display_logo(params[:company_id]) %></p>
           <% end %>
         <% end %>
       </div>

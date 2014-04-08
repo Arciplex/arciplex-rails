@@ -1,5 +1,5 @@
 class ServiceRequestsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :get_company
   authorize_resource except: [:index, :update]
   load_resource except: [:create, :update]
   
@@ -7,7 +7,6 @@ class ServiceRequestsController < ApplicationController
   
   def index
     @service_requests = @service_requests.send(params[:status]) if params[:status]
-    @service_requests = @service_requests.for_company(session[:admin_company_id]) if session[:admin_company_id]
     @service_requests = @service_requests.paginate(page: params[:page])
   end
   
@@ -26,10 +25,10 @@ class ServiceRequestsController < ApplicationController
   
   def create
     @service_request = current_user.service_requests.new(service_request_params)
-    @service_request.company_id = current_user.admin? ? session[:admin_company_id] : current_user.company_id
+    @service_request.company_id = current_user.admin? ? params[:company_id] : current_user.company_id
     
     if @service_request.save
-      redirect_to service_request_path(@service_request), notice: "Serice Request successfully created!"
+      redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "Serice Request successfully created!"
     else
       render :new
     end
@@ -40,7 +39,7 @@ class ServiceRequestsController < ApplicationController
     
     if @service_request.update_attributes(service_request_params)
       respond_to do |format|
-        format.html { redirect_to service_request_path(@service_request), notice: "#{@service_request.case_number} updated successfully!" }
+        format.html { redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "#{@service_request.case_number} updated successfully!" }
         format.js
       end
     else
@@ -54,9 +53,9 @@ class ServiceRequestsController < ApplicationController
   def destroy
     @service_request = current_user.service_requests.find(params[:id])
     if @service_request.destroy
-      redirect_to service_requests_path, notice: "Service Request has been removed!"
+      redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been removed!"
     else
-      redirect_to service_requests_path, notice: "An error occurred. Please try again!"
+      redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "An error occurred. Please try again!"
     end
   end
   
@@ -107,5 +106,9 @@ class ServiceRequestsController < ApplicationController
           whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes]
         end
       end
+    end
+
+    def get_company
+      @company = Company.find(params[:company_id])
     end
 end

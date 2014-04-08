@@ -7,19 +7,21 @@
           <% if current_user.admin? %>
             <li><%= link_to "Admin Dashboard", admin_path %></li>
           <% end %>
-          <% if can?(:create, ServiceRequest) %>
-            <li class="dropdown">
-              <%= link_to service_requests_path, class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
-                Service Requests <span class="caret"></span>
-              <% end %>
-              
-              <ul class="dropdown-menu">
-                <li><%= link_to "All", service_requests_path %></li>
-                <li><%= link_to "Open", service_requests_path(status: "opened") %></li>
-                <li><%= link_to "Pending", service_requests_path(status: "pending") %></li>
-                <li><%= link_to "Closed", service_requests_path(status: "closed") %></li>
-              </ul>
-            </li>
+          <% if params[:company_id].present? %> 
+            <% if can?(:create, ServiceRequest) %>
+              <li class="dropdown">
+                <%= link_to company_service_requests_path(params[:company_id]), class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
+                  Service Requests <span class="caret"></span>
+                <% end %>
+                
+                <ul class="dropdown-menu">
+                  <li><%= link_to "All", company_service_requests_path(params[:company_id]) %></li>
+                  <li><%= link_to "Open", company_service_requests_path(company_id: params[:company_id], status: "opened") %></li>
+                  <li><%= link_to "Pending", company_service_requests_path(company_id: params[:company_id],status: "pending") %></li>
+                  <li><%= link_to "Closed", company_service_requests_path(company_id: params[:company_id],status: "closed") %></li>
+                </ul>
+              </li>
+            <% end %>
           <% end %>
           <li><%= link_to "Logout", logout_path %></li>
         </ul>

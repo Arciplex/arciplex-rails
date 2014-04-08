@@ -4,7 +4,7 @@
   <h2>Viewing Service Request <%= sr.case_number %></h2>
   
   <% if can?(:manage, sr) %>
-    <%= link_to "Edit Service Request", edit_service_request_path(sr), class: "btn btn-primary pull-right" %>
+    <%= link_to "Edit Service Request", edit_company_service_request_path(company_id: sr.company_id, id: sr.id), class: "btn btn-primary pull-right" %>
   <% end %>
   
 <% end %>
