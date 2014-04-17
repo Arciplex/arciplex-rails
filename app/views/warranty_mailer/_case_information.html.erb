@@ -1,0 +1,13 @@
+<p>
+  Case Number: <%= service_request.case_number %><br />
+  Company: <%= service_request.company.name %><br />
+  Submit Date: <%= service_request.formatted_time %><br />
+
+  <% if service_request.received_at.present? %>
+    Received Date: <%= service_request.formatted_time(:received_at) %><br />
+  <% end %>
+
+  <% if service_request.completed_at.present? %>
+    Completion Date: <%= service_request.formatted_time(:completed_at) %><br />
+  <% end %>
+</p>

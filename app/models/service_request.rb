@@ -46,6 +46,12 @@ class ServiceRequest < ActiveRecord::Base
   def formatted_time(field = :created_at)
     send(field).strftime("%B #{send(field).day.ordinalize}, %Y")
   end
+
+  def notify
+    User.admin_and_who_receive_communication.pluck(:email).each do |email|
+      WarrantyMailer.submitted(self, self.customer, email).deliver
+    end
+  end
   
   private
     def generate_case_number

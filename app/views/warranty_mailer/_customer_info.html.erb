@@ -1,0 +1,11 @@
+<p>
+  <%= customer.full_name %><br />
+  <%= customer.shipping_information.address %><br />
+  <% if customer.shipping_information.address2.present? %>
+    <%= customer.shipping_information.address2 %><br />
+  <% end %>
+  <%= customer.state_city_zip %><br />
+  <%= customer.try(:country) %><br />
+  <%= customer.contact_email %><br />
+  <%= number_to_phone customer.phone_number %>
+</p>

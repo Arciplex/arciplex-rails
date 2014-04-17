@@ -29,6 +29,7 @@ class ServiceRequestsController < ApplicationController
     @service_request.company_id = current_user.admin? ? params[:company_id] : current_user.company_id
     
     if @service_request.save
+      @service_request.notify
       redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "Serice Request successfully created!"
     else
       render :new
@@ -39,6 +40,7 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.find(params[:id])
     
     if @service_request.update_attributes(service_request_params)
+      @service_request.notify
       respond_to do |format|
         format.html { redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "#{@service_request.case_number} updated successfully!" }
         format.js
@@ -67,6 +69,7 @@ class ServiceRequestsController < ApplicationController
     
     respond_to do |format|
       if @service_request.received
+        @service_request.notify
         format.js {}
       else
         format.js { render json: { success: false, error: "An error has occurred!" }, status: :unprocessable_entity }

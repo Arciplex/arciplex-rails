@@ -1,0 +1,16 @@
+<table width="100%">
+  <tr>
+    <th style="text-align: left">Description</th>
+    <th style="text-align: left">Model</th>
+    <th style="text-align: left">Serial Number</th>
+    <th style="text-align: left">Troubleshooting Reference</th>
+  </tr>
+  <% items.each do |item| %>
+    <tr>
+      <td><%= item.item_type %></td>
+      <td><%= item.model_number %></td>
+      <td><%= item.serial_number %></td>
+      <td><%= sr.troubleshooting_reference %></td>
+    </tr>
+  <% end %>
+</table>
