@@ -29,18 +29,16 @@ class ServiceRequest < ActiveRecord::Base
   
   aasm column: :status do
     state :pending, initial: true
+    state :opened
+    state :closed
     
     event :received, after: Proc.new { set_received_date } do
       transitions from: :pending, to: :opened
     end
-
-    state :opened
     
-    event :close do
-      transitions from: :pending, to: :closed
+    event :complete do
+      transitions from: :opened, to: :closed
     end
-    
-    state :closed
   end
   
   def formatted_time(field = :created_at)

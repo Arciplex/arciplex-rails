@@ -54,9 +54,9 @@ class ServiceRequestsController < ApplicationController
   end
   
   def destroy
-    @service_request = current_user.service_requests.find(params[:id])
-    if @service_request.destroy
-      redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been removed!"
+    @service_request = ServiceRequest.find(params[:id])
+    if @service_request.complete!
+      redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been closed!"
     else
       redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "An error occurred. Please try again!"
     end
@@ -68,8 +68,8 @@ class ServiceRequestsController < ApplicationController
     authorize! :manage, @service_request
     
     respond_to do |format|
-      if @service_request.received
-        @service_request.notify
+      if @service_request.received!
+        # @service_request.notify
         format.js {}
       else
         format.js { render json: { success: false, error: "An error has occurred!" }, status: :unprocessable_entity }
