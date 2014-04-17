@@ -11,12 +11,16 @@ Arciplex::Application.routes.draw do
     resources :notes
   end
   resources :companies do
-    resources :service_requests
+    resources :service_requests do
+      member do
+        patch 'received'
+      end
+    end
   end
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
   end
   
-  match "/service_requests/:id/received" => "service_requests#received", via: :patch, as: "service_request_received"
+  # match "/service_requests/:id/received" => "service_requests#received", via: :patch, as: "service_request_received"
 end

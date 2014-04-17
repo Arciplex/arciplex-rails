@@ -9,7 +9,7 @@
         <%= link_to "Edit", edit_company_service_request_path(company_id: service_request.company_id, id: service_request), class: "btn-sm btn-warning" %>
         
         <% if service_request.pending? %>
-          <%= link_to "Received", company_service_request_path(company_id: service_request.company_id, id: service_request), method: :patch, remote: true, class: "btn-sm btn-warning received-btn" %>
+          <%= link_to "Received", received_company_service_request_path(company_id: service_request.company_id, id: service_request), method: :patch, remote: true, class: "btn-sm btn-warning received-btn" %>
         <% end %>
         
         <%= link_to "Remove", company_service_request_path(company_id: service_request.company_id, id: service_request), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
