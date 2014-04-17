@@ -15,4 +15,8 @@ class Customer < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}".squish
   end
+
+  def state_city_zip
+    "#{shipping_information.try(:city)}, #{shipping_information.try(:state)} #{shipping_information.try(:zip_code)}".squish
+  end
 end

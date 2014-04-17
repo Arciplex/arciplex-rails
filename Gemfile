@@ -16,6 +16,7 @@ gem "will_paginate", '~> 3.0'
 gem 'will_paginate-bootstrap'
 
 gem "rails_12factor", group: :production
+gem 'mandrill_mailer'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'

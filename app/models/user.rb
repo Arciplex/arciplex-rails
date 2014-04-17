@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def admin?
     has_role?(:admin)
   end
+
+  def self.admin_and_who_receive_communication
+    where(role: 'admin', receives_communication: true)
+  end
 end

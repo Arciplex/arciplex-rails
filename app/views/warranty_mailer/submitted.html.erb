@@ -1,0 +1,34 @@
+<p><%= image_tag "#{@company_name.downcase}_logo.jpg" %></p>
+<h1>Warranty Service Request</h1>
+
+<table width="100%">
+  <tr>
+    <td>
+      <h2>Customer Information</h2>
+
+      <%= render 'customer_info', customer: @customer %>
+    </td>
+    <td>
+      <h2>Case Information</h2>
+
+      <%= render 'case_information', service_request: @service_request %>
+    </td>
+  </tr>
+</table>
+
+<h2>Shipping Information</h2>
+<p>
+  Address Type: <%= @customer.shipping_information.address_type %><br />
+  <% if @service_request.ship_date.present? %>
+    Ship Date: <%= @service_request.formatted_time(:ship_date) %>
+  <% end %>
+  <% if @service_request.carrier.present? %>
+    Carrier: <%= @service_request.carrier %><br />
+  <% end %>
+  <% if @service_request.tracking_number.present? %>
+    Tracking Number: <%= @service_request.tracking_number %><br />
+  <% end %>
+</p>
+
+<h2>Warranty Items</h2>
+<%= render 'warranty_items', items: @service_request.line_items, sr: @service_request %>
