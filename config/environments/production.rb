@@ -78,5 +78,5 @@ Arciplex::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.asset_host = 'http://arciplex.herokuapp.com'
+  config.action_mailer.asset_host = 'http://www.supportnotification.com'
 end
