@@ -56,6 +56,7 @@ class ServiceRequestsController < ApplicationController
   def destroy
     @service_request = ServiceRequest.find(params[:id])
     if @service_request.complete!
+      @service_request.notify
       redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been closed!"
     else
       redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "An error occurred. Please try again!"
@@ -69,7 +70,7 @@ class ServiceRequestsController < ApplicationController
     
     respond_to do |format|
       if @service_request.received!
-        # @service_request.notify
+        @service_request.notify
         format.js {}
       else
         format.js { render json: { success: false, error: "An error has occurred!" }, status: :unprocessable_entity }
