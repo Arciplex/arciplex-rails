@@ -7,4 +7,8 @@ class Company < ActiveRecord::Base
   def can_report_rma?
     name == "Elan"
   end
+
+  def clients_can_receive_notitifications?
+    name != "Elan"
+  end
 end

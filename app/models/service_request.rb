@@ -46,6 +46,24 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def notify
+    notify_corporate_admins
+    notify_company_contacts
+    notify_customer
+  end
+
+  def notify_customer
+    if self.company.clients_should_receive_notifications?
+      self.company.users.pluck(:email).each do |email|
+        WarrantyMailer.submitted(self, self.customer, email)
+      end
+    end
+  end
+
+  def notify_company_contacts
+    WarrantyMailer.submitted(self, self.customer, self.customer.contact_email) if self.customer.contact_email.present?
+  end
+
+  def notify_corporate_admins
     User.admin_and_who_receive_communication.pluck(:email).each do |email|
       WarrantyMailer.submitted(self, self.customer, email).deliver
     end
