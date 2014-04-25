@@ -52,7 +52,7 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def notify_customer
-    if self.company.clients_should_receive_notifications?
+    if self.company.clients_can_receive_notitifications?
       self.company.users.pluck(:email).each do |email|
         WarrantyMailer.submitted(self, self.customer, email)
       end
