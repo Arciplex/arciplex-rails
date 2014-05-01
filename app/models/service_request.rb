@@ -53,8 +53,12 @@ class ServiceRequest < ActiveRecord::Base
 
   def notify_customer
     if self.company.clients_can_receive_notitifications?
-      self.company.users.pluck(:email).each do |email|
-        WarrantyMailer.submitted(self, self.customer, email).deliver
+      if self.company.name == "Luxana"
+        WarrantyMailer.submitted(self, self.customer, "warranty@elanenergetics.com").deliver
+      else
+        self.company.users.pluck(:email).each do |email|
+          WarrantyMailer.submitted(self, self.customer, email).deliver
+        end
       end
     end
   end
