@@ -1,5 +1,5 @@
 class WarrantyMailer < ActionMailer::Base
-  default from: "warranty@supportnotifications.com"
+  default from: "warranty@supportnotification.com"
 
   def submitted(service_request, customer, to)
     @customer = customer
