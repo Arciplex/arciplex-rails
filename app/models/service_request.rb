@@ -36,7 +36,7 @@ class ServiceRequest < ActiveRecord::Base
       transitions from: :pending, to: :opened
     end
     
-    event :complete do
+    event :complete, after: Proc.new { set_completion_date } do
       transitions from: :opened, to: :closed
     end
   end
@@ -80,6 +80,11 @@ class ServiceRequest < ActiveRecord::Base
     
     def set_received_date
       self.received_at = Time.now
+      save!
+    end
+
+    def set_completion_date
+      self.completed_at = Time.now
       save!
     end
 end

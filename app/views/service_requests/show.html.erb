@@ -29,7 +29,9 @@
     
     <% if sr.closed? %>
       <p>
-        Ship Date: <%= sr.formatted_time(:ship_date) %><br />
+        <% if sr.ship_date.present? %>
+          Ship Date: <%= sr.try(:formatted_time, :ship_date) %><br />
+        <% end %>
         Carrier: <%= sr.carrier %><br />
         Tracking Number: <%= sr.tracking_number %>
       </p>
@@ -51,7 +53,9 @@
     <p>Representative: <%= sr.user.full_name %></p>
     <p>Submit Date: <%= sr.formatted_time %></p>
     <% if sr.closed? %>
-      <p>Completion Date: <%= sr.formatted_time(:completed_at) %></p>
+      <% if sr.completed_at.present? %>
+        <p>Completion Date: <%= sr.formatted_time(:completed_at) %></p>
+      <% end %>
     <% end %>
 
     <h3>Note from ARCiPLEX</h3>
