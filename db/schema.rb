@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404031140) do
+ActiveRecord::Schema.define(version: 20140513014826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,30 @@ ActiveRecord::Schema.define(version: 20140404031140) do
     t.text     "description",        default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "order_line_items", force: true do |t|
+    t.integer  "order_id"
+    t.string   "item"
+    t.string   "quantity"
+    t.text     "additional_information"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "serial_number"
+  end
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "customer_id"
+    t.datetime "received_at"
+    t.datetime "ship_date"
+    t.string   "status"
+    t.string   "tracking_number"
+    t.string   "carrier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "completed_at"
   end
 
   create_table "service_requests", force: true do |t|
