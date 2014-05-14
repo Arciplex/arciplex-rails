@@ -11,6 +11,10 @@ module SharedMethods
     delegate :full_name, to: :customer, prefix: true
   end
 
+  def formatted_time(field = :created_at)
+    send(field).strftime("%B #{send(field).day.ordinalize}, %Y")
+  end
+
   private
     def set_received_date
       self.received_at = Time.now

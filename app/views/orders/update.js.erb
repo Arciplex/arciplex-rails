@@ -1,0 +1,4 @@
+if($('#customer-info-<%= @order.id %>').length) {
+    $('#customer-info-<%= @order.id %>').modal('hide');
+    window.location.reload(); 
+}

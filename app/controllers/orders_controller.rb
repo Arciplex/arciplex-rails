@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
     @order.company_id = current_user.admin? ? params[:company_id] : current_user.company_id
 
     if @order.save
-      @order.notify
+      # @order.notify
       redirect_to company_order_path(company_id: params[:company_id], id: @order), notice: "Order successfully created!"
     else
       render :new
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     if @order.update_attributes(order_params)
-      @order.notify
+      # @order.notify
       respond_to do |format|
         format.html { redirect_to company_order_path(company_id: params[:company_id], id: @order), notice: "Order updated successfully!" }
         format.js
@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.received!
-        @order.notify
+        # @order.notify
         format.js {}
       else
         format.js { render json: { success: false, error: "An error has occurred!" }, status: :unprocessable_entity }
@@ -106,7 +106,7 @@ class OrdersController < ApplicationController
 
       params.require(:order).permit(*order_attributes).tap do |whitelisted|
         if params[:order].has_key?(:order_line_items_attributes)
-          whitelisted[:order_line_items_attributes] = params[:oredr][:order_line_items_attributes]
+          whitelisted[:order_line_items_attributes] = params[:order][:order_line_items_attributes]
         end
       end
     end

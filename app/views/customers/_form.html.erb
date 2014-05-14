@@ -36,52 +36,59 @@
 <%= f.fields_for :shipping_information, f.object.shipping_information || f.object.build_shipping_information do |sh| %>
 
   <div class="form-group">
+    <%= sh.label :company_name, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= sh.text_field :company_name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= sh.label :address, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.text_field :address, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= sh.label :address2, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.text_field :address2, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= sh.label :city, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.text_field :city, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= sh.label :state, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.text_field :state, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= sh.label :zip_code, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.text_field :zip_code, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= sh.label :country, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.text_field :country, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= sh.label :address_type, class: "col-md-2 control-label" %>
     <div class="col-md-8">
       <%= sh.select :address_type, address_type_options, class: "form-control" %>
     </div>
   </div>
-  
+
 <% end %>

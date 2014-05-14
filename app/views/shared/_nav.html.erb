@@ -7,19 +7,24 @@
           <% if current_user.admin? %>
             <li><%= link_to "Admin Dashboard", admin_path %></li>
           <% end %>
-          <% if params[:company_id].present? %> 
+          <% if params[:company_id].present? %>
             <% if can?(:create, ServiceRequest) %>
               <li class="dropdown">
                 <%= link_to company_service_requests_path(params[:company_id]), class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
                   Service Requests <span class="caret"></span>
                 <% end %>
-                
-                <ul class="dropdown-menu">
-                  <li><%= link_to "All", company_service_requests_path(params[:company_id]) %></li>
-                  <li><%= link_to "Open", company_service_requests_path(company_id: params[:company_id], status: "opened") %></li>
-                  <li><%= link_to "Pending", company_service_requests_path(company_id: params[:company_id],status: "pending") %></li>
-                  <li><%= link_to "Closed", company_service_requests_path(company_id: params[:company_id],status: "closed") %></li>
-                </ul>
+
+                <%= render 'shared/dropdown_menu', path: 'company_service_requests_path' %>
+              </li>
+            <% end %>
+
+            <% if can?(:create, Order) %>
+              <li class="dropdown">
+                <%= link_to company_orders_path(params[:company_id]), class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
+                  Orders <span class="caret"></span>
+                <% end %>
+
+                <%= render 'shared/dropdown_menu', path: 'company_orders_path' %>
               </li>
             <% end %>
           <% end %>

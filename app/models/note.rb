@@ -1,4 +1,4 @@
 class Note < ActiveRecord::Base
   belongs_to :user
-  belongs_to :service_request
+  belongs_to :noteable, polymorphic: true
 end

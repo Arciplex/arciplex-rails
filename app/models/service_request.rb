@@ -9,7 +9,8 @@ class ServiceRequest < ActiveRecord::Base
   scope :for_company, ->(company_id) { where(company_id: company_id) }
 
   has_many :line_items, dependent: :destroy
-  has_one :note
+
+  has_one :note, as: :noteable
 
   accepts_nested_attributes_for :line_items,
     reject_if: proc { |item| item['item_type'].blank? }
@@ -33,10 +34,6 @@ class ServiceRequest < ActiveRecord::Base
     event :complete, after: Proc.new { set_completion_date } do
       transitions from: :opened, to: :closed
     end
-  end
-
-  def formatted_time(field = :created_at)
-    send(field).strftime("%B #{send(field).day.ordinalize}, %Y")
   end
 
   def notify

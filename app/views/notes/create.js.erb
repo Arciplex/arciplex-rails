@@ -1,2 +1,2 @@
 alert("Note Saved!");
-$('#<%= @service_request.case_number %>-note').modal('hide');
+$('#<%= @noteable.try(:case_number) || @noteable.id %>-note').modal('hide');

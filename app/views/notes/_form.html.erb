@@ -1,13 +1,18 @@
-<% note = service_request.note || Note.new %>
-<% path = note.new_record? ? service_request_notes_path(service_request) : service_request_note_path(service_request, note) %>
+<% note = object.note || Note.new %>
+<% hsh = {} %>
+<% hsh[:"#{object.class.name.underscore}_id"] = object.id %>
+<% hsh.merge!(id: note) unless note.new_record? %>
+<% path = object.is_a?(Order) ? 'order_notes_path' : 'service_request_notes_path' %>
+<% path = note.new_record? ? path : path.sub('notes', 'note') %>
+<% go = send(path, hsh) %>
 
-<div class="modal fade" id="<%= service_request.case_number %>-note" tabindex="-1" role="dialog" aria-labelledby="addNoteLabel" aria-hidden="true">
+<div class="modal fade" id="<%= object.try(:case_number) || object.id %>-note" tabindex="-1" role="dialog" aria-labelledby="addNoteLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <%= form_for note, url: path, remote: true, html: { role: "form", class: "form-horizontal" } do |f|  %>
+    <%= form_for note, url: go, remote: true, html: { role: "form", class: "form-horizontal" } do |f|  %>
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Add a Note for <%= service_request.case_number %></h4>
+          <h4 class="modal-title">Add a Note for <%= object.class.name %> #<%= object.try(:case_number) || object.id %></h4>
         </div>
         <div class="modal-body">
             <div class="form-group">

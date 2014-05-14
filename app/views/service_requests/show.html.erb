@@ -2,20 +2,20 @@
 
 <% content_for :page_title do %>
   <h2>Viewing Service Request <%= sr.case_number %></h2>
-  
+
   <% if can?(:manage, sr) %>
     <%= link_to "Edit Service Request", edit_company_service_request_path(company_id: sr.company_id, id: sr.id), class: "btn btn-primary pull-right" %>
   <% end %>
-  
+
 <% end %>
 
 <div class="row">
   <div class="col-md-5 col-md-offset-3">
-    
+
     <div id="customer-info">
       <h3>Customer Information <%= link_to("Edit", "#", class: "badge", id: "edit-customer-info", data: { toggle: "modal", target: "#customer-info-#{sr.id}" }) if sr.pending? %></h3>
       <p>
-        <%= sr.full_name %><br />
+        <%= sr.customer_full_name %><br />
         <%= sr.customer.shipping_information.address %><br />
         <% if sr.customer.shipping_information.address2.present? %>
           <%= sr.customer.shipping_information.address2 %><br />
@@ -26,7 +26,7 @@
         Address Type: <%= sr.customer.shipping_information.address_type %>
       </p>
     </div>
-    
+
     <% if sr.closed? %>
       <p>
         <% if sr.ship_date.present? %>
@@ -36,10 +36,10 @@
         Tracking Number: <%= sr.tracking_number %>
       </p>
     <% end %>
-    
+
     <h3>
   </div>
-  
+
   <div class="col-md-4">
     <h3>Case Information</h3>
     <p>Case Number: <%= sr.case_number %></p>
@@ -47,7 +47,7 @@
     <p>T. Reference: <%= sr.troubleshooting_reference %></p>
     <p>RMA: <%= sr.rma %></p>
     <p>
-      Products: 
+      Products:
         <%= render sr.line_items %>
     </p>
     <p>Representative: <%= sr.user.full_name %></p>
@@ -62,7 +62,7 @@
     <% if sr.note.present? %>
       <p><%= sr.note.description %></p>
     <% end %>
-    
+
   </div>
 </div>
 
@@ -74,7 +74,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Edit Customer Information for Service Request <%= sr.id %></h4>
       </div>
-      <%= render 'customer_information_form', service_request: sr %>
+      <%= render 'shared/customer_information_form', object: sr %>
     </div>
   </div>
 </div>

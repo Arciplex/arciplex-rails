@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  <h2>You are editing Order #<%= @order.id %></h2>
+<% end %>
+
+<div class="row">
+
+  <div class="col-md-9 col-md-offset-3">
+    <% if can?(:manage, Note) %>
+      <%= button_tag class: "btn btn-primary pull-right", data: { toggle: "modal", target: "##{@order.id}-note" } do %>
+        Add Note
+      <% end %>
+    <% end %>
+
+    <p>Use the form below to edit <%= @order.id %></p>
+    <% if can?(:manage, @order) %>
+      <%= render 'form' %>
+    <% else %>
+      <%= render :show %>
+    <% end %>
+  </div>
+
+</div>
+
+<% if can?(:manage, Note) %>
+  <%= render 'notes/form', object: @order %>
+<% end %>

@@ -1,13 +1,13 @@
 class NotesController < ApplicationController
-  before_filter :authenticate_user!, :load_service_request
-  
+  before_filter :authenticate_user!
+
   def create
     authorize! :create, Note
-    
-    @note = Note.new(note_attributes)
+
+    @noteable = find_noteable
+    @note = @noteable.build_note(note_attributes)
     @note.user_id = current_user.id
-    @note.service_request_id = params[:service_request_id]
-    
+
     respond_to do |format|
       if @note.save
         format.js {}
@@ -16,12 +16,13 @@ class NotesController < ApplicationController
       end
     end
   end
-  
+
   def update
     authorize! :update, @note
-    
-    @note = current_user.notes.find(params[:id])
-    
+
+    @noteable = find_noteable
+    @note = @noteable.note
+
     respond_to do |format|
       if @note.update_attributes(note_attributes)
         format.js {}
@@ -30,14 +31,19 @@ class NotesController < ApplicationController
       end
     end
   end
-  
+
   private
-    def load_service_request
-      @service_request = ServiceRequest.find(params[:service_request_id])
+    def find_noteable
+      params.each do |name, value|
+        if name =~ /(.+)_id$/
+          return $1.classify.constantize.find(value)
+        end
+      end
+      nil
     end
-  
+
     def note_attributes
       params.require(:note).permit(:id, :description)
     end
-  
+
 end

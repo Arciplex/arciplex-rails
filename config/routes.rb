@@ -10,6 +10,11 @@ Arciplex::Application.routes.draw do
   resources :service_requests, only: [] do
     resources :notes
   end
+
+  resources :orders, only: [] do
+    resources :notes
+  end
+
   resources :companies do
     resources :service_requests do
       member do

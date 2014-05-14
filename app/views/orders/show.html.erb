@@ -1,0 +1,77 @@
+<% order = @order %>
+
+<% content_for :page_title do %>
+  <h2>Viewing Order #<%= order.id %></h2>
+
+  <% if can?(:manage, order) %>
+    <%= link_to "Edit Order", edit_company_order_path(company_id: order.company_id, id: order), class: "btn btn-primary pull-right" %>
+  <% end %>
+
+<% end %>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-3">
+
+    <div id="customer-info">
+      <h3>Customer Information <%= link_to("Edit", "#", class: "badge", id: "edit-customer-info", data: { toggle: "modal", target: "#customer-info-#{order.id}" }) if order.pending? %></h3>
+      <p>
+        <%= order.customer_full_name %><br />
+        <%= order.customer.shipping_information.address %><br />
+        <% if order.customer.shipping_information.address2.present? %>
+          <%= order.customer.shipping_information.address2 %><br />
+        <% end %>
+        <%= order.customer.shipping_information.city %>, <%= order.customer.shipping_information.state %> <%= order.customer.shipping_information.zip_code %><br />
+        <%= order.customer.shipping_information.country %><br />
+        <%= order.customer.contact_email %><br />
+        Address Type: <%= order.customer.shipping_information.address_type %>
+      </p>
+    </div>
+
+    <% if order.closed? %>
+      <p>
+        <% if order.ship_date.present? %>
+          Ship Date: <%= order.try(:formatted_time, :ship_date) %><br />
+        <% end %>
+        Carrier: <%= order.carrier %><br />
+        Tracking Number: <%= order.tracking_number %>
+      </p>
+    <% end %>
+
+    <h3>
+  </div>
+
+  <div class="col-md-4">
+    <h3>Case Information</h3>
+    <p>Company: <%= order.company.try(:name) %></p>
+    <p>
+      Products:
+        <%= render order.order_line_items %>
+    </p>
+    <p>Representative: <%= order.user.full_name %></p>
+    <p>Submit Date: <%= order.formatted_time %></p>
+    <% if order.closed? %>
+      <% if order.completed_at.present? %>
+        <p>Completion Date: <%= order.formatted_time(:completed_at) %></p>
+      <% end %>
+    <% end %>
+
+    <h3>Note from ARCiPLEX</h3>
+    <% if order.note.present? %>
+      <p><%= order.note.description %></p>
+    <% end %>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="customer-info-<%= order.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit Customer Information for Service Request <%= order.id %></h4>
+      </div>
+      <%= render 'shared/customer_information_form', object: order %>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,17 @@
 <tr data-id="<%= service_request.id %>">
-  <td><%= service_request.full_name %></td>
+  <td><%= service_request.customer_full_name %></td>
   <td><%= service_request.case_number %></td>
   <td><%= service_request.formatted_time %></td>
   <td class="sr-status"><%= service_request.status %></td>
   <td class="actions">
-      <%= link_to "View", company_service_request_path(company_id: service_request.company_id, id: service_request), class: "btn-sm btn-warning" %> 
+      <%= link_to "View", company_service_request_path(company_id: service_request.company_id, id: service_request), class: "btn-sm btn-warning" %>
       <% if can?(:edit, service_request) %>
         <%= link_to "Edit", edit_company_service_request_path(company_id: service_request.company_id, id: service_request), class: "btn-sm btn-warning" %>
-        
+
         <% if service_request.pending? %>
           <%= link_to "Received", received_company_service_request_path(company_id: service_request.company_id, id: service_request), method: :patch, remote: true, class: "btn-sm btn-warning received-btn" %>
         <% end %>
-        
+
         <% if service_request.opened? %>
           <%= link_to "Close", company_service_request_path(company_id: service_request.company_id, id: service_request), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
         <% end %>

@@ -1,0 +1,9 @@
+<% hsh = {} %>
+<% hsh[:company_id] = params[:company_id] %>
+
+<ul class="dropdown-menu">
+  <% ["All", "Opened", "Pending", "Closed"].each do |state| %>
+    <% hsh.merge!(status: state.downcase) unless state == "All" %>
+    <li><%= link_to state, send(path, hsh) %></li>
+  <% end %>
+</ul>

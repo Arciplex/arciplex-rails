@@ -1,0 +1,19 @@
+<tr data-id="<%= order.id %>">
+  <td><%= order.customer_full_name %></td>
+  <td><%= order.formatted_time %></td>
+  <td class="sr-status"><%= order.status %></td>
+  <td class="actions">
+      <%= link_to "View", company_order_path(company_id: order.company_id, id: order), class: "btn-sm btn-warning" %>
+      <% if can?(:edit, order) %>
+        <%= link_to "Edit", edit_company_order_path(company_id: order.company_id, id: order), class: "btn-sm btn-warning" %>
+
+        <% if order.pending? %>
+          <%= link_to "Received", received_company_order_path(company_id: order.company_id, id: order), method: :patch, remote: true, class: "btn-sm btn-warning received-btn" %>
+        <% end %>
+
+        <% if order.opened? %>
+          <%= link_to "Close", company_order_path(company_id: order.company_id, id: order), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
+        <% end %>
+      <% end %>
+  </td>
+</tr>
