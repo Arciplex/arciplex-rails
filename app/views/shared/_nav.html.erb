@@ -18,7 +18,7 @@
               </li>
             <% end %>
 
-            <% if can?(:create, Order) %>
+            <% if can?(:create, Order) && current_company.can_make_orders? %>
               <li class="dropdown">
                 <%= link_to company_orders_path(params[:company_id]), class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
                   Orders <span class="caret"></span>

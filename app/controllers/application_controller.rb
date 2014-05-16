@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_sessioned_company
+  helper_method :current_sessioned_company, :current_company
 
   def stored_location_for(resource)
     nil
@@ -17,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_user)
+  end
+
+  def current_company
+    @current_company ||= Company.find(params[:company_id]) if params[:company_id].present?
   end
 end

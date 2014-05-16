@@ -12,4 +12,8 @@ class Company < ActiveRecord::Base
   def clients_can_receive_notitifications?
     name != "Elan"
   end
+
+  def can_make_orders?
+    ['Vivid', 'Luxana', 'Vesna'].include? self.name
+  end
 end

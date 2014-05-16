@@ -4,7 +4,7 @@
   <div class="form-group">
     <%= item.label :item, class: "col-md-4 control-label" %>
     <div class="col-md-5">
-      <%= item.select :item, item_type_options(client_name), class: "form-control", id: nil, prompt: true %>
+      <%= item.select :item, order_items(client_name), class: "form-control", id: nil, prompt: true %>
     </div>
   </div>
 
