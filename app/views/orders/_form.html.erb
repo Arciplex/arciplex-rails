@@ -30,7 +30,7 @@
       </div>
     </div>
 
-  <% if current_user.has_role?(:admin) %>
+  <% if current_user.has_role?(:admin) || current_user.has_role?(:shipping_vendor) %>
     <div class="form-group">
       <%= f.label :ship_date, class: "col-md-4 control-label" %>
       <div class="col-md-5">

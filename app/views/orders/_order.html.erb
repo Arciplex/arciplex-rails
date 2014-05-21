@@ -1,7 +1,8 @@
 <tr data-id="<%= order.id %>">
   <td><%= order.customer_full_name %></td>
+  <td><%= order.id %></td>
   <td><%= order.formatted_time %></td>
-  <td class="sr-status"><%= order.status %></td>
+  <td class="order-status"><%= convert_opened_to_open(order.status) %></td>
   <td class="actions">
       <%= link_to "View", company_order_path(company_id: order.company_id, id: order), class: "btn-sm btn-warning" %>
       <% if can?(:edit, order) %>

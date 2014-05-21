@@ -1,0 +1,39 @@
+<% content_for :page_title do %>
+  <h2>Admin Dashboard</h2>
+  <p>Select a company below to view it's Service Requests</p>
+<% end %>
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <ul class="list-inline companies">
+      <% data = {} %>
+      <% @companies.each do |c| %>
+        <% if c.can_make_orders?
+            data["company-id"] = c.id
+            data["toggle"] = "modal"
+            target = "#chooseDashboardModal"
+          else
+            data = {}
+            target = company_service_requests_path(c.id)
+          end
+        %>
+        <li><%= display_logo(c, target: target, link: true, data: data) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="modal fade" id="chooseDashboardModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Choose dashboard to view</h4>
+      </div>
+      <div class="modal-body text-center">
+        <a href="" class="btn btn-primary btn-lg" data-resource="service_requests">Service Request</a>
+        <a href="" class="btn btn-primary btn-lg" data-resource="orders">Orders</a>
+      </div>
+    </div>
+  </div>
+</div>

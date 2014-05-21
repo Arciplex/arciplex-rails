@@ -1,0 +1,5 @@
+alert("Order Updated!");
+order = $('[data-id="<%= @order.id %>"]').first();
+order.find('.order-status').text("open");
+order.find('.received-btn').remove();
+order.find('td.actions').append('<%= link_to "Close", company_order_path(@order.company_id, id: @order), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>');
