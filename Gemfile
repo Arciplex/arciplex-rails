@@ -17,6 +17,7 @@ gem 'will_paginate-bootstrap'
 
 gem "rails_12factor", group: :production
 gem 'mandrill_mailer'
+gem "sidekiq"
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
