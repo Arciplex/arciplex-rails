@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <h2><%= params[:status].try(:capitalize) if params[:status] %> Orders</h2>
+  <h2><%= convert_opened_to_open(params[:status], upcase: true) if params[:status] %> Orders</h2>
 <% end %>
 
 <div class="row">
