@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <h2>You are editing Service Request <%= @service_request.case_number %></h2>
+  <h2>You are editing Service Request <%= @service_request.id %></h2>
 <% end %>
 
 <div class="row">
@@ -11,7 +11,7 @@
       <% end %>
     <% end %>
 
-    <p>Use the form below to edit <%= @service_request.case_number %></p>
+    <p>Use the form below to edit <%= @service_request.id %></p>
     <% if can?(:manage, @service_request) %>
       <%= render 'form' %>
     <% else %>

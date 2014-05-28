@@ -1,7 +1,7 @@
 <% sr = @service_request %>
 
 <% content_for :page_title do %>
-  <h2>Viewing Service Request <%= sr.case_number %></h2>
+  <h2>Viewing Service Request <%= sr.id %></h2>
 
   <% if can?(:manage, sr) %>
     <%= link_to "Edit Service Request", edit_company_service_request_path(company_id: sr.company_id, id: sr.id), class: "btn btn-primary pull-right" %>
@@ -42,7 +42,7 @@
 
   <div class="col-md-4">
     <h3>Case Information</h3>
-    <p>Case Number: <%= sr.case_number %></p>
+    <p>Case Number: <%= sr.id %></p>
     <p>Company: <%= sr.company.try(:name) %></p>
     <p>T. Reference: <%= sr.troubleshooting_reference %></p>
     <p>RMA: <%= sr.rma %></p>
