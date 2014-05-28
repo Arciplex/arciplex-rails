@@ -4,6 +4,6 @@
 <ul class="dropdown-menu">
   <% ["All", "Opened", "Pending", "Closed"].each do |state| %>
     <% hsh.merge!(status: state.downcase) unless state == "All" %>
-    <li><%= link_to state, send(path, hsh) %></li>
+    <li><%= link_to convert_opened_to_open(state, upcase: true), send(path, hsh) %></li>
   <% end %>
 </ul>
