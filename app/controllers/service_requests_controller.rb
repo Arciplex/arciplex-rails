@@ -7,8 +7,8 @@ class ServiceRequestsController < ApplicationController
 
   def index
     @service_requests = @company.service_requests.where('status != ?', 'closed') unless params[:status]
-    @service_requests = @service_requests.send(params[:status]) if params[:status]
-    @service_requests = @service_requests.paginate(page: params[:page])
+    @service_requests = @company.service_requests.send(params[:status]) if params[:status]
+    @service_requests = @company.service_requests.paginate(page: params[:page])
   end
 
   def show
