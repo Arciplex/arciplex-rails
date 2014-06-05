@@ -1,14 +1,14 @@
 class ServiceRequestsController < ApplicationController
   before_filter :authenticate_user!, :get_company
   authorize_resource except: [:index, :update]
-  load_resource except: [:create, :update]
+  load_resource except: [:create, :update, :index]
 
   respond_to :html, :js
 
   def index
     @service_requests = @company.service_requests.where('status != ?', 'closed') unless params[:status]
     @service_requests = @company.service_requests.send(params[:status]) if params[:status]
-    @service_requests = @company.service_requests.paginate(page: params[:page])
+    @service_requests = @service_requests.paginate(page: params[:page])
   end
 
   def show
