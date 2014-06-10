@@ -18,7 +18,7 @@ class ServiceRequest < ActiveRecord::Base
   accepts_nested_attributes_for :note,
     reject_if: proc { |note| note['description'].blank? }
 
-  validates :troubleshooting_reference, presence: true
+  validates_presence_of :troubleshooting_reference
 
   before_create :generate_case_number
 

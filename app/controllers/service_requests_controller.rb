@@ -32,6 +32,8 @@ class ServiceRequestsController < ApplicationController
       @service_request.notify
       redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "Serice Request successfully created!"
     else
+      @service_request.line_items.build
+      @service_request.build_customer
       render :new
     end
   end
@@ -96,6 +98,7 @@ class ServiceRequestsController < ApplicationController
           shipping_information_attributes: [
             :address,
             :address2,
+            :company_name,
             :city,
             :state,
             :zip_code,
