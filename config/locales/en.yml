@@ -7,3 +7,7 @@ en:
       title: "Customers"
     new:
       title: "New Customer"
+  activerecord:
+    attributes:
+      service_request:
+        troubleshooting_reference: "Product Concern"
