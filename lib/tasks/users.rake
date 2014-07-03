@@ -3,11 +3,11 @@ require 'csv'
 namespace :users do
   task :import => :environment do
     csv = 'lib/data/arcLogin.csv'
-    
+
     CSV.foreach(csv) do |row|
       name = row[3].split(" ")
       company = Company.find_or_create_by(name: row[4])
-      
+
       User.create!({
         email: row[1],
         first_name: name.first || "",
@@ -51,4 +51,14 @@ namespace :users do
       })
     end
   end
+
+  task :change_elan_user_roles, [:role] => :environment do |t, args|
+    puts args.role
+    # users = User.where("email LIKE :suffix", suffix: "%elanenergetics.com")
+    #
+    # users.each do |u|
+    #   u.update_attribute(role: args[:role])
+    # end
+  end
+
 end

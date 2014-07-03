@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     has_role?(:admin)
   end
 
+  def restricted?
+    has_role?(:requestor_limited)
+  end
+
   def self.admin_and_who_receive_communication
     where(role: 'admin', receives_communication: true)
   end

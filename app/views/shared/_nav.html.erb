@@ -8,7 +8,7 @@
             <li><%= link_to "Admin Dashboard", admin_path %></li>
           <% end %>
           <% if params[:company_id].present? %>
-            <% if can?(:create, ServiceRequest) %>
+            <% if can?(:read, ServiceRequest) %>
               <li class="dropdown">
                 <%= link_to company_service_requests_path(params[:company_id]), class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
                   Service Requests <span class="caret"></span>
