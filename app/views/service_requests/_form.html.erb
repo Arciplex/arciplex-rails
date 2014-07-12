@@ -75,7 +75,7 @@
 
   <div class="form-group">
     <div class="col-md-10">
-      <%= f.submit "Submit", class: "btn btn-success", data: { disable_with: "Processing..." } %>
+      <%= f.submit "Submit", class: "btn btn-success", id: "#{'submit_sr_btn' unless @service_request.new_record?}", data: { disable_with: "Processing..." } %>
     </div>
   </div>
 

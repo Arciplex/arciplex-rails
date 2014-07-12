@@ -57,6 +57,18 @@ class ServiceRequestsController < ApplicationController
 
   def destroy
     @service_request = ServiceRequest.find(params[:id])
+
+    authorize! :manage, @service_request
+
+    @service_request.destroy
+    redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been removed!" 
+  end
+
+  def complete
+    @service_request = ServiceRequest.find(params[:id])
+
+    authorize! :manage, @service_request
+
     if @service_request.complete!
       redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been closed!"
     else

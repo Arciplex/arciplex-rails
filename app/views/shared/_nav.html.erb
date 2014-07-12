@@ -29,7 +29,9 @@
               </li>
             <% end %>
           <% end %>
-          <li><%= link_to "Logout", logout_path %></li>
+
+          <%= render 'shared/common_links' %>
+
         </ul>
       </div>
     <% end %>

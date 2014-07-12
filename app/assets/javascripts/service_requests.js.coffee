@@ -11,5 +11,15 @@ ready = ->
       $('.new_item select').selectpicker()
       event.preventDefault()
 
+    $('form[id*="edit_service_request"] #submit_sr_btn').on 'click', (event)->
+      event.preventDefault()
+      that = $(@)
+      form = that.parents('form:first')
+      $.confirm
+        text: "Would you like to update this Service Request?"
+        confirm: (btn)->
+          form = that.parents('form:first')
+          form.submit()
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

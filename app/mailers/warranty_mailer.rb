@@ -5,6 +5,6 @@ class WarrantyMailer < ActionMailer::Base
     @customer = customer
     @service_request = service_request
     @company_name = service_request.company.name
-    mail(to: to, subject: "Service Request Submitted")
+    mail(to: to, subject: "[#{@company_name}] - Service Request")
   end
 end
