@@ -14,6 +14,6 @@ class Company < ActiveRecord::Base
   end
 
   def can_make_orders?
-    ['Vivid', 'Luxana', 'Vesna'].include? self.name
+    self.can_manage_orders?
   end
 end

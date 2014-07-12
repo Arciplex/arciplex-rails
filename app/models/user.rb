@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[superadmin admin requestor]
+  ROLES = %w[admin requestor requestor_limited shipping_vendor]
+
+  attr_accessor :temp_password
 
   delegate :name, to: :company, prefix: true
 
@@ -15,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :orders
 
   validates :company_id, presence: true
+
+  before_create :generate_temp_password
 
   def has_role?(role_name)
     role.eql? role_name.to_s
@@ -35,4 +39,22 @@ class User < ActiveRecord::Base
   def self.admin_and_who_receive_communication
     where(role: 'admin', receives_communication: true)
   end
+
+  def notify
+    UserMailerWorker.perform_async(self.id, self.temp_password)
+  end
+
+  private
+    def generate_temp_password
+      pwd = Devise.friendly_token
+      self.temp_password = pwd
+      self.password = pwd
+      self.password_confirmation = pwd
+    end
+
+  protected
+    def password_required?
+      false
+    end
+
 end

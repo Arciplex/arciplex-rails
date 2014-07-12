@@ -31,6 +31,7 @@ Arciplex::Application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
+    resources :users
   end
 
   # match "/service_requests/:id/received" => "service_requests#received", via: :patch, as: "service_request_received"
