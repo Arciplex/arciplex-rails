@@ -7,7 +7,7 @@ body {
   background-color: white;
   height: 100%;
   font-family: "Helvetica Neue";
-  
+
   &.signed-in {
     padding-top: 100px;
   }
@@ -40,7 +40,7 @@ h2 {
   background-image: -o-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
   background-image: -webkit-linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
   background-image: linear-gradient(bottom, rgba(206,204,204,.65) 0%, rgba(255,255,255,.65) 100%); /* gradient overlay */
-  
+
   .navbar-brand {
     background-repeat: no-repeat;
     width: 164px;
@@ -70,13 +70,13 @@ h2 {
       background-image: asset-url('logos/vivid_logo.jpg');
     }
   }
-  
+
   ul.dropdown-menu {
     li {
       margin-right: 0 !important;
       a {
         padding: 4px 10px;
-        
+
         &:hover {
           border-bottom: 0 !important;
           background: #E6E6E6;
@@ -84,19 +84,19 @@ h2 {
       }
     }
   }
-  
+
   ul.nav {
     margin-right: 35px;
     margin-top: 20px;
-    
+
     .open > a {
       background-color: transparent;
     }
-    
+
     a {
       color: #959595;
       padding-bottom: 11px;
-      
+
       &:hover {
         box-sizing: border-box;
         -moz-box-sizing:border-box;
@@ -104,9 +104,9 @@ h2 {
         border-bottom: 2px solid #b2b0b0;
       }
     }
-    
+
     li {
-      margin-right: 45px;
+      margin-right: 10px;
     }
   }
 }
@@ -117,10 +117,10 @@ h2 {
   margin-top: 450px;
   font-size: 11px;
   padding: 5px 0 0 0;
-  
+
   #social {
     margin-right: 100px;
-    
+
     a {
       color: white;
       font-size: 20px;
