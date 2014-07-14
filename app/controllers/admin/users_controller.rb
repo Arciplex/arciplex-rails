@@ -47,6 +47,7 @@ class Admin::UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to admin_user_path(@user), notice: "User Updated!"
     else
+      @companies = Company.all
       render :edit
     end
   end
