@@ -15,11 +15,11 @@
         <% if service_request.opened? %>
           <%= link_to "Close", complete_company_service_request_path(company_id: service_request.company_id, id: service_request), method: :patch, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
         <% end %>
-      <% end %>
 
-      <% if can?(:destroy, service_request) %>
-        <%= link_to "Remove", company_service_request_path(company_id: service_request.company_id, id: service_request), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-sm btn-warning" %>
+        <% if can?(:destroy, service_request) %>
+          <%= link_to "Remove", company_service_request_path(company_id: service_request.company_id, id: service_request), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-sm btn-warning" %>
+        <% end %>
+        
       <% end %>
-
   </td>
 </tr>

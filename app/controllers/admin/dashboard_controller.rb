@@ -2,6 +2,6 @@ class Admin::DashboardController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @companies = Company.not_arciplex
+    @companies = current_user.companies.uniq
   end
 end

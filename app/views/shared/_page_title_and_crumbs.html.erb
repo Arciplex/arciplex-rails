@@ -4,7 +4,7 @@
       <div class="col-md-2" id="signed-in-info">
         <ol class="breadcrumb">
           <li>
-            <% if current_user.admin? %> 
+            <% if current_user.companies.many? %> 
               <%= link_to admin_path do %>
                 <%= fa_icon "home"  %> Home
               <% end %>
@@ -22,10 +22,10 @@
           <% end %>
         <% end %>
       </div>
-      
+
       <div class="col-md-9 col-md-offset-1">
         <%= content_for?(:page_title) ? content_tag(:h1, content_for(:page_title)) : "Page Title" %>
-        
+
         <%= js flash_messages %>
       </div>
     </div>

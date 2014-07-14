@@ -26,6 +26,7 @@ Arciplex::Application.routes.draw do
     resources :orders do
       member do
         patch 'received'
+        patch 'complete'
       end
     end
   end
@@ -40,6 +41,4 @@ Arciplex::Application.routes.draw do
       patch 'update_password'
     end
   end
-
-  # match "/service_requests/:id/received" => "service_requests#received", via: :patch, as: "service_request_received"
 end

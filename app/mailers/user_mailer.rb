@@ -3,8 +3,8 @@ class UserMailer < ActionMailer::Base
 
   def welcome(user, password)
     @user = user
-    @company_name = @user.company_name
+    @company_name = @user.companies.first.name
     @password = password
-    mail(to: @user.email, subject: "Service Request Submitted")
+    mail(to: @user.email, subject: "Welcome to ArciPlex")
   end
 end

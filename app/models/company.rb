@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  has_many :users
+  has_many :users, through: :company_users
+  has_many :companies_users
   has_many :service_requests
   has_many :orders
 

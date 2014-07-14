@@ -4,19 +4,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin requestor requestor_limited shipping_vendor]
+  ROLES = %w[admin requestor requestor_limited shipping_vendor].freeze
 
   attr_accessor :temp_password
 
-  delegate :name, to: :company, prefix: true
-
-  belongs_to :company
+  has_many :company_users
+  has_many :companies, through: :company_users
   has_many :customers
   has_many :service_requests
   has_many :notes
   has_many :orders
 
-  validates :company_id, presence: true
+  accepts_nested_attributes_for :companies
 
   before_create :generate_temp_password
 

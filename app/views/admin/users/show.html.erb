@@ -6,6 +6,6 @@
 <div class="row">
   <div class="col-md-9">
     <h3>Email: <%= @user.email %></h3>
-    <p>Company: <%= @user.company_name %></p>
+    <p>Company: <%= @user.admin? ? "All" : @user.companies.collect(&:name).uniq.to_sentence %></p>
   </div>
 </div>

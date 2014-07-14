@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.admin?
+    if current_user.companies.many?
       admin_path
     else
-      company_service_requests_path(company_id: current_user.company_id)
+      company_service_requests_path(company_id: current_user.companies.first.id)
     end
   end
 

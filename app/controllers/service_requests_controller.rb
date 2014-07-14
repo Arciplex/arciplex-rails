@@ -26,11 +26,11 @@ class ServiceRequestsController < ApplicationController
 
   def create
     @service_request = current_user.service_requests.new(service_request_params)
-    @service_request.company_id = current_user.admin? ? params[:company_id] : current_user.company_id
+    @service_request.company_id = @company.id
 
     if @service_request.save
       @service_request.notify
-      redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "Serice Request successfully created!"
+      redirect_to company_service_request_path(company_id: @company.id, id: @service_request), notice: "Serice Request successfully created!"
     else
       @service_request.line_items.build
       @service_request.build_customer
@@ -44,7 +44,7 @@ class ServiceRequestsController < ApplicationController
     if @service_request.update_attributes(service_request_params)
       @service_request.notify
       respond_to do |format|
-        format.html { redirect_to company_service_request_path(company_id: params[:company_id], id: @service_request), notice: "#{@service_request.id} updated successfully!" }
+        format.html { redirect_to company_service_request_path(company_id: @company.id, id: @service_request), notice: "#{@service_request.id} updated successfully!" }
         format.js
       end
     else
@@ -61,7 +61,7 @@ class ServiceRequestsController < ApplicationController
     authorize! :manage, @service_request
 
     @service_request.destroy
-    redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been removed!" 
+    redirect_to company_service_requests_path(company_id: @company.id), notice: "Service Request has been removed!"
   end
 
   def complete
@@ -70,9 +70,9 @@ class ServiceRequestsController < ApplicationController
     authorize! :manage, @service_request
 
     if @service_request.complete!
-      redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "Service Request has been closed!"
+      redirect_to company_service_requests_path(company_id: @company.id), notice: "Service Request has been closed!"
     else
-      redirect_to company_service_requests_path(company_id: params[:company_id]), notice: "An error occurred. Please try again!"
+      redirect_to company_service_requests_path(company_id: @company.id), notice: "An error occurred. Please try again!"
     end
   end
 

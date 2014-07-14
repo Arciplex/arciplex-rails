@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = @company.orders.where('status != ?', 'closed') unless params[:status]
-    @orders = @orders.send(params[:status]) if params[:status]
+    @orders = @company.orders.send(params[:status]) if params[:status]
     @orders = @orders.paginate(page: params[:page])
   end
 
@@ -26,11 +26,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(order_params)
-    @order.company_id = current_user.admin? ? params[:company_id] : current_user.company_id
+    @order.company_id = @company.id
 
     if @order.save
       # @order.notify
-      redirect_to company_order_path(company_id: params[:company_id], id: @order), notice: "Order successfully created!"
+      redirect_to company_order_path(company_id: @company.id, id: @order), notice: "Order successfully created!"
     else
       render :new
     end
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
     if @order.update_attributes(order_params)
       # @order.notify
       respond_to do |format|
-        format.html { redirect_to company_order_path(company_id: params[:company_id], id: @order), notice: "Order updated successfully!" }
+        format.html { redirect_to company_order_path(company_id: @company.id, id: @order), notice: "Order updated successfully!" }
         format.js
       end
     else
@@ -55,10 +55,19 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
+
+    authorize! :manage, @order
+
+    @order.destroy
+    redirect_to company_orders_path(company_id: @company.id), notice: "Order has been removed!"
+  end
+
+  def complete
+    @order = Order.find(params[:id])
     if @order.complete!
-      redirect_to company_orders_path(company_id: params[:company_id]), notice: "Order has been closed!"
+      redirect_to company_orders_path(company_id: @company.id), notice: "Order has been closed!"
     else
-      redirect_to company_orders_path(company_id: params[:company_id]), notice: "An error occurred. Please try again!"
+      redirect_to company_orders_path(company_id: @company.id), notice: "An error occurred. Please try again!"
     end
   end
 

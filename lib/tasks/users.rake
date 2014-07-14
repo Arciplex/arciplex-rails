@@ -52,13 +52,20 @@ namespace :users do
     end
   end
 
-  task :change_elan_user_roles, [:role] => :environment do |t, args|
-    puts args.role
-    # users = User.where("email LIKE :suffix", suffix: "%elanenergetics.com")
-    #
-    # users.each do |u|
-    #   u.update_attribute(role: args[:role])
-    # end
+  task :change_to_many_companies => :environment do
+    users = User.all
+    companies = Company.all
+
+    users.each do |u|
+      if u.admin?
+        u.companies << companies
+      elsif u.has_role?(:shipping_vendor)
+        u.companies << [Company.find_by(name: "Elan"), Company.find_by(name: "Vivid"), Company.find_by(name: "EnerChi"), Company.find_by(name: "Luxana"), Company.find_by(name: "Luxana")]
+      else
+        u.companies << Company.find(u.company_id)
+      end
+    end
+
   end
 
 end

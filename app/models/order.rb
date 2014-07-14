@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   include SharedMethods
 
   has_many :order_line_items, dependent: :destroy
-  has_one :note, as: :noteable
+  has_one :note, as: :noteable, dependent: :destroy
 
   accepts_nested_attributes_for :order_line_items,
     reject_if: proc { |item| item['item'].blank? }

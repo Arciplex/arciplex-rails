@@ -13,8 +13,13 @@
         <% end %>
 
         <% if order.opened? %>
-          <%= link_to "Close", company_order_path(company_id: order.company_id, id: order), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
+          <%= link_to "Close", complete_company_order_path(company_id: order.company_id, id: order), method: :patch, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>
         <% end %>
+
+        <% if can?(:destroy, order) %>
+          <%= link_to "Remove", company_order_path(company_id: order.company_id, id: order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-sm btn-warning" %>
+        <% end %>
+
       <% end %>
   </td>
 </tr>
