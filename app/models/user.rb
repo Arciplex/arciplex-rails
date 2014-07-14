@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   protected
     def password_required?
-      !new_record?
+      false
     end
 
 end
