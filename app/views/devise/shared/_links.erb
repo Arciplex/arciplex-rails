@@ -1,7 +1,7 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Sign in", new_session_path(resource_name) %><br />
+  <%= link_to "Sign in", new_session_path(resource_name), class: "btn btn-primary" %><br />
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <p><%= link_to "Remind me of my password", new_password_path(resource_name) %></p>
+  <p><%= link_to "Remind me of my password", new_password_path(resource_name), class: "btn btn-primary" %></p>
 <% end -%>

@@ -1,21 +1,15 @@
 <%= render 'shared/header' %>
 
 <div class="container" id="login">
-  
+
   <%= yield %>
 
     <div id="footer" class="row">
       <div class="col-md-12">
-        <div class="pull-right" id="social">
-          <%= link_to do %>
-            <%= fa_icon "facebook-square" %>
-          <% end %>
-        </div>
-        
         <p>533 Church Street<br />Suite 146<br />Nashville, TN<br />37219<br /> 800.262.4171</p>
       </div>
     </div>
-    
+
     <div class="row" id="copyright">
       <div class="col-md-12">
         <%= Time.now.year %> &copy; ARCiPLEX, LLC. All Rights Reserved.
