@@ -10,3 +10,9 @@ educator:
   types: ['Control Box', 'Leather harness', 'Rubber strap']
 arciplex:
   types: ['Controller', 'Pad', 'HandUnit', 'Accessory', 'Paddle', 'Unit', 'Light Bed', 'Sauna', 'Control Box']
+portervision:
+  types: ['Headset']
+vesna:
+  types: ['Unit']
+luminis:
+  types: ['Light bed', 'Light bulb']

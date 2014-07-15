@@ -4,3 +4,5 @@ luxana:
   types: ['Light Bed', 'Sauna']
 vesna:
   types: ['Vesna Foot Tub']
+arciplex:
+  types: ['Full Set', 'Controller', 'Paddle Small', 'Paddle Large', 'Side Stand', 'Light Bed', 'Sauna', 'Vesna Foot Tub']
