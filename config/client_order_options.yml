@@ -1,8 +1,14 @@
 vivid:
-  types: ['Full Set', 'Controller', 'Paddle Small', 'Paddle Large', 'Side Stand']
+  types: ['Complete Unit', 'Control Box', 'Side Stand', 'Main Unit Stand', 'Large Paddle', 'Small Paddle']
 luxana:
   types: ['Light Bed', 'Sauna']
 vesna:
-  types: ['Vesna Foot Tub']
+  types: ['Complete Unit']
+enerchi:
+  types: ['Complete Unit', 'Infrared Probe']
+portervision:
+  types: ['Complete Unit']
+luminis:
+  types: ['Complete Unit', 'Blue Light Bulb', 'Red Light Bulb']
 arciplex:
   types: ['Full Set', 'Controller', 'Paddle Small', 'Paddle Large', 'Side Stand', 'Light Bed', 'Sauna', 'Vesna Foot Tub']
