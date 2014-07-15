@@ -4,17 +4,18 @@
 
   <%= yield %>
 
-    <div id="footer" class="row">
-      <div class="col-md-12">
-        <p>533 Church Street<br />Suite 146<br />Nashville, TN<br />37219<br /> 800.262.4171</p>
-      </div>
+  <div id="footer" class="row">
+    <div class="col-md-6">
+      <p>533 Church Street<br />Suite 146<br />Nashville, TN<br />37219<br /> 800.262.4171</p>
     </div>
 
-    <div class="row" id="copyright">
-      <div class="col-md-12">
-        <%= Time.now.year %> &copy; ARCiPLEX, LLC. All Rights Reserved.
-      </div>
+    <div class="col-md-6">
+      <p class="pull-right">
+        <%= Time.now.year %> &copy; ARCiPLEX, LLC. All Rights Reserved
+        <%= link_to "Terms & Conditions", asset_path('ArciplexTOC.pdf') %>
+      </p>
     </div>
+  </div>
 </div>
 
 <%= render 'shared/footer' %>

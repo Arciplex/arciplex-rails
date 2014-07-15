@@ -41,4 +41,6 @@ Arciplex::Application.routes.draw do
       patch 'update_password'
     end
   end
+
+  resources :pages, only: [:show]
 end
