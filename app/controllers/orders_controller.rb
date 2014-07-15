@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   respond_to :html, :js
 
   def index
-    @orders = @company.orders.where('status != ?', 'closed') unless params[:status]
+    @orders = @company.orders
     @orders = @company.orders.send(params[:status]) if params[:status]
     @orders = @orders.paginate(page: params[:page])
   end
