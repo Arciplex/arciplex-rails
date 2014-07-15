@@ -8,7 +8,7 @@
     <ul class="list-inline companies">
       <% data = {} %>
       <% @companies.each do |c| %>
-        <% if c.can_make_orders?
+        <% if c.can_make_orders? and can?(:manage, Order)
             data["company-id"] = c.id
             data["toggle"] = "modal"
             target = "#chooseDashboardModal"

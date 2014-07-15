@@ -13,14 +13,17 @@ module ServiceRequestsHelper
       ['Other', 'Other']
     ]
   end
-  
+
   def item_type_options(client_name = nil)
-    if client_name.blank?
-      client_name = current_user.company_name.downcase
-    end
+    client_name = "arciplex" if client_name.nil?
 
     yaml = YAML.load_file("#{Rails.root}/config/client_sr_options.yml")
+    client_yaml = yaml[client_name]
 
-    yaml[client_name]["types"]
+    if client_yaml
+      client_yaml["types"]
+    else
+      YAML.load_file("#{Rails.root}/config/client_sr_options.yml")["arciplex"]["types"]
+    end
   end
 end

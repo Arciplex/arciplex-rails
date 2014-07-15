@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin requestor requestor_limited shipping_vendor].freeze
+  ROLES = %w[admin requestor requestor_limited shipping_vendor support_vendor].freeze
 
   attr_accessor :temp_password
 
