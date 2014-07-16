@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_company
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def stored_location_for(resource)
     nil
   end

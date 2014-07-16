@@ -44,7 +44,7 @@ def setup_environment
     end
 
     config.include Rails.application.routes.url_helpers
-    config.include Devise::TestHelpers, :type => :controller
+    config.include Devise::TestHelpers, type: :controller
     config.include Warden::Test::Helpers
     config.include FactoryGirl::Syntax::Methods
   end

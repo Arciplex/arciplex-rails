@@ -130,4 +130,9 @@ class ServiceRequestsController < ApplicationController
     def get_company
       @company = Company.find(params[:company_id])
     end
+
+    def not_found
+      message = "Service Request not found"
+      redirect_to company_service_requests_path(company_id: @company.id), notice: message
+    end
 end
