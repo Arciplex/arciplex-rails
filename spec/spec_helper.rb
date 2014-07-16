@@ -1,31 +1,25 @@
+ENV["RAILS_ENV"] = 'test'
+
 require File.expand_path("../../config/environment", __FILE__)
-require 'spork'
 require 'shoulda-matchers'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'database_cleaner'
-require 'factory_girl'
 require 'faker'
 
 def setup_environment
-  # This file is copied to spec/ when you run 'rails generate rspec:install'
-  ENV["RAILS_ENV"] ||= 'test'
-
-  ENV['DRB'] = 'true'
-  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
   Rails.backtrace_cleaner.remove_silencers!
 
   DatabaseCleaner.strategy = :transaction
 
   RSpec.configure do |config|
-    
+
     Warden.test_mode!
 
     config.use_transactional_fixtures = false
-    
+
     config.before(:suite) do
       DatabaseCleaner.clean_with(:transaction)
     end
@@ -34,7 +28,7 @@ def setup_environment
     config.before :each do
       DatabaseCleaner.strategy = :transaction
     end
-    
+
     config.before(:each) do
       DatabaseCleaner.start
     end
@@ -56,20 +50,29 @@ def setup_environment
   end
 end
 
-def each_run
-  ActiveSupport::Dependencies.clear
-  FactoryGirl.reload
+prefork = lambda {
+  setup_environment
+}
 
+each_run = lambda {
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-end
+  # FactoryGirl.reload
+}
 
-# If spork is available in the Gemfile it'll be used but we don't force it.
-Spork.prefork do
-  setup_environment
-end
-
-Spork.each_run do
-  each_run
+# If Zeus is available it'll be used but we don't force it.
+if defined?(Zeus)
+  prefork.call
+  $each_run = each_run
+  class << Zeus.plan
+    def after_fork_with_test
+      after_fork_without_test
+      $each_run.call
+    end
+    alias_method_chain :after_fork, :test
+  end
+else
+  prefork.call
+  each_run.call
 end

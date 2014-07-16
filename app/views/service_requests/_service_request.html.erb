@@ -6,6 +6,7 @@
   <td class="actions">
       <%= link_to "View", company_service_request_path(company_id: service_request.company_id, id: service_request), class: "btn-sm btn-warning" %>
       <% if can?(:edit, service_request) %>
+
         <%= link_to "Edit", edit_company_service_request_path(company_id: service_request.company_id, id: service_request), class: "btn-sm btn-warning" %>
 
         <% if service_request.pending? %>
@@ -19,7 +20,7 @@
         <% if can?(:destroy, service_request) %>
           <%= link_to "Remove", company_service_request_path(company_id: service_request.company_id, id: service_request), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-sm btn-warning" %>
         <% end %>
-        
+
       <% end %>
   </td>
 </tr>

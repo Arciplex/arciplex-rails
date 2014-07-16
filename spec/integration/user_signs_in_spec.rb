@@ -1,4 +1,5 @@
 require 'spec_helper'
+include IntegrationHelper
 
 feature "User Signs In" do
 
@@ -32,13 +33,7 @@ feature "User Signs In" do
 
     sign_in_with user.email, 'password'
     expect(page).to have_content("Select a company below")
+    expect(page).to_not have_content("Admin Dashboard")
   end
 
-end
-
-def sign_in_with(email, password)
-  visit root_path
-  fill_in 'user_email', with: email
-  fill_in 'user_password', with: password
-  click_button 'Sign in'
 end

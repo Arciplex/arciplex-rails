@@ -7,5 +7,6 @@ FactoryGirl.define do
     zip_code Faker::Address.zip_code
     country "USA"
     address_type "Residential"
+    customer
   end
 end

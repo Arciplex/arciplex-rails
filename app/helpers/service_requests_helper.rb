@@ -15,7 +15,6 @@ module ServiceRequestsHelper
   end
 
   def item_type_options(client_name = nil)
-    puts client_name
     client_name = "arciplex" if client_name.nil?
 
     yaml = YAML.load_file("#{Rails.root}/config/client_sr_options.yml")

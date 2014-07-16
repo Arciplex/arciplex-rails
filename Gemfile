@@ -31,15 +31,12 @@ end
 
 group :development, :test do
   gem 'debugger'
-  gem 'guard-rspec'
-  gem 'spork-rails'
-  gem 'guard-spork'
 end
 
 group :test do
   gem 'faker'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 4.0"
   gem "database_cleaner"
   gem "shoulda-matchers"
   gem "capybara"
