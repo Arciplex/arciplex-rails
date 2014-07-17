@@ -23,9 +23,14 @@ class ServiceRequest < ActiveRecord::Base
   before_create :generate_case_number
 
   aasm column: :status do
-    state :pending, initial: true
+    state :pre_approval, initial: true
+    state :pending
     state :opened
     state :closed
+
+    event :approved do
+      transitions from: :pre_approval, to: :pending, guard: :approved_changed?
+    end
 
     event :received, after: Proc.new { set_received_date } do
       transitions from: :pending, to: :opened
