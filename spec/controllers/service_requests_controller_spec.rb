@@ -11,7 +11,9 @@ describe ServiceRequestsController, type: :controller do
     service_request
     @company = user.companies.first
     @company.service_requests << service_request
-    user.service_requests << service_request
+
+    service_request.set_creation_fields(user.id, source: "User")
+    service_request.save
 
     sign_in :user, user
     expect(controller).to receive(:get_company)

@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   has_many :company_users
   has_many :service_requests
   has_many :orders
+  has_many :api_keys
 
   scope :not_arciplex, -> { where "name != ?", 'ArciPlex' }
 

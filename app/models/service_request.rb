@@ -64,6 +64,22 @@ class ServiceRequest < ActiveRecord::Base
     end
   end
 
+  def set_creation_fields(source_id, source: "User")
+    self.creation_identifier = source_id
+    self.creation_source = source
+  end
+
+  def creator
+    unless api_created?
+      user = User.find(self.creation_identifier)
+      user.try(:full_name)
+    end
+  end
+
+  def api_created?
+    self.creation_source.eql? "API"
+  end
+
   private
     def generate_case_number
       self.case_number = SecureRandom.hex(4) unless case_number.present?

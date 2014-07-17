@@ -25,8 +25,9 @@ class ServiceRequestsController < ApplicationController
   end
 
   def create
-    @service_request = current_user.service_requests.new(service_request_params)
+    @service_request = @company.service_requests.new(service_request_params)
     @service_request.company_id = @company.id
+    @service_request.set_creation_fields(current_user.id, source: "User")
 
     if @service_request.save
       @service_request.notify

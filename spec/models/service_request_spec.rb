@@ -8,7 +8,9 @@ describe ServiceRequest do
   before do
     user
     sr
-    user.service_requests << sr
+
+    sr.set_creation_fields(user.id, source: "User")
+    sr.save
   end
 
   describe "states" do
@@ -31,6 +33,45 @@ describe ServiceRequest do
 
     end
 
+  end
+
+  describe "#set_creation_fields" do
+    it "should set creation_source and creation_identifier" do
+      sr = create(:service_request)
+      sr.set_creation_fields(user.id, source: "User")
+      sr.save
+
+      expect(sr.creation_source).to eql("User")
+      expect(sr.creation_identifier).to eql(user.id)
+    end
+  end
+
+  describe "#api_created?" do
+    it "should return true if creation_source is API" do
+      sr = create(:service_request)
+      sr.set_creation_fields("ABC123", source: "API")
+      sr.save
+
+      expect(sr.api_created?).to be_truthy
+    end
+
+    it "should return false if creation_source is User" do
+      expect(sr.api_created?).to be_falsey
+    end
+  end
+
+  describe "#creator" do
+    it "should return user full name" do
+      expect(sr.creator).to eql(user.full_name)
+    end
+
+    it "should return null if API created" do
+      sr = create(:service_request)
+      sr.set_creation_fields("ABC123", source: "API")
+      sr.save
+
+      expect(sr.creator).to be_nil
+    end
   end
 
 end

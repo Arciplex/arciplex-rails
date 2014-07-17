@@ -50,7 +50,7 @@
       Products:
         <%= render sr.line_items %>
     </p>
-    <p>Representative: <%= sr.user.full_name %></p>
+    <p>Representative: <%= sr.creator %></p>
     <p>Submit Date: <%= sr.formatted_time %></p>
     <% if sr.closed? %>
       <% if sr.completed_at.present? %>
