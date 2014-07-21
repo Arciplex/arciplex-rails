@@ -19,4 +19,5 @@ class Customer < ActiveRecord::Base
   def state_city_zip
     "#{shipping_information.try(:city)}, #{shipping_information.try(:state)} #{shipping_information.try(:zip_code)}".squish
   end
+  
 end

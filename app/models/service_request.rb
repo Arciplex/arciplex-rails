@@ -19,6 +19,7 @@ class ServiceRequest < ActiveRecord::Base
     reject_if: proc { |note| note['description'].blank? }
 
   validates_presence_of :troubleshooting_reference
+  validates_associated :customer
 
   before_create :generate_case_number
 
@@ -29,7 +30,7 @@ class ServiceRequest < ActiveRecord::Base
     state :closed
 
     event :approved do
-      transitions from: :pre_approval, to: :pending, guard: :approved_changed?
+      transitions from: :pre_approval, to: :pending
     end
 
     event :received, after: Proc.new { set_received_date } do
@@ -83,6 +84,10 @@ class ServiceRequest < ActiveRecord::Base
 
   def api_created?
     self.creation_source.eql? "API"
+  end
+
+  def needs_approval?
+    self.status.eql? "pre_approval"
   end
 
   private

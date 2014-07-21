@@ -1,9 +1,11 @@
 <% hsh = {} %>
 <% hsh[:company_id] = params[:company_id] %>
+<% status_arr = ["All", "Pending", "Opened", "Closed"] %>
+<% status_arr.push("Pre-Approval") if current_company.has_api_access? %>
 
 <ul class="dropdown-menu">
-  <% ["All", "Pending", "Opened", "Closed"].each do |state| %>
-    <% hsh.merge!(status: state.downcase) unless state == "All" %>
+  <% status_arr.each do |state| %>
+    <% hsh.merge!(status: state.underscore) unless state == "All" %>
     <li><%= link_to convert_opened_to_open(state, upcase: true), send(path, hsh) %></li>
   <% end %>
 </ul>

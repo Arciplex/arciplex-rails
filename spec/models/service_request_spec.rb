@@ -14,18 +14,33 @@ describe ServiceRequest do
   end
 
   describe "states" do
+    describe ":pre_approved" do
+      it "should be initial state for SRs submitted via API" do
+        expect(sr.case_number).to be_present
+        expect(sr).to be_approved
+      end
+
+      it "should change :pre_approved to :pending" do
+        sr.approved!
+        expect(sr).to be_pending
+      end
+    end
+
     describe ":pending" do
-      it "should be initial state" do
+      it "should be initial state if submitted via backoffice" do
+        sr.approved!
         expect(sr.case_number).to be_present
         expect(sr).to be_pending
       end
 
       it "should change :pending to :opened" do
+        sr.approved!
         sr.received!
         expect(sr).to be_opened
       end
 
       it "should change from :pending to :opened to :closed" do
+        sr.approved!
         sr.received!
         sr.complete!
         expect(sr).to be_closed

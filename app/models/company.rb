@@ -18,4 +18,8 @@ class Company < ActiveRecord::Base
   def can_make_orders?
     self.can_manage_orders?
   end
+
+  def has_api_access?
+    api_keys.where(active: true).any?
+  end
 end

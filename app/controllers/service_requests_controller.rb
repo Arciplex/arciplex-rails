@@ -31,6 +31,7 @@ class ServiceRequestsController < ApplicationController
 
     if @service_request.save
       @service_request.notify
+      @service_request.approved!
       redirect_to company_service_request_path(company_id: @company.id, id: @service_request), notice: "Serice Request successfully created!"
     else
       @service_request.line_items.build
@@ -43,6 +44,7 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.find(params[:id])
 
     if @service_request.update_attributes(service_request_params)
+      @service_request.approved! if params[:commit].eql? "Approve"
       @service_request.notify
       respond_to do |format|
         format.html { redirect_to company_service_request_path(company_id: @company.id, id: @service_request), notice: "#{@service_request.id} updated successfully!" }
@@ -89,6 +91,19 @@ class ServiceRequestsController < ApplicationController
       else
         format.js { render json: { success: false, error: "An error has occurred!" }, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def approve
+    @service_request = ServiceRequest.find(params[:id])
+
+    authorize! :manage, @service_request
+
+    if @service_request.approved!
+      @service_request.notify
+      redirect_to company_service_requests_path(company_id: @company.id), notice: "Service Request has been approved!"
+    else
+      redirect_to company_service_request_path(company_id: @company.id, id: params[:id]), notice: "Error has occurred. Please try again"
     end
   end
 
