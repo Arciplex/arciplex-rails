@@ -3,7 +3,6 @@ module SharedMethods
 
   included do
     belongs_to :customer
-    belongs_to :user
     belongs_to :company
 
     accepts_nested_attributes_for :customer

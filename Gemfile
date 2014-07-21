@@ -20,6 +20,9 @@ gem 'mandrill_mailer'
 gem "sidekiq"
 gem "thin"
 gem 'sprockets', '2.11.0'
+gem 'commit_param_routing'
+
+gem 'grape'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'

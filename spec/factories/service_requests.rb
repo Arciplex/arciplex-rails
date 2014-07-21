@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :service_request do
-    user
     customer
     company
     troubleshooting_reference "Foo Ref"

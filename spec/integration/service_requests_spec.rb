@@ -13,7 +13,12 @@ feature "User Signs In and navigates to Company Service Request Dashboard" do
     service_request
     @company = user.companies.first
 
-    service_request.update_attributes(user_id: user.id, company_id: @company.id, customer_id: customer.id)
+    service_request.update_attributes(
+      company_id: @company.id,
+      customer_id: customer.id,
+      creation_source: "User",
+      creation_identifier: user.id
+    )
 
     sign_in_with user.email, 'password'
   end

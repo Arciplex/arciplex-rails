@@ -47,6 +47,8 @@ def setup_environment
     config.include Devise::TestHelpers, type: :controller
     config.include Warden::Test::Helpers
     config.include FactoryGirl::Syntax::Methods
+    # needed for testing API
+    config.include RSpec::Rails::RequestExampleGroup, file_path: /spec\/api/
   end
 end
 

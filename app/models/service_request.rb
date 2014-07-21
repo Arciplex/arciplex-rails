@@ -19,13 +19,19 @@ class ServiceRequest < ActiveRecord::Base
     reject_if: proc { |note| note['description'].blank? }
 
   validates_presence_of :troubleshooting_reference
+  validates_associated :customer
 
   before_create :generate_case_number
 
   aasm column: :status do
-    state :pending, initial: true
+    state :pre_approval, initial: true
+    state :pending
     state :opened
     state :closed
+
+    event :approved do
+      transitions from: :pre_approval, to: :pending
+    end
 
     event :received, after: Proc.new { set_received_date } do
       transitions from: :pending, to: :opened
@@ -62,6 +68,26 @@ class ServiceRequest < ActiveRecord::Base
     User.admin_and_who_receive_communication.pluck(:email).each do |email|
       ServiceRequestMailerWorker.perform_async(self.id, email)
     end
+  end
+
+  def set_creation_fields(source_id, source: "User")
+    self.creation_identifier = source_id
+    self.creation_source = source
+  end
+
+  def creator
+    unless api_created?
+      user = User.find(self.creation_identifier)
+      user.try(:full_name)
+    end
+  end
+
+  def api_created?
+    self.creation_source.eql? "API"
+  end
+
+  def needs_approval?
+    self.status.eql? "pre_approval"
   end
 
   private

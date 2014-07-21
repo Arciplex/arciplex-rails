@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714135909) do
+ActiveRecord::Schema.define(version: 20140716204914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_keys", force: true do |t|
+    t.string   "access_token",                null: false
+    t.integer  "company_id",                  null: false
+    t.boolean  "active",       default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
+  add_index "api_keys", ["company_id"], name: "index_api_keys_on_company_id", using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -84,7 +95,6 @@ ActiveRecord::Schema.define(version: 20140714135909) do
   end
 
   create_table "service_requests", force: true do |t|
-    t.integer  "user_id"
     t.integer  "customer_id"
     t.text     "troubleshooting_reference"
     t.string   "rma"
@@ -99,6 +109,8 @@ ActiveRecord::Schema.define(version: 20140714135909) do
     t.datetime "completed_at"
     t.integer  "company_id"
     t.datetime "received_at"
+    t.string   "creation_source"
+    t.string   "creation_identifier"
   end
 
   create_table "shipping_information", force: true do |t|
