@@ -1,6 +1,10 @@
 class SandboxEmailInterceptor
   def self.delivering_email(message)
-    message.to = "dennismonsewicz@gmail.com"
+    if Rails.env.test? || Rails.env.development?
+      message.to = "dennismonsewicz@gmail.com"
+    elsif Rails.env.staging?
+      message.to = "julie.zaloba@arciplex.com"
+    end
   end
 end
 
