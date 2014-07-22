@@ -77,7 +77,7 @@ module ServiceRequests
           phone_number: sr_params[:phone_number]
         )
 
-        customer.build_shipping_information(
+        customer.create_shipping_information(
           city: sr_params[:city],
           address: sr_params[:address],
           address2: sr_params[:address2],
