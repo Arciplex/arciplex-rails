@@ -22,6 +22,7 @@ class ServiceRequest < ActiveRecord::Base
   validates_associated :customer
 
   before_create :generate_case_number
+  after_commit :notify, on: :create
 
   aasm column: :status do
     state :pre_approval, initial: true

@@ -30,7 +30,6 @@ class ServiceRequestsController < ApplicationController
     @service_request.set_creation_fields(current_user.id, source: "User")
 
     if @service_request.save
-      @service_request.notify
       @service_request.approved!
       redirect_to company_service_request_path(company_id: @company.id, id: @service_request), notice: "Serice Request successfully created!"
     else
