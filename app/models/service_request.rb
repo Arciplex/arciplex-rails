@@ -51,22 +51,22 @@ class ServiceRequest < ActiveRecord::Base
   def notify_customer
     if self.company.clients_can_receive_notitifications?
       if self.company.name == "Luxana"
-        ServiceRequestMailerWorker.perform_async(self.id, "warranty@elanenergetics.com")
+        ServiceRequestMailerWorker.perform_async(self.id, self.company_id, "warranty@elanenergetics.com")
       else
         self.company.users.pluck(:email).each do |email|
-          ServiceRequestMailerWorker.perform_async(self.id, email)
+          ServiceRequestMailerWorker.perform_async(self.id, self.company_id, email)
         end
       end
     end
   end
 
   def notify_company_contacts
-    ServiceRequestMailerWorker.perform_async(self.id, self.customer.contact_email) if self.customer.contact_email.present?
+    ServiceRequestMailerWorker.perform_async(self.id, self.company_id, self.customer.contact_email) if self.customer.contact_email.present?
   end
 
   def notify_corporate_admins
     User.admin_and_who_receive_communication.pluck(:email).each do |email|
-      ServiceRequestMailerWorker.perform_async(self.id, email)
+      ServiceRequestMailerWorker.perform_async(self.id, self.company_id, email)
     end
   end
 
