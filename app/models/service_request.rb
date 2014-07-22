@@ -4,7 +4,7 @@ class ServiceRequest < ActiveRecord::Base
   include AASM
   include SharedMethods
 
-  default_scope { where('company_id IS NOT NULL').order('created_at DESC') }
+  default_scope order('created_at DESC')
 
   scope :for_company, ->(company_id) { where(company_id: company_id) }
 
