@@ -55,7 +55,7 @@ class ServiceRequest < ActiveRecord::Base
         ServiceRequestMailerWorker.perform_async(self.id, "warranty@elanenergetics.com")
       else
         self.company.users.pluck(:email).each do |email|
-          ServiceRequestMailerWorker.perform_async(self.id, self.company_id, email)
+          ServiceRequestMailerWorker.perform_async(self.id, email)
         end
       end
     end
