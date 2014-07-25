@@ -22,6 +22,8 @@ module Arciplex
     config.i18n.enforce_available_locales = false
 
     config.assets.paths << "#{Rails.root}/app/assets/documents"
+    config.paths.add File.join('lib', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('lib', 'api', '*')]
 
     config.generators do |generator|
       generator.helper false

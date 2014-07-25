@@ -43,4 +43,6 @@ Arciplex::Application.routes.draw do
   end
 
   resources :pages, only: [:show]
+
+  mount ServiceRequests::API => '/api'
 end

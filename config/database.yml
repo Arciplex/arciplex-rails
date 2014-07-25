@@ -7,6 +7,10 @@ production:
   adapter: postgresql
   database: arciplex_production
 
+staging:
+  adapter: postgresql
+  database: arciplex_staging
+
 test:
   host: localhost
   adapter: postgresql
