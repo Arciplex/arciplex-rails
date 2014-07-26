@@ -6,8 +6,13 @@ class ServiceRequestsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @service_requests = @company.service_requests
-    @service_requests = @company.service_requests.send(params[:status]) if params[:status]
+    if params[:search]
+      @service_requests = @company.service_requests.search(params[:search])
+    else
+      @service_requests = @company.service_requests
+      @service_requests = @company.service_requests.send(params[:status]) if params[:status]
+    end
+
     @service_requests = @service_requests.paginate(page: params[:page])
   end
 

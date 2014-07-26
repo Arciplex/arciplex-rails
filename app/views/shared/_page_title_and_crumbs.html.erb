@@ -4,12 +4,12 @@
       <div class="col-md-2" id="signed-in-info">
         <ol class="breadcrumb">
           <li>
-            <% if current_user.companies.many? %> 
+            <% if current_user.companies.many? %>
               <%= link_to admin_path do %>
                 <%= fa_icon "home"  %> Home
               <% end %>
             <% else %>
-              <%= link_to company_service_requests_path(params[:company_id]) do %>
+              <%= link_to company_service_requests_path do %>
                 <%= fa_icon "home"  %> Home
               <% end %>
             <% end %>

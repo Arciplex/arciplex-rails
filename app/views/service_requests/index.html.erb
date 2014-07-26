@@ -1,12 +1,15 @@
 <% content_for :page_title do %>
   <h2><%= convert_opened_to_open(params[:status], upcase: true).camelize if params[:status] %> Service Requests</h2>
+
+  <%= render 'shared/search_form', url: company_service_requests_path, placeholder: "Service Requests" %>
+
 <% end %>
 
 <div class="row">
 
   <div class="col-md-9 col-md-offset-3">
       <% if can?(:create, ServiceRequest) %>
-        <%= link_to "Create New Service Request", new_company_service_request_path(params[:company_id]), class: "btn btn-primary #{:'pull-right' unless @service_requests.empty?}" %>
+        <%= link_to "Create New Service Request", new_company_service_request_path, class: "btn btn-primary #{:'pull-right' unless @service_requests.empty?}" %>
       <% end %>
 
       <% unless @service_requests.empty? %>
@@ -26,6 +29,8 @@
 
         <%= will_paginate @service_requests, renderer: BootstrapPagination::Rails %>
 
+      <% else %>
+        <h2>No Results Found</h2>
       <% end %>
   </div>
 

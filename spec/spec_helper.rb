@@ -43,6 +43,8 @@ def setup_environment
       Warden.test_reset!
     end
 
+    config.filter_run_excluding broken: true
+
     config.include Rails.application.routes.url_helpers
     config.include Devise::TestHelpers, type: :controller
     config.include Warden::Test::Helpers

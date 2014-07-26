@@ -16,4 +16,8 @@ FactoryGirl.define do
       user.companies << create(:company)
     end
   end
+
+  factory :admin_user, parent: :user do
+    role "admin"
+  end
 end

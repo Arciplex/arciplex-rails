@@ -6,8 +6,13 @@ class OrdersController < ApplicationController
   respond_to :html, :js
 
   def index
-    @orders = @company.orders
-    @orders = @company.orders.send(params[:status]) if params[:status]
+    if params[:search]
+        @orders = @company.orders.search(params[:search])
+    else
+      @orders = @company.orders
+      @orders = @company.orders.send(params[:status]) if params[:status]
+    end
+
     @orders = @orders.paginate(page: params[:page])
   end
 

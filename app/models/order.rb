@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   include AASM
   include SharedMethods
+  include PgSearch
 
   belongs_to :user
 
@@ -9,6 +10,15 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_line_items,
     reject_if: proc { |item| item['item'].blank? }
+
+  pg_search_scope :search, associated_against: {
+    customer: [:contact_email, :first_name, :last_name],
+    order_line_items: [:serial_number]
+  },
+  against: :id,
+  using: {
+      tsearch: { prefix: true }
+  }
 
   aasm column: :status do
     state :pending, initial: true
