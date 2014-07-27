@@ -18,6 +18,10 @@ class ServiceRequest < ActiveRecord::Base
       tsearch: { prefix: true }
   }
 
+  scope :days_ago, ->(ago) {
+    where('created_at >= :days_ago', days_ago: ago)
+  }
+
   has_many :line_items, dependent: :destroy
 
   has_one :note, as: :noteable, dependent: :destroy
@@ -49,7 +53,7 @@ class ServiceRequest < ActiveRecord::Base
     end
 
     event :complete, after: Proc.new { set_completion_date } do
-      transitions from: :opened, to: :closed
+      transitions from: [:pending, :opened], to: :closed
     end
   end
 

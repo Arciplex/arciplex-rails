@@ -5,6 +5,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     @company_name = @user.companies.first.name
     @password = password
-    mail(to: @user.email, subject: "Welcome to ArciPlex")
+    mail(to: @user.email, subject: "Welcome to Arciplex")
   end
 end

@@ -3,33 +3,33 @@ require 'csv'
 namespace :service_requests do
   task :import => :environment do
     csv = 'lib/data/arcServiceRequest.csv'
-    
+
     CSV.foreach(csv) do |row|
       user = determine_company(row[2])
-      
+
       puts "Using #{user.email}"
-      
+
       customer = Customer.where(
-                                  prefix: row[5], 
-                                  first_name: row[6], 
+                                  prefix: row[5],
+                                  first_name: row[6],
                                   last_name: row[8] || "",
                                   contact_email: row[18],
                                   phone_number: row[17]
                                 ).first_or_initialize
-      
+
       if customer.save
-        
+
         shipping = ShippingInformation.where(
-                                    address: row[11], 
-                                    address2: row[12], 
-                                    city: row[13], 
-                                    state: row[14], 
-                                    zip_code: row[15], 
+                                    address: row[11],
+                                    address2: row[12],
+                                    city: row[13],
+                                    state: row[14],
+                                    zip_code: row[15],
                                     country: row[16],
                                     address_type: row[19],
                                     customer_id: customer.id,
                                   ).first_or_initialize
-                                  
+
         if shipping.save
           ship_date = determine_default_date(row[26])
           completed_at = row[25] == "0000-00-00" ? nil : row[25]
@@ -41,7 +41,7 @@ namespace :service_requests do
           else
             "opened"
           end
-            
+
           sr = ServiceRequest.new(
                                     customer_id: customer.id,
                                     user_id: user.id,
@@ -56,7 +56,7 @@ namespace :service_requests do
                                     carrier: row[28],
                                     status: status
                                   )
-                                
+
           sr.save
         end
       else
@@ -64,13 +64,19 @@ namespace :service_requests do
       end
     end
   end
-  
+
   task :update_company_id => :environment do
     ServiceRequest.all.each do |sr|
       u = User.find(sr.user_id)
       sr.company_id = u.company_id
       sr.save!
     end
+  end
+
+  task :remove_45_day_old_srs => :environment do
+    Rails.logger.info("Removing 45 day old SRs")
+    srs = ServiceRequest.days_ago(Time.now - 45.days).pending
+    srs.each { |s| s.complete! } if srs.any?
   end
 end
 

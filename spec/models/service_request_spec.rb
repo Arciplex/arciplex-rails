@@ -13,6 +13,25 @@ describe ServiceRequest do
     sr.save
   end
 
+  describe ".days_ago" do
+    it "should return an array of service requests that are 45 days old" do
+      allow(Time).to receive(:now).and_return(Time.mktime(2014,7,26))
+      sr2 = create(:service_request, created_at: Time.now - 45.days, status: "pending")
+      srs = ServiceRequest.days_ago(Time.now - 45.days).pending
+
+      expect(srs).to include sr2
+      expect(srs.length).to eql 1
+    end
+
+    it "should return a blank array of service requests" do
+      allow(Time).to receive(:now).and_return(Time.mktime(2014,7,26))
+      srs = ServiceRequest.days_ago(Time.now - 45.days).pending
+
+      expect(srs).not_to include sr
+      expect(srs).to be_empty
+    end
+  end
+
   describe "states" do
     describe ":pre_approved" do
       it "should be initial state for SRs submitted via API" do
