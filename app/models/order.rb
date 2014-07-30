@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
   include SharedMethods
   include PgSearch
 
+  default_scope { order('created_at DESC, id DESC') }
+
   belongs_to :user
 
   has_many :order_line_items, dependent: :destroy

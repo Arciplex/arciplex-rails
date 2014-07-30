@@ -5,7 +5,7 @@ class ServiceRequest < ActiveRecord::Base
   include SharedMethods
   include PgSearch
 
-  default_scope { order('created_at DESC') }
+  default_scope { order('created_at DESC, id DESC') }
 
   scope :for_company, ->(company_id) { where(company_id: company_id) }
 
