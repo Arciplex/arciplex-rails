@@ -16,3 +16,5 @@ vesna:
   types: ['Unit']
 luminis:
   types: ['Light bed', 'Light bulb']
+arciplex_demo:
+  types: ['Invention', 'Design', 'Innovation', 'Prototype', 'Sample']

@@ -1,4 +1,4 @@
-<% client_name = @company.name.downcase %>
+<% client_name = @company.name.parameterize.underscore %>
 
 <%= f.fields_for :line_items, (f.object.line_items.build if build_new), child_index: child_index do |item| %>
   <div class="form-group">
@@ -14,7 +14,7 @@
       <%= item.text_field :model_number, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group">
     <%= item.label :serial_number, class: "col-md-4 control-label" %>
     <div class="col-md-5">
