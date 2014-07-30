@@ -14,6 +14,11 @@
               <% end %>
             <% end %>
           </li>
+          <li>
+            <%= mail_to "mrfixit@arciplex.com" do %>
+              <%= fa_icon "support" %> Help
+            <% end %>
+          </li>
         </ol>
         <span>Welcome, <%= current_user.full_name %></span>
         <% if current_user.admin? %>

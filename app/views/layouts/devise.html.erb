@@ -12,7 +12,8 @@
     <div class="col-md-6">
       <p class="pull-right">
         <%= Time.now.year %> &copy; ARCiPLEX, LLC. All Rights Reserved
-        <%= link_to "Terms & Conditions", asset_path('ArciplexTOC.pdf') %>
+        <%= link_to "Terms & Conditions", asset_path('ArciplexTOC.pdf') %> |
+        <%= mail_to "mrfixit@arciplex.com", "Help" %>
       </p>
     </div>
   </div>
