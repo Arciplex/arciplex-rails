@@ -4,7 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin requestor requestor_limited shipping_vendor support_vendor].freeze
+  ROLES = %w[
+    admin
+    client_innovator
+    client_innovator_limited
+    shipping_vendor
+    support_vendor
+  ].freeze
   EMAIL_REGEX = /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
 
   attr_accessor :temp_password
@@ -33,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def restricted?
-    has_role?(:requestor_limited)
+    has_role?(:client_innovator_limited)
   end
 
   def self.admin_and_who_receive_communication

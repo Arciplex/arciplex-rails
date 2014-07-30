@@ -68,4 +68,17 @@ namespace :users do
 
   end
 
+  task :switch_requestor_roles_to_client_innovator => :environment do
+    users = User.where("role ILIKE ?", '%requestor%')
+    users.each do |u|
+      if u.role == "requestor_limited"
+        u.role = :client_innovator_limited
+      else
+        u.role = :client_innovator
+      end
+
+      u.save
+    end
+  end
+
 end
