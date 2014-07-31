@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726020203) do
+ActiveRecord::Schema.define(version: 20140731200105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "additional_contacts", force: true do |t|
+    t.string   "email"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "additional_contacts", ["company_id"], name: "index_additional_contacts_on_company_id", using: :btree
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token",                null: false

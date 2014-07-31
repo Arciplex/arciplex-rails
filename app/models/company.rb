@@ -4,6 +4,7 @@ class Company < ActiveRecord::Base
   has_many :service_requests
   has_many :orders
   has_many :api_keys
+  has_many :additional_contacts
 
   scope :not_arciplex, -> { where "name != ?", 'ArciPlex' }
 

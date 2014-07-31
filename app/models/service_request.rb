@@ -61,6 +61,7 @@ class ServiceRequest < ActiveRecord::Base
     notify_corporate_admins
     notify_company_contacts
     notify_customer
+    notify_additional_contacts
   end
 
   def notify_customer
@@ -82,6 +83,13 @@ class ServiceRequest < ActiveRecord::Base
   def notify_corporate_admins
     User.admin_and_who_receive_communication.pluck(:email).each do |email|
       ServiceRequestMailerWorker.perform_async(self.id, email)
+    end
+  end
+
+  def notify_additional_contacts
+    emails = self.company.additional_contacts.pluck(:email)
+    emails.each do |e|
+      ServiceRequestMailerWorker.perform_async(self.id, e)
     end
   end
 
