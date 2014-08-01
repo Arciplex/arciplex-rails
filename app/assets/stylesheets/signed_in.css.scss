@@ -27,11 +27,11 @@
     }
   }
 
-  table { 
+  table {
     margin-top: 30px;
   }
 
-  &.service_requests {
+  &.service_requests, &.orders {
     .new_item {
       border-top: 1px solid #e1e0e0;
       padding-top: 10px;
