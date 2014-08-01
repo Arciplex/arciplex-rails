@@ -9,7 +9,7 @@ luxana:
 educator:
   types: ['Control Box', 'Leather harness', 'Rubber strap']
 arciplex:
-  types: ['Controller', 'Pad', 'HandUnit', 'Accessory', 'Paddle', 'Unit', 'Light Bed', 'Sauna', 'Control Box']
+  types: ['Invention', 'Design', 'Innovation', 'Prototype', 'Sample']
 portervision:
   types: ['Headset']
 vesna:

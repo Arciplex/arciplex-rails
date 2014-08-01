@@ -19,7 +19,7 @@ module IntegrationHelper
       fill_in "Zip code", with: "11111"
       fill_in "Country", with: "USA"
       fill_in "Product Concern", with: "It Broke" if product_concern
-      select("Controller", from: "Type")
+      select("Invention", from: "Type")
       fill_in "Model", with: "ModelA"
       fill_in "Serial number", with: "12345"
       fill_in "Additional information", with: "Additional Info"
