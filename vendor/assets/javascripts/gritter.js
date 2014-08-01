@@ -198,8 +198,6 @@ window.Modernizr = function (a, b, c) {
         this._custom_timer = time_alive;
       }
 
-      console.log(image);
-
       var image_str = (image != '') ? '<img src="' + image + '" class="gritter-image" />' : '',
         class_name = (image != '') ? 'gritter-with-image' : 'gritter-without-image';
 

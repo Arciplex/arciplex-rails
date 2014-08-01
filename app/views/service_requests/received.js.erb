@@ -1,5 +1,10 @@
-alert("Service Request Updated!");
 sr = $('[data-id="<%= @service_request.id %>"]').first();
 sr.find('.sr-status').text("open");
 sr.find('.received-btn').remove();
 sr.find('td.actions').append('<%= link_to "Close", company_service_request_path(company_id: @service_request.company_id, id: @service_request), method: :delete, class: "btn-sm btn-warning", data: { confirm: "Are you sure?" } %>');
+
+jQuery.gritter.add({
+  image: '<%= image_url("success.png") %>',
+  title: 'Success',
+  text: 'Service Request has been marked as received!'
+});
