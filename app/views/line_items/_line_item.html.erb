@@ -2,5 +2,14 @@
     Item Type: <%= line_item.item_type %><br />
     Model Number: <%= line_item.model_number %><br />
     Serial Number: <%= line_item.serial_number %><br />
+
+    <% if line_item.activation_id.present? %>
+      Activation ID Number: <%= line_item.activation_id %><br />
+    <% end %>
+
+    <% if line_item.warranty_void.present? %>
+      Warranty Void Number: <%= line_item.warranty_void %><br />
+    <% end %>
+
     Additional Information: <%= line_item.additional_information %>
 </div>

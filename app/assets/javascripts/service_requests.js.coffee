@@ -9,7 +9,7 @@ ready = ->
       new_object_id = new Date().getTime()
       html = add_more_template().replace /index_to_replace_with_js/g, new_object_id
       $('#nested_items').append '<div class="new_item">' + html + '</div>'
-      $('.new_item select').selectpicker()
+      $('.new_item select').selectpicker('render')
       event.preventDefault()
 
     $('form[id*="edit_service_request"] #submit_sr_btn').on 'click', (event)->
@@ -23,13 +23,14 @@ ready = ->
           form.submit()
 
     if $body.is '.educator'
-      $('select[id*="item_type"]').on 'change', ->
+      $('form').on 'change', 'select[id*="item_type"]', ->
         $selected = $(this).find(':selected').text()
 
         if $selected is "Control Box"
-          $('#additional-info').toggleClass 'hide'
+          $(this).parents('.form-group').nextAll('.additional-info')
+            .toggleClass('hide')
         else
-          $('#additional-info').toggleClass 'hide'
+          $(this).next('.additional-info').toggleClass 'hide'
 
 
 $(document).ready(ready)
