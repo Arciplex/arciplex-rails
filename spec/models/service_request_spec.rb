@@ -33,10 +33,10 @@ describe ServiceRequest do
   end
 
   describe "states" do
-    describe ":pre_approved" do
+    describe ":pre_approval" do
       it "should be initial state for SRs submitted via API" do
         expect(sr.case_number).to be_present
-        expect(sr).to be_approved
+        expect(sr.pre_approval?).to be_truthy
       end
 
       it "should change :pre_approved to :pending" do
