@@ -15,6 +15,6 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= :'signed-in' if user_signed_in? %> <%= params[:controller].sub('admin/', '') %>">
+<body class="<%= :'signed-in' if user_signed_in? %> <%= params[:controller].sub('admin/', '') %> <%= current_company.name.downcase if current_company %>">
 
   <%= render 'shared/nav' %>

@@ -22,6 +22,26 @@
     </div>
   </div>
 
+  <% if @company.needs_more_info? %>
+
+    <div class="hide" id="additional-info">
+      <div class="form-group">
+        <%= item.label :activation_id, "Activation ID Number", class: "col-md-4 control-label" %>
+        <div class="col-md-5">
+          <%= item.text_field :activation_id, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= item.label :warranty_void, "Warranty Void Number", class: "col-md-4 control-label" %>
+        <div class="col-md-5">
+          <%= item.text_field :warranty_void, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
   <div class="form-group">
     <%= item.label :additional_information, class: "col-md-4 control-label" %>
     <div class="col-md-5">

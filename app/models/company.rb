@@ -23,4 +23,8 @@ class Company < ActiveRecord::Base
   def has_api_access?
     api_keys.where(active: true).any?
   end
+
+  def needs_more_info?
+    name == "Educator"
+  end
 end
