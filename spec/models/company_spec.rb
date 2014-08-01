@@ -41,4 +41,11 @@ describe Company do
     end
   end
 
+  describe "#needs_more_info?" do
+    it "returns true" do
+      c = create(:company, name: "Educator")
+      expect(c.needs_more_info?).to be_truthy
+    end
+  end
+
 end
