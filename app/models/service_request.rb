@@ -22,6 +22,10 @@ class ServiceRequest < ActiveRecord::Base
     where('created_at >= :days_ago', days_ago: ago)
   }
 
+  scope :between, ->(start, stop) {
+    where('updated_at BETWEEN :bod AND :eod', bod: start, eod: stop)
+  }
+
   has_many :line_items, dependent: :destroy
 
   has_one :note, as: :noteable, dependent: :destroy

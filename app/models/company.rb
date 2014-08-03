@@ -27,4 +27,8 @@ class Company < ActiveRecord::Base
   def needs_more_info?
     name == "Educator"
   end
+
+  def support_vendors
+    users.each_with_object([]) { |x, a| a << x if x.has_role?(:support_vendor) }
+  end
 end

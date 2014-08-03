@@ -78,6 +78,17 @@ namespace :service_requests do
     srs = ServiceRequest.days_ago(Time.now - 45.days).pending
     srs.each { |s| s.complete! } if srs.any?
   end
+
+  task :due_reminder => :environment do
+    Rails.logger.info("Sending reminder notifications for SRs")
+    srs = ServiceRequest.between(12.days.ago.beginning_of_day, 12.days.ago.end_of_day)
+    srs.each do |s|
+      s.company.support_vendors.each do |u|
+        Rails.logger.info("Sending email to #{u.email}")
+        WarrantyMailer.due_notice(u.email, u.first_name, s.id).deliver!
+      end
+    end
+  end
 end
 
 def determine_company(company)
