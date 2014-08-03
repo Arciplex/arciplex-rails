@@ -101,12 +101,14 @@ class OrdersController < ApplicationController
         :carrier,
         :tracking_number,
         customer_attributes: [
+          :id,
           :prefix,
           :first_name,
           :last_name,
           :contact_email,
           :phone_number,
           shipping_information_attributes: [
+            :id,
             :address,
             :address2,
             :city,
@@ -115,14 +117,18 @@ class OrdersController < ApplicationController
             :country,
             :address_type
           ]
+        ],
+        order_line_items_attributes: [
+          :_destroy,
+          :id,
+          :item,
+          :quantity,
+          :additional_information,
+          :serial_number
         ]
       ]
 
-      params.require(:order).permit(*order_attributes).tap do |whitelisted|
-        if params[:order].has_key?(:order_line_items_attributes)
-          whitelisted[:order_line_items_attributes] = params[:order][:order_line_items_attributes]
-        end
-      end
+      params.require(:order).permit(*order_attributes)
     end
 
     def get_company

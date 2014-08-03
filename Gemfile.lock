@@ -127,6 +127,8 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    nested_form_fields (0.5.1)
+      rails (>= 3.2.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mandrill_mailer
+  nested_form_fields
   pg
   pg_search
   rails (= 4.1.0)

@@ -23,6 +23,7 @@ gem 'sprockets', '2.11.0'
 gem 'pg_search'
 
 gem 'grape'
+gem 'nested_form_fields'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'

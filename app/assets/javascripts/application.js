@@ -5,4 +5,5 @@
 //= require gritter
 //= require bootstrap-select/bootstrap-select.min
 //= require jquery.confirm
+//= require nested_form_fields
 //= require_tree .

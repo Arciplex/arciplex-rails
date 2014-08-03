@@ -27,7 +27,7 @@ class ServiceRequest < ActiveRecord::Base
   has_one :note, as: :noteable, dependent: :destroy
 
   accepts_nested_attributes_for :line_items,
-    reject_if: proc { |item| item['item_type'].blank? }
+    reject_if: proc { |item| item['item_type'].blank? }, allow_destroy: true
 
   accepts_nested_attributes_for :note,
     reject_if: proc { |note| note['description'].blank? }

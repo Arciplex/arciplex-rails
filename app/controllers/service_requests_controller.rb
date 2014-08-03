@@ -122,12 +122,14 @@ class ServiceRequestsController < ApplicationController
         :carrier,
         :tracking_number,
         customer_attributes: [
+          :id,
           :prefix,
           :first_name,
           :last_name,
           :contact_email,
           :phone_number,
           shipping_information_attributes: [
+            :id,
             :address,
             :address2,
             :company_name,
@@ -137,14 +139,20 @@ class ServiceRequestsController < ApplicationController
             :country,
             :address_type
           ]
+        ],
+        line_items_attributes: [
+          :_destroy,
+          :item_type,
+          :id,
+          :model_number,
+          :serial_number,
+          :additional_information,
+          :activation_id,
+          :warranty_void
         ]
       ]
 
-      params.require(:service_request).permit(*service_request_attributes).tap do |whitelisted|
-        if params[:service_request].has_key?(:line_items_attributes)
-          whitelisted[:line_items_attributes] = params[:service_request][:line_items_attributes]
-        end
-      end
+      params.require(:service_request).permit(*service_request_attributes)
     end
 
     def get_company

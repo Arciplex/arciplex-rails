@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   has_one :note, as: :noteable, dependent: :destroy
 
   accepts_nested_attributes_for :order_line_items,
-    reject_if: proc { |item| item['item'].blank? }
+    reject_if: proc { |item| item['item'].blank? }, allow_destroy: true
 
   pg_search_scope :search, associated_against: {
     customer: [:contact_email, :first_name, :last_name],

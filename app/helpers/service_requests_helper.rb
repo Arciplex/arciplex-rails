@@ -26,4 +26,15 @@ module ServiceRequestsHelper
       YAML.load_file("#{Rails.root}/config/client_sr_options.yml")["arciplex"]["types"]
     end
   end
+
+  def data_attributes(object)
+    "data-object-id=#{object.id}" if object.id.present?
+  end
+
+  def link_to_remove(object, classes: nil)
+    data = {}
+    data["object-id"] = object.id if object.id.present?
+
+    link_to("Remove", "#", class: classes, data: data)
+  end
 end

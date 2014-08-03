@@ -13,20 +13,12 @@
     </div>
 
     <div id="template">
-      <%= render 'nested_form', f: f, child_index: Time.now.to_i, build_new: false, order: @order %>
+      <%= render 'nested_form', f: f, order: @order %>
     </div>
-
-    <div id="blank_template" style="display: none">
-      <%= render 'nested_form', f: f, child_index: 'index_to_replace_with_js', build_new: true, order: @order %>
-    </div>
-
-    <div id="nested_items"></div>
 
     <div class="form-group">
       <div class="col-md-5 col-md-offset-8">
-        <%= link_to "#", class: 'add_more' do %>
-          Add <%= fa_icon "plus" %>
-        <% end %>
+        <%= f.add_nested_fields_link :order_line_items, "Add" %>
       </div>
     </div>
 

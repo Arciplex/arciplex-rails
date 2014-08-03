@@ -1,37 +1,41 @@
 <% client_name = @company.name.downcase %>
 
-<%= f.fields_for :order_line_items, (f.object.order_line_items.build if build_new), child_index: child_index do |item| %>
-  <div class="form-group">
-    <%= item.label :item, class: "col-md-4 control-label" %>
-    <div class="col-md-5">
-      <%= item.select :item, order_items(client_name), class: "form-control", id: nil, prompt: true %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= item.label :quantity, class: "col-md-4 control-label" %>
-    <div class="col-md-5">
-      <%= item.text_field :quantity, class: "form-control" %>
-    </div>
-  </div>
-
-  <% if current_user.has_role?(:admin) || current_user.has_role?(:shipping_vendor) %>
+<%= f.nested_fields_for :order_line_items do |item| %>
+  <div class="new_item">
     <div class="form-group">
-      <%= item.label :serial_number, class: "col-md-4 control-label" %>
+      <%= item.label :item, class: "col-md-4 control-label" %>
       <div class="col-md-5">
-        <%= item.text_field :serial_number, class: "form-control" %>
+        <%= item.select :item, order_items(client_name), class: "form-control", id: nil, prompt: true %>
       </div>
     </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= item.label :additional_information, class: "col-md-4 control-label" %>
-    <div class="col-md-5">
-      <%= item.text_field :additional_information, class: "form-control" %>
+    <div class="form-group">
+      <%= item.label :quantity, class: "col-md-4 control-label" %>
+      <div class="col-md-5">
+        <%= item.text_field :quantity, class: "form-control" %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group hide remove-line-item">
-    <%= link_to "Remove", "#", class: "col-md-4 text-right" %>
+    <% if current_user.has_role?(:admin) || current_user.has_role?(:shipping_vendor) %>
+      <div class="form-group">
+        <%= item.label :serial_number, class: "col-md-4 control-label" %>
+        <div class="col-md-5">
+          <%= item.text_field :serial_number, class: "form-control" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= item.label :additional_information, class: "col-md-4 control-label" %>
+      <div class="col-md-5">
+        <%= item.text_field :additional_information, class: "form-control" %>
+      </div>
+    </div>
+
+    <% unless item.object == f.object.order_line_items.first %>
+      <div class="form-group col-md-4 text-right">
+        <%= item.remove_nested_fields_link "Remove" %>
+      </div>
+    <% end %>
   </div>
 <% end %>
