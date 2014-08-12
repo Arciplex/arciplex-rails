@@ -23,7 +23,7 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   scope :between, ->(start, stop) {
-    where('updated_at BETWEEN :bod AND :eod', bod: start, eod: stop)
+    where('received_at BETWEEN :bod AND :eod', bod: start, eod: stop)
   }
 
   has_many :line_items, dependent: :destroy

@@ -81,7 +81,7 @@ namespace :service_requests do
 
   task :due_reminder => :environment do
     Rails.logger.info("Sending reminder notifications for SRs")
-    srs = ServiceRequest.between(12.days.ago.beginning_of_day, 12.days.ago.end_of_day)
+    srs = ServiceRequest.opened.between(12.days.ago.beginning_of_day, 12.days.ago.end_of_day)
     srs.each do |s|
       s.company.support_vendors.each do |u|
         Rails.logger.info("Sending email to #{u.email}")
