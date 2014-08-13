@@ -1,7 +1,10 @@
 <% hsh = {} %>
 <% hsh[:company_id] = params[:company_id] %>
 <% status_arr = ["All", "Pending", "Opened", "Closed"] %>
-<% status_arr.unshift("Pre-Approval") if current_company.has_api_access? %>
+
+<%  if current_company.has_api_access? && path.include?("service_requests") %>
+  <% status_arr.insert(1, "Pre-Approval") %>
+<% end %>
 
 <ul class="dropdown-menu">
   <% status_arr.each do |state| %>
