@@ -48,7 +48,7 @@ class ServiceRequest < ActiveRecord::Base
     state :opened
     state :closed
 
-    event :approved do
+    event :approved, after: Proc.new { notify } do
       transitions from: :pre_approval, to: :pending
     end
 
