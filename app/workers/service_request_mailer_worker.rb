@@ -4,6 +4,10 @@ class ServiceRequestMailerWorker
 
   def perform(service_request_id, send_to)
     @service_request = ServiceRequest.find(service_request_id)
+
+    logger.info "sending to #{send_to}"
+    logger.info "SR status #{@service_request.status}"
+
     @customer = @service_request.customer
     WarrantyMailer.submitted(@service_request, @customer, send_to).deliver
   end

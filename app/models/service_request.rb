@@ -52,11 +52,11 @@ class ServiceRequest < ActiveRecord::Base
       transitions from: :pre_approval, to: :pending
     end
 
-    event :received, after: Proc.new { set_received_date } do
+    event :received, after: Proc.new { set_received_date && notify } do
       transitions from: :pending, to: :opened
     end
 
-    event :complete, after: Proc.new { set_completion_date } do
+    event :complete, after: Proc.new { set_completion_date && notify } do
       transitions from: [:pending, :opened], to: :closed
     end
   end
@@ -70,10 +70,16 @@ class ServiceRequest < ActiveRecord::Base
 
   def notify_customer
     if self.company.clients_can_receive_notitifications?
-      if self.company.name == "Luxana"
-        ServiceRequestMailerWorker.perform_async(self.id, "warranty@elanenergetics.com")
-      else
-        self.company.users.pluck(:email).each do |email|
+      emails = self.company.users.pluck(:email)
+      elan_emails = User.where("email ILIKE ?", "%elanenergetics.com").pluck(:email)
+      company_name = self.company.name
+
+      emails.each do |email|
+        email = "warranty@elanenergetics.com" if company_name.eql?("Luxana")
+
+        if self.closed? && elan_emails.include?(email)
+          ServiceRequestMailerWorker.perform_async(self.id, email)
+        else
           ServiceRequestMailerWorker.perform_async(self.id, email)
         end
       end
@@ -81,7 +87,15 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def notify_company_contacts
-    ServiceRequestMailerWorker.perform_async(self.id, self.customer.contact_email) if self.customer.contact_email.present?
+    elan_emails = User.where("email ILIKE ?", "%elanenergetics.com").pluck(:email)
+    cust_email = self.customer.contact_email
+
+    if self.closed? && cust_email.present? && elan_emails.include?(cust_email)
+      ServiceRequestMailerWorker.perform_async(self.id, cust_email)
+    else
+      ServiceRequestMailerWorker.perform_async(self.id, cust_email)
+    end
+
   end
 
   def notify_corporate_admins
