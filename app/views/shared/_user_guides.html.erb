@@ -1,0 +1,3 @@
+<% if current_user.has_role?(:client_innovator) or current_user.admin? %>
+  <p><%= user_guide_link(company_name, controller) %></p>
+<% end %>
