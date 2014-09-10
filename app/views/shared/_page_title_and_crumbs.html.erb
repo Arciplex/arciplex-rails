@@ -21,6 +21,11 @@
           </li>
         </ol>
         <span>Welcome, <%= current_user.full_name %></span>
+
+        <% if current_company && current_company.show_user_guides? %>
+          <%= render 'shared/user_guides', company_name: current_company.name, controller: params[:controller] %>
+        <% end %>
+
         <% if current_user.admin? %>
           <% if params[:company_id] %>
             <p class="company-logo"><%= display_logo(params[:company_id]) %></p>

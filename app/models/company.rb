@@ -31,4 +31,9 @@ class Company < ActiveRecord::Base
   def support_vendors
     users.each_with_object([]) { |x, a| a << x if x.has_role?(:support_vendor) }
   end
+
+  def show_user_guides?
+    ['Vesna', 'PorterVision'].include?(name)
+  end
+
 end
