@@ -32,3 +32,5 @@
 
 <h2>Warranty Items</h2>
 <%= render 'warranty_items', items: @service_request.line_items, sr: @service_request %>
+
+<%= render 'shipping_instructions' if @service_request.needs_approval? or @service_request.pending? %>

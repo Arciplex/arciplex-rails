@@ -40,10 +40,9 @@ class ServiceRequest < ActiveRecord::Base
   validates_associated :customer
 
   before_create :generate_case_number
-  after_commit :notify, on: :create
 
   aasm column: :status do
-    state :pre_approval, initial: true
+    state :pre_approval, initial: true, after_commit: :notify
     state :pending
     state :opened
     state :closed
@@ -59,6 +58,10 @@ class ServiceRequest < ActiveRecord::Base
     event :complete, after: Proc.new { set_completion_date && notify } do
       transitions from: [:pending, :opened], to: :closed
     end
+  end
+
+  def needs_approval?
+    pre_approval?
   end
 
   def notify
