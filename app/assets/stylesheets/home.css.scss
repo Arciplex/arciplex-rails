@@ -1,0 +1,42 @@
+.home {
+    font-family: 'Lato', sans-serif;
+
+    & {
+        padding-top: 100px;
+    }
+
+    .navbar {
+        background: white;
+        margin-top: 40px;
+
+        .navbar-brand {
+            background-repeat: no-repeat;
+            width: 164px;
+            line-height: 28px;
+            display: block;
+            margin-top: 10px;
+            height: 50px;
+            background-image: asset-url('logo.png');
+        }
+
+        .nav {
+
+            li {
+                margin-left: 55px;
+                padding: 0 5px 0 5px;
+                font-size: 18px;
+                text-transform: uppercase;
+
+                a {
+                    color: #838287;
+                    padding-bottom: 3px;
+                    background: none;
+                }
+
+                &:hover {
+                    border-bottom: 4px solid #FEA850;
+                }
+            }
+        }
+    }
+}

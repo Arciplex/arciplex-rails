@@ -89,6 +89,8 @@ GEM
       i18n (~> 0.5)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
+    google-webfonts (0.2.0)
+      actionpack (>= 3.0.0)
     grape (0.8.0)
       activesupport
       builder
@@ -263,6 +265,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   faker
   font-awesome-rails
+  google-webfonts
   grape
   gritter (= 1.1.0)
   jquery-rails

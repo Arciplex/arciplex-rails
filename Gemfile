@@ -31,6 +31,7 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
   gem 'jquery-rails'
   gem "font-awesome-rails"
+  gem 'google-webfonts'
 end
 
 group :development, :test do
