@@ -6,4 +6,6 @@
 //= require bootstrap-select/bootstrap-select.min
 //= require jquery.confirm
 //= require nested_form_fields
+//= require greensock/TweenMax.min
+//= require jquery.scrollmagic
 //= require_tree .

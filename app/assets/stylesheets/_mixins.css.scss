@@ -1,0 +1,8 @@
+@mixin background-cover($image, $height: 100vh) {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background: asset-url($image) no-repeat scroll 0px 100% / cover transparent;
+    height: $height;
+}

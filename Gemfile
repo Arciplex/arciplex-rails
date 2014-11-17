@@ -24,6 +24,8 @@ gem 'pg_search'
 
 gem 'grape'
 gem 'nested_form_fields'
+gem 'scrollmagicjs-rails'
+gem 'animate-scss'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'

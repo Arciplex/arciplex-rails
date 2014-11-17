@@ -29,6 +29,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    animate-scss (0.0.5)
+      sass
     arel (5.0.1.20140414130214)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -195,6 +197,8 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
+    scrollmagicjs-rails (0.0.1)
+      railties (>= 4, < 5.0)
     shoulda-matchers (2.6.1)
       activesupport (>= 3.0.0)
     sidekiq (3.2.1)
@@ -255,6 +259,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  animate-scss
   bootstrap-sass (~> 3.0.3.0)
   cancan
   capybara
@@ -278,6 +283,7 @@ DEPENDENCIES
   rails_12factor
   rspec-rails
   sass-rails (~> 4.0.0)
+  scrollmagicjs-rails
   shoulda-matchers
   sidekiq
   sprockets (= 2.11.0)

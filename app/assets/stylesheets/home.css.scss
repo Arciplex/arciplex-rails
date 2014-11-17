@@ -1,5 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import "animations";
+
 .home {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
+    -webkit-font-smoothing: antialiased;
 
     & {
         padding-top: 100px;
@@ -7,7 +11,7 @@
 
     .navbar {
         background: white;
-        margin-top: 40px;
+        padding-top: 40px;
 
         .navbar-brand {
             background-repeat: no-repeat;
@@ -15,11 +19,12 @@
             line-height: 28px;
             display: block;
             margin-top: 10px;
-            height: 50px;
             background-image: asset-url('logo.png');
         }
 
         .nav {
+
+            margin-top: 17px;
 
             li {
                 margin-left: 55px;
@@ -29,12 +34,156 @@
 
                 a {
                     color: #838287;
-                    padding-bottom: 3px;
-                    background: none;
+                    padding-bottom: 0;
+                    background: transparent;
                 }
 
                 &:hover {
                     border-bottom: 4px solid #FEA850;
+                }
+            }
+        }
+    }
+
+    .brochure-container {
+        width: 100%;
+        position: relative;
+
+        font-size: 24px;
+        font-weight: 400;
+
+        h1 {
+            text-transform: uppercase;
+            color: $header-grey;
+            font-size: 60px;
+            font-weight: 300;
+
+            span.yellow {
+                color: $header-yellow;
+            }
+        }
+
+        .home1 {
+            position: relative;
+            @include background-cover('home/main1.png', 613px);
+
+            #down-arrow {
+                background: asset-url('home/arrow.png') no-repeat top left;
+                height: 66px;
+                width: 64px;
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: 0 auto;
+                -webkit-animation: infinite-bounce 1s 0 infinite alternate;
+                -moz-animation: infinite-bounce 1s 0 infinite alternate;
+                -o-animation: infinite-bounce 1s 0 infinite alternate;
+                animation: infinite-bounce 1s 0 infinite alternate;
+            }
+
+            .container {
+                padding-top: 100px;
+            }
+        }
+
+        .home2 {
+            @include background-cover('home/main2.png', 100vh);
+
+            .container {
+                padding-top: 100px;
+
+                .row {
+                    .col-lg-7 { margin-left: -100px; }
+                }
+            }
+        }
+
+        #idea {
+            @include background-cover('home/ideabg.png', 613px);
+            position: relative;
+        }
+
+        #collaboration {
+            @include background-cover('home/collaborationbg.png', 613px);
+            position: relative;
+        }
+
+        #research {
+            @include background-cover('home/researchbg.png', 617px);
+            position: relative;
+        }
+
+        #design {
+            @include background-cover('home/designbg.png', 613px);
+            position: relative;
+        }
+
+        .main {
+            .content {
+                width: 513px;
+                height: 100%;
+                position: absolute;
+                top: 0;
+
+                &.right {
+                    right: 0;
+                }
+
+                &.left {
+                    left: 0;
+                }
+
+                bottom: 0;
+                background: rgba(0, 0, 0, .7);
+                border-top: 12px solid;
+
+                &, h1 {
+                    color: #eceadd;
+                }
+
+                h1 { font-size: 45px; }
+                p { font-size: 21px; }
+
+                &.yellow-border {
+                    border-color: $header-yellow;
+
+                    .footer { background: $header-yellow; }
+                }
+
+                &.purple-border {
+                    border-color: $arciplex-purple;
+
+                    .footer { background: $arciplex-purple; }
+                }
+
+                &.blue-border {
+                    border-color: $arciplex-blue;
+
+                    .footer { background: $arciplex-blue; }
+                }
+
+                .container-fluid {
+                    padding: 75px 30px;
+                }
+
+                .footer {
+                    bottom: 0;
+                    width: 100%;
+                    height: 51px;
+                    position: absolute;
+
+                    span.icon {
+                        display: block;
+                        padding: 5px 30px;
+                        font-weight: normal;
+                        -webkit-text-stroke: 1px;
+                        text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+                        font-size: 21px;
+
+                        img { padding-right: 5px; }
+                    }
                 }
             }
         }
