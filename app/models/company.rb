@@ -33,7 +33,7 @@ class Company < ActiveRecord::Base
   end
 
   def show_user_guides?
-    ['Vesna', 'PorterVision'].include?(name)
+    ['Vesna', 'PorterVision', 'Vivid', 'Luminis'].include?(name)
   end
 
 end
