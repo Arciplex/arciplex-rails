@@ -2,7 +2,8 @@ ready = ->
     $body = $('body')
 
     if $body.is '.home'
-        $(".brochure-container").onepage_scroll
+        scrollContainer = $(".brochure-container")
+        scrollContainer.onepage_scroll
             sectionContainer: 'section'
             easing: 'ease'
             animationTime: 1000
@@ -15,7 +16,11 @@ ready = ->
             section = $(this).attr('href')
             index = $(section).data('index')
 
-            $('.brochure-container').moveTo index
+            scrollContainer.moveTo index
+
+        $("#down-arrow").on 'click', (e)->
+            e.preventDefault()
+            scrollContainer.moveTo 2
 
 
 $(document).ready ready
