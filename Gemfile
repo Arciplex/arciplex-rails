@@ -24,6 +24,7 @@ gem 'pg_search'
 
 gem 'grape'
 gem 'nested_form_fields'
+gem 'animate-scss'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
@@ -31,6 +32,7 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
   gem 'jquery-rails'
   gem "font-awesome-rails"
+  gem 'google-webfonts'
 end
 
 group :development, :test do

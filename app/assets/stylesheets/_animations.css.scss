@@ -1,0 +1,26 @@
+@keyframes infinite-bounce {
+  0% {
+    bottom: 2em;
+  }
+  100% {
+    bottom: 1em;
+  }
+}
+
+@-moz-keyframes infinite-bounce {
+  0% {
+    bottom: 2em;
+  }
+  100% {
+    bottom: 1em;
+  }
+}
+
+@-webkit-keyframes infinite-bounce {
+  0% {
+    bottom: 2em;
+  }
+  100% {
+    bottom: 1em;
+  }
+}

@@ -3,7 +3,7 @@ Arciplex::Application.routes.draw do
 
   devise_scope :user do
     get "/logout" => "devise/sessions#destroy"
-    root to: "devise/sessions#new"
+    get "/login" => "devise/sessions#new"
   end
 
   resources :customers
@@ -45,4 +45,6 @@ Arciplex::Application.routes.draw do
   resources :pages, only: [:show]
 
   mount ServiceRequests::API => '/api'
+
+  root to: "home#index"
 end
