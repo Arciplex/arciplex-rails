@@ -22,7 +22,21 @@
     <div class="container">
         <a class="navbar-brand" href="<%= root_path %>"></a>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Process</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Process <span class="caret"></span></a>
+
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#idea">Idea</a></li>
+                    <li><a href="#collaboration">Collaboration</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#design">Design</a></li>
+                    <li><a href="#engineering">Engineering</a></li>
+                    <li><a href="#prototyping">Prototyping</a></li>
+                    <li><a href="#testing">Testing</a></li>
+                    <li><a href="#production">Production</a></li>
+                    <li><a href="#distribution">Distribution</a></li>
+                </ul>
+            </li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Login</a></li>

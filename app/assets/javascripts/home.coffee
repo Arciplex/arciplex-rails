@@ -2,26 +2,20 @@ ready = ->
     $body = $('body')
 
     if $body.is '.home'
-        controller = new ScrollMagic({globalSceneOptions: {triggerHook: "onEnter", duration: $(window).height()*2}})
+        $(".brochure-container").onepage_scroll
+            sectionContainer: 'section'
+            easing: 'ease'
+            animationTime: 1000
+            pagination: false
+            updateURL: false
+            loop: false
 
-        controller.scrollTo (newpos) ->
-            TweenMax.to(window, 0.5, {
-                scrollTo: {
-                    y: newpos
-                }
-            })
+        $("li.dropdown ul li a").on 'click', (e)->
+            e.preventDefault()
+            section = $(this).attr('href')
+            index = $(section).data('index')
 
-        new ScrollScene({ triggerElement: ".home2" })
-        .setTween(TweenMax.from(".home2 > *", 1,
-              opacity: 0
-              x: -400
-        ))
-        .triggerHook("onEnter")
-        .addTo(controller)
-
-        $('#down-arrow').on 'click', (e)->
-            e.preventDefault();
-            controller.scrollTo('.home2')
+            $('.brochure-container').moveTo index
 
 
 $(document).ready ready
