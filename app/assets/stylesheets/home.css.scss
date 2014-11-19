@@ -11,7 +11,7 @@
 
     .navbar {
         background: white;
-        padding-top: 40px;
+        padding-top: 50px;
 
         .navbar-brand {
             background-repeat: no-repeat;
@@ -28,7 +28,7 @@
 
             li {
                 margin-left: 55px;
-                padding: 0 5px 0 5px;
+                padding: 0 5px 10px 5px;
                 font-size: 18px;
                 text-transform: uppercase;
 
@@ -36,10 +36,14 @@
                     color: #838287;
                     padding-bottom: 0;
                     background: transparent;
-                }
+                    box-sizing: border-box;
+                    line-height: 35px;
+                    display: block;
+                    border-bottom: 4px solid transparent;
 
-                &:hover {
-                    border-bottom: 4px solid #FEA850;
+                    &:hover {
+                        border-color: #FEA850;
+                    }
                 }
 
                 .dropdown-menu {
@@ -78,7 +82,6 @@
         padding: 0;
 
         font-size: 24px;
-        font-weight: 400;
 
         h1 {
             text-transform: uppercase;
@@ -89,11 +92,30 @@
             span.yellow {
                 color: $header-yellow;
             }
+
+            &.cream {
+                color: #eceadd;
+            }
+        }
+
+        #about-us {
+            @include background-cover('home/aboutusbg.png');
+            color: #eceadd;
+
+            .col-lg-12 {
+
+                margin-top: -150px;
+
+                h1 {
+                    padding-bottom: 5px;
+                    margin-bottom: 50px;
+                    border-bottom: 3px solid #eceadd;
+                }
+            }
         }
 
         .home1 {
-            position: relative;
-            @include background-cover('home/main1.png', 613px);
+            @include background-cover('home/main1.png');
 
             #down-arrow {
                 background: asset-url('home/arrow.png') no-repeat top left;
@@ -103,8 +125,7 @@
                 position: absolute;
                 left: 0;
                 right: 0;
-                bottom: 0;
-                margin: 0 auto;
+                margin: -150px auto;
                 -webkit-animation: infinite-bounce 1s 0 infinite alternate;
                 -moz-animation: infinite-bounce 1s 0 infinite alternate;
                 -o-animation: infinite-bounce 1s 0 infinite alternate;
@@ -112,7 +133,7 @@
             }
 
             .container {
-                padding-top: 100px;
+                margin-top: -200px;
             }
         }
 
@@ -120,7 +141,7 @@
             @include background-cover('home/main2.png');
 
             .container {
-                padding-top: 100px;
+                margin-top: -200px;
 
                 .row {
                     .col-lg-7 { margin-left: -100px; }
@@ -130,47 +151,38 @@
 
         #idea {
             @include background-cover('home/ideabg.png');
-            position: relative;
         }
 
         #collaboration {
             @include background-cover('home/collaborationbg.png');
-            position: relative;
         }
 
         #research {
-            @include background-cover('home/researchbg.png', 617px);
-            position: relative;
+            @include background-cover('home/researchbg.png');
         }
 
         #design {
             @include background-cover('home/designbg.png');
-            position: relative;
         }
 
         #engineering {
             @include background-cover('home/engineeringbg.png');
-            position: relative;
         }
 
         #prototyping {
             @include background-cover('home/prototypingbg.png');
-            position: relative;
         }
 
         #testing {
             @include background-cover('home/testingbg.png');
-            position: relative;
         }
 
         #production {
             @include background-cover('home/productionbg.png');
-            position: relative;
         }
 
         #distribution {
             @include background-cover('home/distributionbg.png');
-            position: relative;
         }
 
         .main {

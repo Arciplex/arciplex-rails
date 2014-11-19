@@ -6,5 +6,7 @@
 //= require bootstrap-select/bootstrap-select.min
 //= require jquery.confirm
 //= require nested_form_fields
-//= require jquery.onepage.scroll
+//= require jquery.fullpage
+//= require jquery.slimscroll.min
+//= require jquery.stellar
 //= require_tree .

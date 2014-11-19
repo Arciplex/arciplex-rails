@@ -3,25 +3,29 @@ ready = ->
 
     if $body.is '.home'
         scrollContainer = $(".brochure-container")
-        scrollContainer.onepage_scroll
-            sectionContainer: 'section'
-            easing: 'ease'
-            animationTime: 1000
-            pagination: false
-            updateURL: false
-            loop: false
+        slides = $('.brochure-container .section')
+        scrollContainer.fullpage
+            menu: false
+            navigation: false
 
-        $("li.dropdown ul li a").on 'click', (e)->
+        $("li.dropdown ul li a, li.slideTo a").on 'click', (e)->
             e.preventDefault()
             section = $(this).attr('href')
-            index = $(section).data('index')
+            slide = $(section)
 
-            scrollContainer.moveTo index
+            $.fn.fullpage.moveTo(slides.index(slide)+1)
 
         $("#down-arrow").on 'click', (e)->
             e.preventDefault()
-            scrollContainer.moveTo 2
+            $.fn.fullpage.moveTo 2
 
+        $('#about-us').on 'mousemove', (e) ->
+            amountMovedX = (e.pageX * -1 / 20);
+            amountMovedY = (e.pageY * -1 / 20);
+
+            $(this).css
+                backgroundPosition: "#{amountMovedX}px #{amountMovedY}px"
+                backgroundRepeat: "no-repeat"
 
 $(document).ready ready
 $(document).on 'page:load', ready
