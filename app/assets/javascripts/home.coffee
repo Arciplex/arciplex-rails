@@ -20,11 +20,10 @@ ready = ->
             $.fn.fullpage.moveTo 2
 
         $('#about-us').on 'mousemove', (e) ->
-            amountMovedX = (e.pageX * -1 / 20);
-            amountMovedY = (e.pageY * -1 / 20);
+            amountMovedY = (e.pageY * -1 / 10);
 
             $(this).css
-                backgroundPosition: "#{amountMovedX}px #{amountMovedY}px"
+                backgroundPosition: "0% #{amountMovedY}px"
                 backgroundRepeat: "no-repeat"
 
 $(document).ready ready
