@@ -20,18 +20,6 @@ ready = ->
             $.fn.fullpage.moveTo 2
 
         $('#about-us').interactive_bg()
-            # strength: 25
-            # scale: 1.05
-            # animationSpeed: '100ms'
-            # contain: true
-            # wrapContent: false
-
-        # $('#about-us').on 'mousemove', (e) ->
-        #     amountMovedY = (e.pageY * -1 / 10);
-        #
-        #     $(this).css
-        #         backgroundPosition: "0% #{amountMovedY}px"
-        #         backgroundRepeat: "no-repeat"
 
 $(document).ready ready
 $(document).on 'page:load', ready

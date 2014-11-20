@@ -2,6 +2,9 @@
 @import "animations";
 
 .home {
+
+    & { position: relative; }
+
     padding-top: 0;
     font-family: 'Fjalla One', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -98,8 +101,6 @@
         }
 
         #about-us {
-            // @include background-cover('home/aboutusbg.png');
-            // background: asset-url('home/aboutusbg.png');
             color: #eceadd;
 
             .col-lg-12 {
@@ -112,8 +113,37 @@
             }
         }
 
+        #contact-us {
+            @include background-cover('home/contactusbg.png');
+        }
+
         .home1 {
             @include background-cover('home/main1.png');
+
+            h1, h2 { margin-left: -115px; }
+
+            h2 {
+                color: $header-grey;
+                font-size: 40px;
+            }
+
+            h1 { font-weight: 800; }
+
+            #icons {
+                display: block;
+                background: asset-url('home/coloricons.png') no-repeat top left;
+                width: 1115px;
+                height: 110px;
+                position: absolute;
+                left: -2000px;
+                -webkit-animation: slide 0.5s forwards;
+                -webkit-animation-delay: 0.5s;
+                -moz-animation: slide 0.5s forwards;
+                -moz-animation-delay: 0.5s;
+                -o-animation: slide 0.5s forwards;
+                animation: slide 0.5s forwards;
+                animation-delay: 0.5s;
+            }
 
             #down-arrow {
                 background: asset-url('home/arrow.png') no-repeat top left;

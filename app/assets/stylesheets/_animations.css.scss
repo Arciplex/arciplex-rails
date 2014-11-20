@@ -24,3 +24,15 @@
     bottom: 1em;
   }
 }
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@-moz-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
+}
