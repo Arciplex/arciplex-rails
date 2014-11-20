@@ -8,5 +8,6 @@
 //= require nested_form_fields
 //= require jquery.fullpage
 //= require jquery.slimscroll.min
-//= require jquery.stellar
+//= require jquery.easing.min
+//= require jquery.interactivebg
 //= require_tree .

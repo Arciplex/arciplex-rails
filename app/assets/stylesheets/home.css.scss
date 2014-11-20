@@ -2,16 +2,15 @@
 @import "animations";
 
 .home {
+    padding-top: 0;
     font-family: 'Fjalla One', sans-serif;
     -webkit-font-smoothing: antialiased;
 
-    & {
-        padding-top: 100px;
-    }
+    .ibg-bg { position: absolute; }
 
     .navbar {
         background: white;
-        padding-top: 50px;
+        margin-bottom: 0;
 
         .navbar-brand {
             background-repeat: no-repeat;
@@ -99,12 +98,11 @@
         }
 
         #about-us {
-            @include background-cover('home/aboutusbg.png');
+            // @include background-cover('home/aboutusbg.png');
+            // background: asset-url('home/aboutusbg.png');
             color: #eceadd;
 
             .col-lg-12 {
-
-                margin-top: -150px;
 
                 h1 {
                     padding-bottom: 5px;
@@ -188,9 +186,9 @@
         .main {
             .content {
                 width: 513px;
-                height: 100%;
                 position: absolute;
-                top: 0;
+                top: 78px;
+                bottom: 0;
 
                 &.right {
                     right: 0;
@@ -200,7 +198,7 @@
                     left: 0;
                 }
 
-                bottom: 0;
+                // bottom: -50px;
                 background: rgba(0, 0, 0, .7);
                 border-top: 12px solid;
 
