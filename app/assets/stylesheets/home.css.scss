@@ -5,6 +5,8 @@
 
     & { position: relative; }
 
+    .underline { text-decoration: underline; }
+
     padding-top: 0;
     font-family: 'Fjalla One', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -91,14 +93,10 @@
             font-size: 60px;
             font-weight: 300;
 
-            span.yellow {
-                color: $header-yellow;
-            }
-
-            &.cream {
-                color: #eceadd;
-            }
+            span.yellow { color: $header-yellow; }
         }
+
+        .cream { color: #eceadd; }
 
         #about-us {
             color: #eceadd;
@@ -115,6 +113,30 @@
 
         #contact-us {
             @include background-cover('home/contactusbg.png');
+
+            .fp-tableCell {
+                vertical-align: top !important;
+
+                #content { padding-top: 200px; }
+            }
+
+            #address {
+                position: absolute;
+                right: 50px;
+                font-size: 18px;
+                margin-top: 25px;
+                margin-left: -25px;
+            }
+
+            #contact-form {
+                margin-top: 100px;
+                font-size: 30px;
+
+                #form {
+                    background-color: #757579;
+                    padding: 10px;
+                }
+            }
         }
 
         .home1 {

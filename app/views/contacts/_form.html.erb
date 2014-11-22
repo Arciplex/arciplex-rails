@@ -1,0 +1,29 @@
+<%= form_for @contact, remote: true do |f| %>
+
+    <div class="errors" style="display: none">
+        <ul></ul>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :message %>
+        <%= f.text_field :message, class: "form-control" %>
+    </div>
+
+    <%= f.button :submit, class: "btn btn-default", data: { disable_with: "Processing..." } %>
+
+<% end %>

@@ -1,0 +1,15 @@
+<% if @contact.valid? %>
+    $('.new_contact').find('.errors ul').empty().hide();
+    $('.new_contact').prepend("<p id='message'>Message received!</p>");
+    $('#message').fadeOut(4000);
+<% else %>
+    $('.new_contact').find('.errors ul').empty();
+
+    <% @contact.errors.full_messages.each do |msg| %>
+        $('.new_contact')
+            .find('.errors ul')
+            .append("<li><%== msg %></li>");
+    <% end %>
+
+    $('.new_contact').find('.errors').show();
+<% end %>

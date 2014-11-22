@@ -26,6 +26,8 @@ gem 'grape'
 gem 'nested_form_fields'
 gem 'animate-scss'
 
+gem "activerecord-tableless", "~> 1.0"
+
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
   gem 'bootstrap-sass', '~> 3.0.3.0'
