@@ -31,8 +31,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    animate-scss (0.0.5)
-      sass
     arel (5.0.1.20140414130214)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -118,6 +116,8 @@ GEM
     launchy (2.4.2)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
+    lodash-rails (2.4.1)
+      railties (>= 3.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -260,7 +260,6 @@ PLATFORMS
 DEPENDENCIES
   aasm
   activerecord-tableless (~> 1.0)
-  animate-scss
   bootstrap-sass (~> 3.0.3.0)
   cancan
   capybara
@@ -276,6 +275,7 @@ DEPENDENCIES
   gritter (= 1.1.0)
   jquery-rails
   launchy
+  lodash-rails
   mandrill_mailer
   nested_form_fields
   pg

@@ -1,4 +1,11 @@
 @mixin background-cover($image) {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-image: asset-url($image);
+    height: 100vh;
+    width: 100%;
+    background-position: center center;
+    position: relative;
 }

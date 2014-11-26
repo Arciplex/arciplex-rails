@@ -9,10 +9,12 @@ $arciplex-orange: #e96d1f;
 $arciplex-green: #009b7b;
 $arciplex-light-green: #8dc73f;
 
+* {
+    box-sizing: border-box;
+}
+
 @import "mixins";
-@import "animate/fadeIn";
-@import "animate/bounce";
-@import "animate/bounceIn";
+@import "animate.css";
 @import "bootstrap";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";

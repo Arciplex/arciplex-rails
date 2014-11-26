@@ -24,7 +24,7 @@ gem 'pg_search'
 
 gem 'grape'
 gem 'nested_form_fields'
-gem 'animate-scss'
+gem 'lodash-rails'
 
 gem "activerecord-tableless", "~> 1.0"
 
