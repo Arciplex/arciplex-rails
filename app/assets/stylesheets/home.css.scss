@@ -117,6 +117,8 @@ html, body { height: 100%; min-height: 100%; }
         #contact-us {
             @include background-cover('home/contactusbg.png');
 
+            .header-font { padding-top: 200px; }
+
             #address {
                 position: absolute;
                 right: 50px;
