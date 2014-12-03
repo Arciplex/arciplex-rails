@@ -102,6 +102,23 @@ html, body { height: 100%; min-height: 100%; }
 
         #about-us {
             color: #eceadd;
+            position: relative;
+            height: 617px;
+
+            .bg {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-image: asset-url("home/aboutusbg.png");
+                background-position: 50% 50%;
+                background-size: cover;
+                -webkit-background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
 
             .col-lg-12 {
 
@@ -111,7 +128,7 @@ html, body { height: 100%; min-height: 100%; }
                     border-bottom: 3px solid #eceadd;
                 }
 
-                padding-top: 150px;
+                padding-top: 100px;
             }
         }
 
@@ -157,12 +174,68 @@ html, body { height: 100%; min-height: 100%; }
 
             h1 { font-weight: 800; }
 
-            #icons {
-                display: block;
-                background: asset-url('home/coloricons.png') no-repeat top left;
+            #icon-holder {
                 width: 1115px;
                 height: 110px;
                 margin: 25px 0 75px -115px;
+
+                .icon {
+                    display: block;
+                    width: 98px;
+                    height: 110px;
+                    float: left;
+                    background: asset-url('home/coloricons.png') no-repeat top left;
+                    margin-left: 12px;
+                    cursor: pointer;
+                    -webkit-transition: all .4s ease-in-out;
+                	-moz-transition: all .4s ease-in-out;
+                	-o-transition: all .4s ease-in-out;
+                	-ms-transition: all .4s ease-in-out;
+                    transition: all .4s ease-in-out;
+
+                    &:after {
+                        content: attr(data-content) '';
+                        display: inline-block;
+                        width: 100%;
+                        text-align: center;
+                        padding-top: 105px;
+                        margin-left: -5px;
+                    }
+
+                    &.idea {
+                        background-position: -5px 0px;
+                        &:after { margin-left: 1px; }
+                    }
+                    &.collaboration {
+                        background-position: -130px 0px;
+                        &:after { margin-left: -40px; }
+                    }
+                    &.research { background-position: -252px 0px; }
+                    &.design {
+                        background-position: -382px 0px;
+                        &:after { margin-left: 2px; }
+                    }
+                    &.engineering {
+                        background-position: -509px 0px;
+                        &:after { margin-left: -25px; }
+                    }
+                    &.prototyping {
+                        background-position: -635px 0px;
+                        &:after { margin-left: -30px; }
+                    }
+                    &.testing {
+                        background-position: -761px 0px;
+                        &:after { margin-left: 2px; }
+                    }
+                    &.production {
+                        background-position: -888px 0px;
+                        &:after { margin-left: -20px; }
+                    }
+                    &.distribution {
+                        background-position: -1013px 0px;
+                        &:after { margin-left: -20px; }
+                    }
+                }
             }
 
             #down-arrow {
@@ -219,10 +292,6 @@ html, body { height: 100%; min-height: 100%; }
 
         #distribution {
             @include background-cover('home/distributionbg.png');
-        }
-
-        #about-us {
-            @include background-cover('home/aboutusbg.png');
         }
 
         .main {
