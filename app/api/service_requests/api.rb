@@ -88,6 +88,7 @@ module ServiceRequests
         )
 
         if sr.valid? && sr.save
+          sr.notify
           { success: true, service_request_id: sr.id }
         else
           sr.errors.full_messages

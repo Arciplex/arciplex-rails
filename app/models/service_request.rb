@@ -42,7 +42,7 @@ class ServiceRequest < ActiveRecord::Base
   before_create :generate_case_number
 
   aasm column: :status do
-    state :pre_approval, initial: true, after_commit: :notify
+    state :pre_approval, initial: true
     state :pending
     state :opened
     state :closed
