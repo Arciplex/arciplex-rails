@@ -49,7 +49,6 @@ class ServiceRequestsController < ApplicationController
 
     if @service_request.update_attributes(service_request_params)
       @service_request.approved! if params[:commit].eql? "Approve"
-      @service_request.notify
       respond_to do |format|
         format.html { redirect_to company_service_request_path(company_id: @company.id, id: @service_request), notice: "#{@service_request.id} updated successfully!" }
         format.js
@@ -100,7 +99,7 @@ class ServiceRequestsController < ApplicationController
   def approve
     @service_request = ServiceRequest.find(params[:id])
 
-    authorize! :manage, @service_request
+    authorize! :approve, @service_request
 
     if @service_request.approved!
       redirect_to company_service_requests_path(company_id: @company.id), notice: "Service Request has been approved!"
