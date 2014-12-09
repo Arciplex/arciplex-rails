@@ -16,7 +16,7 @@ class Ability
           @user.company_ids.include?(order.company_id)
         end
       else
-        can [:create, :read], ServiceRequest do |sr|
+        can [:create, :read, :approve], ServiceRequest do |sr|
           @user.company_ids.include?(sr.company_id)
         end
       end

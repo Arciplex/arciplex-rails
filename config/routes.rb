@@ -20,6 +20,7 @@ Arciplex::Application.routes.draw do
       member do
         patch 'received'
         patch 'complete'
+        get 'approve'
       end
     end
 
