@@ -1,3 +1,3 @@
-<% if current_user.has_role?(:client_innovator) or current_user.admin? %>
+<% if can?(:read, :user_guides) %>
   <p><%= user_guide_link(company_name, controller) %></p>
 <% end %>

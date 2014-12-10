@@ -1,37 +1,17 @@
 class Ability
-  include CanCan::Ability
+    include CanCan::Ability
 
-  def initialize(user)
-    @user = user
+    def initialize(user)
+        @user = user
 
-    if @user.admin?
-      can :manage, :all
-      cannot :manage, Order
-    else
-      if @user.restricted?
-        can :read, ServiceRequest do |sr|
-          @user.company_ids.include?(sr.company_id)
+        @user.permissions.each do |permission|
+            if permission.subject_class.present?
+                can permission.action.to_sym, permission.subject_class.constantize do |sc|
+                    @user.company_ids.include? sc.company_id
+                end
+            else
+                can permission.action.to_sym, permission.custom_subject.to_sym
+            end
         end
-
-        # can :read, Order do |order|
-        #   @user.company_ids.include?(order.company_id)
-        # end
-      else
-        can [:create, :read, :approve], ServiceRequest do |sr|
-          @user.company_ids.include?(sr.company_id)
-        end
-      end
-
-    #   unless @user.has_role?(:support_vendor)
-    #     can [:create, :read], Order do |order|
-    #       @user.company_ids.include?(order.company_id)
-    #     end
-    #   end
-
-
-      can :manage, Customer do |cust|
-        @user.company_ids.include?(cust.company_id)
-      end
     end
-  end
 end

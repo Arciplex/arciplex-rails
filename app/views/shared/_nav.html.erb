@@ -5,7 +5,7 @@
       <div class="collapse navbar-collapse">
 
         <ul class="nav navbar-nav navbar-right">
-          <% if current_user.admin? %>
+          <% if can?(:manage, User) %>
             <li><%= link_to "Users", admin_users_path unless params[:company_id].present? %></li>
           <% end %>
           <% if params[:company_id].present? %>
