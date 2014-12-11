@@ -1,8 +1,7 @@
 class ServiceRequestsController < ApplicationController
   before_filter :authenticate_user!, :get_company
-  skip_before_filter :authenticate_user!, only: [:print]
-  authorize_resource except: [:index, :update, :print]
-  load_resource except: [:create, :update, :index, :print]
+  authorize_resource except: [:index, :update], through: :current_company
+  load_resource except: [:update, :index], through: :current_company
 
   respond_to :html, :js
 
@@ -31,8 +30,6 @@ class ServiceRequestsController < ApplicationController
   end
 
   def create
-    @service_request = @company.service_requests.new(service_request_params)
-    @service_request.company_id = @company.id
     @service_request.set_creation_fields(current_user.id, source: "User")
 
     if @service_request.save
