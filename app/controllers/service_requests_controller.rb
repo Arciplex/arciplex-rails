@@ -108,6 +108,14 @@ class ServiceRequestsController < ApplicationController
     end
   end
 
+  def print
+    @service_request = ServiceRequest.find_by email_hash_identifier: params[:email_hash_id]
+    @company_name = @service_request.company.name
+    @customer = @service_request.customer
+    
+    render layout: false
+  end
+
   private
     def service_request_params
       service_request_attributes = [

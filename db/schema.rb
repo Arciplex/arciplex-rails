@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801023616) do
+ActiveRecord::Schema.define(version: 20141210192140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,19 @@ ActiveRecord::Schema.define(version: 20140801023616) do
     t.datetime "completed_at"
   end
 
+  create_table "permissions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "action"
+    t.string   "subject_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "custom_subject"
+  end
+
+  add_index "permissions", ["company_id"], name: "index_permissions_on_company_id", using: :btree
+  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
+
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -130,6 +143,7 @@ ActiveRecord::Schema.define(version: 20140801023616) do
     t.datetime "received_at"
     t.string   "creation_source"
     t.string   "creation_identifier"
+    t.string   "email_hash_identifier"
   end
 
   create_table "shipping_information", force: true do |t|

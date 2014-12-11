@@ -6,12 +6,12 @@
     <td>
       <h2>Customer Information</h2>
 
-      <%= render 'customer_info', customer: @customer %>
+      <%= render 'warranty_mailer/customer_info', customer: @customer %>
     </td>
     <td>
       <h2>Case Information</h2>
 
-      <%= render 'case_information', service_request: @service_request %>
+      <%= render 'warranty_mailer/case_information', service_request: @service_request %>
     </td>
   </tr>
 </table>
@@ -31,12 +31,9 @@
 </p>
 
 <h2>Warranty Items</h2>
-<%= render 'warranty_items', items: @service_request.line_items, sr: @service_request %>
+<%= render 'warranty_mailer/warranty_items', items: @service_request.line_items, sr: @service_request %>
+<%= render 'warranty_mailer/shipping_instructions' if @service_request.needs_approval? or @service_request.pending? %>
 
-<% if @service_request.pending? %>
-    <p>Select this link to print and ship with your support request. If no form is provided with the shipment your support request may experience some delays:<br/> <br />
-        <%= link_to "Print Service Request", company_print_service_request_url(company_id: @service_request.company_id, email_hash_id: @service_request.email_hash_identifier) %>
-    </p>
-<% end %>
-
-<%= render 'shipping_instructions' if @service_request.needs_approval? or @service_request.pending? %>
+<script type="text/javascript">
+    window.print();
+</script>

@@ -24,6 +24,8 @@ Arciplex::Application.routes.draw do
       end
     end
 
+    match 'service_requests/:email_hash_id/print', to: 'service_requests#print', via: :get, as: 'print_service_request'
+
     resources :orders do
       member do
         patch 'received'

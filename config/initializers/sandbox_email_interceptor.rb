@@ -3,7 +3,7 @@ class SandboxEmailInterceptor
     if Rails.env.test? || Rails.env.development?
       message.to = "dennismonsewicz@gmail.com"
     elsif Rails.env.staging?
-      message.to = "info@arciplex.com"
+      message.to = "tom@tomhaarlander.com"
     end
   end
 end
