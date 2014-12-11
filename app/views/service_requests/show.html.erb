@@ -8,7 +8,7 @@
   <% end %>
 
   <% if sr.needs_approval? and can?(:approve, sr) %>
-    <%= link_to "Approve Service Request", approve_company_service_request_path(id: sr), class: "btn btn-primary pull-right" %>
+    <%= link_to "Approve Service Request", approve_company_service_request_path(id: sr), class: "btn btn-primary" %>
   <% end %>
 
 <% end %>

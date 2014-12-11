@@ -1,7 +1,8 @@
 class ServiceRequestsController < ApplicationController
   before_filter :authenticate_user!, :get_company
-  authorize_resource except: [:index, :update]
-  load_resource except: [:create, :update, :index]
+  skip_before_filter :authenticate_user!, only: [:print]
+  authorize_resource except: [:index, :update, :print]
+  load_resource except: [:create, :update, :index, :print]
 
   respond_to :html, :js
 
@@ -106,6 +107,14 @@ class ServiceRequestsController < ApplicationController
     else
       redirect_to company_service_request_path(company_id: @company.id, id: params[:id]), notice: "Error has occurred. Please try again"
     end
+  end
+
+  def print
+    @service_request = @company.service_requests.where(email_hash_identifier: params[:email_hash_id]).first
+    @company_name = @company.name
+    @customer = @service_request.customer
+
+    render layout: false
   end
 
   private

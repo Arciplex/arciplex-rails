@@ -89,6 +89,13 @@ namespace :service_requests do
       end
     end
   end
+
+  task :generate_email_hashes => :environment do
+     ServiceRequest.all.each do |sr|
+        sr.send(:generate_hash_identifier)
+        sr.save
+     end
+  end
 end
 
 def determine_company(company)

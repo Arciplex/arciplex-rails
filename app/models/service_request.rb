@@ -40,6 +40,7 @@ class ServiceRequest < ActiveRecord::Base
   validates_associated :customer
 
   before_create :generate_case_number
+  after_create :generate_hash_identifier
 
   aasm column: :status do
     state :pre_approval, initial: true
@@ -141,5 +142,13 @@ class ServiceRequest < ActiveRecord::Base
   private
     def generate_case_number
       self.case_number = SecureRandom.hex(4) unless case_number.present?
+    end
+
+    def generate_hash_identifier
+        hex_str = "#{company.name.downcase}-#{id}"
+        update_attribute(
+            :email_hash_identifier,
+            Digest::MD5.hexdigest("#{hex_str}-#{SecureRandom.uuid}")
+        )
     end
 end
