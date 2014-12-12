@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, :get_company
-  authorize_resource except: [:index, :update]
-  load_resource except: [:create, :update]
+  # before_filter :authenticate_user!, :get_company
+  before_filter :disable
+  # authorize_resource except: [:index, :update]
+  # load_resource except: [:create, :update]
 
   respond_to :html, :js
 
@@ -133,5 +134,9 @@ class OrdersController < ApplicationController
 
     def get_company
       @company = Company.find(params[:company_id])
+    end
+
+    def disable
+        redirect_to after_sign_in_path_for(current_user), notice: "Orders has been disabled"
     end
 end

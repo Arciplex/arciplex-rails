@@ -6,26 +6,27 @@ class Ability
 
     if @user.admin?
       can :manage, :all
+      cannot :manage, Order
     else
       if @user.restricted?
         can :read, ServiceRequest do |sr|
           @user.company_ids.include?(sr.company_id)
         end
 
-        can :read, Order do |order|
-          @user.company_ids.include?(order.company_id)
-        end
+        # can :read, Order do |order|
+        #   @user.company_ids.include?(order.company_id)
+        # end
       else
         can [:create, :read, :approve], ServiceRequest do |sr|
           @user.company_ids.include?(sr.company_id)
         end
       end
 
-      unless @user.has_role?(:support_vendor)
-        can [:create, :read], Order do |order|
-          @user.company_ids.include?(order.company_id)
-        end
-      end
+    #   unless @user.has_role?(:support_vendor)
+    #     can [:create, :read], Order do |order|
+    #       @user.company_ids.include?(order.company_id)
+    #     end
+    #   end
 
 
       can :manage, Customer do |cust|
