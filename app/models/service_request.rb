@@ -48,7 +48,7 @@ class ServiceRequest < ActiveRecord::Base
     state :opened
     state :closed
 
-    event :approved, after: Proc.new { notify && notify_sr_reqestor } do
+    event :approved, after: Proc.new { notify } do
       transitions from: :pre_approval, to: :pending
     end
 
@@ -70,10 +70,6 @@ class ServiceRequest < ActiveRecord::Base
     notify_company_contacts
     notify_customer
     notify_additional_contacts
-  end
-
-  def notify_sr_reqestor
-     ServiceRequestMailerWorker.perform_async(self.id, self.customer.contact_email)
   end
 
   def notify_customer
