@@ -3,7 +3,7 @@ require 'securerandom'
 class SandboxEmailInterceptor
   def self.delivering_email(message)
 
-    message.subject = "#{message.subject} - [#{SecureRandom.hex(5)}]" unless Rails.env.production?
+    message.subject = "#{message.subject} - [#{message.to}::#{SecureRandom.hex(5)}]" unless Rails.env.production?
 
     if Rails.env.test? || Rails.env.development?
       message.to = "dennismonsewicz@gmail.com"
