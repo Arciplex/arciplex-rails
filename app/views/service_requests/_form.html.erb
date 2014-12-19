@@ -42,7 +42,7 @@
       </div>
     </div>
 
-  <% if can?(:manage, @service_request) %>
+  <% if can?(:update, @service_request) %>
     <div class="form-group">
       <%= f.label :ship_date, class: "col-md-4 control-label" %>
       <div class="col-md-5">
