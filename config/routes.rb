@@ -48,6 +48,8 @@ Arciplex::Application.routes.draw do
   resources :pages, only: [:show]
   resources :contacts, only: :create
 
+  match "2145904674DC90BBD8BEFFFDC0CC8861.txt", to: 'home#ssl', via: :get
+
   mount ServiceRequests::API => '/api'
 
   root to: "home#index"
