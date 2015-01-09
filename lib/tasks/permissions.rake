@@ -1,6 +1,6 @@
 namespace :permissions do
     task :create => :environment do
-        u = User.where(role: "client_innovator")
+        u = User.all
 
         u.each do |u|
             default_perms = determine_permissions(u)
@@ -9,6 +9,14 @@ namespace :permissions do
                     u.permissions.create(company: c, action: p.to_s, subject_class: "ServiceRequest")
                 end
             end
+
+            if u.role.eql? "admin"
+                %w(create read update delete).each do |p|
+                    u.permissions.create(action: p.to_s, subject_class: "User")
+                end
+            end
+
+            next if u.role.eql? "client_innovator_limited"
 
             custom_permissions.each do |k, v|
                 u.permissions.create(action: k.to_s, custom_subject: v.to_s)
@@ -25,7 +33,11 @@ def determine_permissions(user)
         perms.concat [:approve]
     when "admin"
         perms.concat [:update, :delete, :approve]
+    when "client_innovator_limited"
+        perms = [:read]
     end
+
+    perms
 end
 
 def custom_permissions

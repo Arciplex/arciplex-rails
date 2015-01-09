@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
     EMAIL_REGEX = /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
 
-    # ADMIN_PERMISSIONS = %w()
+    ROLES = %w(admin client_innovator client_innovator_limited)
 
     attr_accessor :temp_password
 
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     has_many :orders
     has_many :permissions
 
-    accepts_nested_attributes_for :companies
+    accepts_nested_attributes_for :companies, :permissions
 
     before_create :generate_temp_password
 
@@ -32,6 +32,15 @@ class User < ActiveRecord::Base
 
     def notify
         UserMailerWorker.perform_async(self.id, self.temp_password)
+    end
+
+    def save_and_notify
+        save && notify
+        true
+    end
+
+    def admin?
+        role.eql? "admin"
     end
 
     private

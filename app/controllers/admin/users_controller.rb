@@ -25,8 +25,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save!
-      @user.notify
+    if @user.save_and_notify
       redirect_to admin_user_path(@user), notice: "User created!"
     else
       @companies = Company.all

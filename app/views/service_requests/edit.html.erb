@@ -12,11 +12,7 @@
     <% end %>
 
     <p>Use the form below to edit <%= @service_request.id %></p>
-    <% if can?(:manage, @service_request) %>
-      <%= render 'form' %>
-    <% else %>
-      <%= render :show %>
-    <% end %>
+    <%= render 'form' %>
   </div>
 
 </div>

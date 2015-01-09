@@ -26,7 +26,11 @@ class ServiceRequestsController < ApplicationController
   end
 
   def edit
-    respond_with @service_request
+      if can? :edit, @service_request
+          respond_with @service_request
+      else
+          redirect_to :show
+      end
   end
 
   def create

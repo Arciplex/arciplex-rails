@@ -65,18 +65,14 @@
     </div>
   <% end %>
 
-  <% if @service_request.needs_approval? %>
     <div class="form-group">
       <div class="col-md-10">
-        <%= f.submit "Approve", class: "btn btn-success", data: { disable_with: "Processing..." } %>
+          <% if @service_request.needs_approval? %>
+            <%= f.submit "Approve", class: "btn btn-success", data: { disable_with: "Processing..." } %>
+        <% else %>
+            <%= f.submit "Submit", class: "btn btn-success", id: "#{'submit_sr_btn' unless @service_request.new_record?}", data: { disable_with: "Processing..." } %>
+        <% end %>
       </div>
     </div>
-  <% else %>
-    <div class="form-group">
-      <div class="col-md-10">
-        <%= f.submit "Submit", class: "btn btn-success", id: "#{'submit_sr_btn' unless @service_request.new_record?}", data: { disable_with: "Processing..." } %>
-      </div>
-    </div>
-  <% end %>
 
 <% end %>

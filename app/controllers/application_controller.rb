@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
     helper_method :current_company
 
+    rescue_from CanCan::AccessDenied do |exception|
+        redirect_to after_sign_in_path_for(current_user), alert: exception.message
+    end
+
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def stored_location_for(resource)
