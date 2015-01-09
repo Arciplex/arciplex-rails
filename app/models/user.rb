@@ -26,14 +26,6 @@ class User < ActiveRecord::Base
         "#{first_name} #{last_name}".squish
     end
 
-    def self.admin_and_who_receive_communication
-        where(role: 'admin', receives_communication: true)
-    end
-
-    def notify
-        UserMailerWorker.perform_async(self.id, self.temp_password)
-    end
-
     def save_and_notify
         save && notify
         true
@@ -41,6 +33,14 @@ class User < ActiveRecord::Base
 
     def admin?
         role.eql? "admin"
+    end
+
+    def self.admin_and_who_receive_communication
+        where(role: 'admin', receives_communication: true)
+    end
+
+    def notify
+        UserMailerWorker.perform_async(self.id, self.temp_password)
     end
 
     private
