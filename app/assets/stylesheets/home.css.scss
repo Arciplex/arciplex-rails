@@ -120,41 +120,45 @@ html, body { height: 100%; min-height: 100%; }
                 background-attachment: fixed;
             }
 
-            .col-lg-12 {
+            @media (min-width: 992px) {
+                .col-lg-12 {
 
-                h1 {
-                    padding-bottom: 5px;
-                    margin-bottom: 50px;
-                    border-bottom: 3px solid #eceadd;
+                    h1 {
+                        padding-bottom: 5px;
+                        margin-bottom: 50px;
+                        border-bottom: 3px solid #eceadd;
+                    }
+
+                    padding-top: 100px;
                 }
-
-                padding-top: 100px;
             }
         }
 
         #contact-us {
             @include background-cover('home/contactusbg.png');
 
-            .header-font { padding-top: 200px; }
+            @media(min-width: 992px) {
+                .header-font { padding-top: 200px; }
 
-            #address {
-                position: absolute;
-                right: 50px;
-                font-size: 18px;
-                margin-top: 25px;
-                margin-left: -25px;
-            }
+                #address {
+                    position: absolute;
+                    right: 50px;
+                    font-size: 18px;
+                    margin-top: 25px;
+                    margin-left: -25px;
+                }
 
-            #contact-form {
-                margin-top: 100px;
-                font-size: 30px;
+                #contact-form {
+                    margin-top: 100px;
+                    font-size: 30px;
 
-                #form {
-                    padding: 10px;
+                    #form {
+                        padding: 10px;
 
-                    .btn {
-                        background-color: #e96d1f;
-                        border: 0;
+                        .btn {
+                            background-color: #e96d1f;
+                            border: 0;
+                        }
                     }
                 }
             }
@@ -248,11 +252,13 @@ html, body { height: 100%; min-height: 100%; }
         .home2 {
             @include background-cover('home/main2.png');
 
-            .container {
-                .row {
-                    .col-lg-7 {
-                        margin-left: -150px;
-                        padding-top: 200px;
+            @media (min-width: 992px) {
+                .container {
+                    .row {
+                        .col-lg-7 {
+                            margin-left: -150px;
+                            padding-top: 200px;
+                        }
                     }
                 }
             }
@@ -356,8 +362,10 @@ html, body { height: 100%; min-height: 100%; }
                     .footer { background: $arciplex-light-green; }
                 }
 
-                .container-fluid {
-                    padding: 150px 30px 30px 30px;
+                @media (min-width: 992px) {
+                    .container-fluid {
+                        padding: 150px 30px 30px 30px;
+                    }
                 }
 
                 .footer {

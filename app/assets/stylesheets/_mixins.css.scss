@@ -9,3 +9,9 @@
     background-position: center center;
     position: relative;
 }
+
+@mixin background-cover-mobile {
+    background-size: auto;
+    height: auto;
+    background-repeat: no-repeat;
+}

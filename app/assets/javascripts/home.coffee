@@ -1,7 +1,14 @@
 ready = ->
     $body = $('body')
+    $window = $(window)
+    $windowsize = $(window).width()
 
-    if $body.is '.home'
+    $window.resize ->
+        $windowsize = $(window).width()
+
+    console.log($windowsize)
+
+    if $body.is '.home' and $windowsize > 992
         skrollr.init
             forceHeight: true
             smoothScrolling: true

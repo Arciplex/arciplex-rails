@@ -1,0 +1,86 @@
+.navbar-toggle {
+    .icon-bar {
+        background-color: #838287;
+    }
+    padding-top: 20px;
+}
+
+@media (max-width: 480px) {
+    .home {
+        .brochure-container {
+            .section {
+                @include background-cover-mobile;
+                h2 {
+                    font-size: 20px;
+                    margin-left: 0px;
+                }
+                h1 {
+                    font-size: 32px;
+                    margin-left: 0px;
+                }
+                p { margin-left: 0; font-size: 18px; }
+
+                .footer { display: none; }
+            }
+
+            .home1 {
+                padding-bottom: 10px;
+
+                #icon-holder {
+                    width: auto;
+                    margin: 0 auto;
+
+                    .icon {
+                        transition: none;
+                        margin-left: 0;
+
+                        &:first-child {
+                            float: none;
+                            margin: 0 auto;
+                        }
+
+                        &.collaboration { margin: -25px 0 0 86px; }
+                        &.research { margin-top: -25px; margin-left: -5px; }
+                        &.design { clear: left; margin: -30px 0 0 36px; }
+                        &.engineering { margin-top: -25px; }
+                        &.prototyping { margin-top: -25px; }
+                        &.testing { margin-left: -245px; margin-top: 60px; }
+                        &.production { margin-left: 2px; margin-top: -25px; }
+                        &.distribution { margin-left: 133px; margin-top: -27px; }
+                    }
+                }
+
+                #down-arrow { margin-top: 25px; }
+            }
+
+            #idea, #collaboration, #research, #design, #engineering, #prototyping,
+            #testing, #production, #distribution { @include background-cover-mobile; }
+
+            .main {
+                .content {
+                    position: relative;
+                    padding: 10px;
+                    width: auto;
+
+                    h1 { font-size: 32px; }
+                    h2 { font-size: 20px; }
+                    p { font-size: 18px; }
+                }
+            }
+
+            #about-us {
+                height: auto;
+            }
+
+            #contact-us {
+                @include background-cover-mobile;
+                background-color: #696969;
+                background-image: none;
+
+                #contact-form {
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    }
+}

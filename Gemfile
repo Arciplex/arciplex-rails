@@ -28,6 +28,8 @@ gem 'lodash-rails'
 
 gem "activerecord-tableless", "~> 1.0"
 
+gem "modernizr-rails"
+
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
   gem 'bootstrap-sass', '~> 3.0.3.0'
