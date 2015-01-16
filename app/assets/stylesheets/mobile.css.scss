@@ -5,7 +5,49 @@
     padding-top: 20px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 320px) {
+    .home {
+        .brochure-container {
+            .home1 {
+                #icon-holder {
+                    .icon {
+                        &.collaboration { margin: -25px 0 0 46px; }
+                        &.research { margin-top: -25px; margin-left: -5px; }
+                        &.design { clear: left; margin: -25px 0 0 0px; }
+                        &.engineering { margin-top: -25px; margin-left: -3px; }
+                        &.prototyping { margin-top: -25px; margin-left: -3px; }
+                        &.testing { margin-left: -241px; margin-top: 60px; }
+                        &.production { margin-top: -25px; margin-left: -2px; }
+                        &.distribution { margin-left: 95px; margin-top: -27px; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 321px) and (max-width: 568px) {
+    .home {
+        .brochure-container {
+            .home1 {
+                #icon-holder {
+                    .icon {
+                        &.collaboration { margin: -25px 0 0 171px; }
+                        &.research { margin-top: -25px; margin-left: -5px; }
+                        &.design { clear: left; margin: -25px 0 0 125px; }
+                        &.engineering { margin-top: -25px; margin-left: -3px; }
+                        &.prototyping { margin-top: -25px; margin-left: -3px; }
+                        &.testing { margin-left: -241px; margin-top: 60px; }
+                        &.production { margin-top: 60px; margin-left: -145px; }
+                        &.distribution { margin-left: 220px; margin-top: -27px; clear: both; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 568px) {
     .home {
         .brochure-container {
             .section {
@@ -38,15 +80,6 @@
                             float: none;
                             margin: 0 auto;
                         }
-
-                        &.collaboration { margin: -25px 0 0 86px; }
-                        &.research { margin-top: -25px; margin-left: -5px; }
-                        &.design { clear: left; margin: -30px 0 0 36px; }
-                        &.engineering { margin-top: -25px; }
-                        &.prototyping { margin-top: -25px; }
-                        &.testing { margin-left: -245px; margin-top: 60px; }
-                        &.production { margin-left: 2px; margin-top: -25px; }
-                        &.distribution { margin-left: 133px; margin-top: -27px; }
                     }
                 }
 
