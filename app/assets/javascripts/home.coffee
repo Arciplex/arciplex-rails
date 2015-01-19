@@ -6,7 +6,9 @@ ready = ->
     $window.resize ->
         $windowsize = $(window).width()
 
-    console.log($windowsize)
+    if $body.is '.home'
+        $('.navbar-nav li a:not(.dropdown-toggle)').on 'click', (e) ->
+            $(".navbar-collapse").collapse('hide');
 
     if $body.is '.home' and $windowsize > 992
         skrollr.init
