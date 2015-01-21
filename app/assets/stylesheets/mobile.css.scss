@@ -6,44 +6,10 @@
 }
 
 @media (max-width: 320px) {
-    .home {
-        .brochure-container {
-            .home1 {
-                #icon-holder {
-                    .icon {
-                        &.collaboration { margin: -25px 0 0 46px; }
-                        &.research { margin-top: -25px; margin-left: -5px; }
-                        &.design { clear: left; margin: -25px 0 0 0px; }
-                        &.engineering { margin-top: -25px; margin-left: -3px; }
-                        &.prototyping { margin-top: -25px; margin-left: -3px; }
-                        &.testing { margin-left: -241px; margin-top: 60px; }
-                        &.production { margin-top: -25px; margin-left: -2px; }
-                        &.distribution { margin-left: 95px; margin-top: -27px; }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 321px) and (max-width: 568px) {
-    .home {
-        .brochure-container {
-            .home1 {
-                #icon-holder {
-                    .icon {
-                        &.collaboration { margin: -25px 0 0 171px; }
-                        &.research { margin-top: -25px; margin-left: -5px; }
-                        &.design { clear: left; margin: -25px 0 0 125px; }
-                        &.engineering { margin-top: -25px; margin-left: -3px; }
-                        &.prototyping { margin-top: -25px; margin-left: -3px; }
-                        &.testing { margin-left: -241px; margin-top: 60px; }
-                        &.production { margin-top: 60px; margin-left: -145px; }
-                        &.distribution { margin-left: 220px; margin-top: -27px; clear: both; }
-                    }
-                }
-            }
-        }
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
     }
 }
 
@@ -69,18 +35,9 @@
                 padding-bottom: 10px;
 
                 #icon-holder {
-                    width: auto;
-                    margin: 0 auto;
-
-                    .icon {
-                        transition: none;
-                        margin-left: 0;
-
-                        &:first-child {
-                            float: none;
-                            margin: 0 auto;
-                        }
-                    }
+                    height: 100%;
+                    margin: 0;
+                    width: 100%;
                 }
 
                 #down-arrow { margin-top: 25px; }
