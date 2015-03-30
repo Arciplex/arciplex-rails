@@ -10,7 +10,7 @@ ready = ->
         $('.navbar-nav li a:not(.dropdown-toggle)').on 'click', (e) ->
             $(".navbar-collapse").collapse('hide');
 
-    if $body.is '.home' and $windowsize > 992
+    if $body.hasClass('home') and $windowsize > 992
         skrollr.init
             forceHeight: true
             smoothScrolling: true
@@ -22,16 +22,22 @@ ready = ->
                 scrollTop: $('#home2').offset().top
             , 700
 
-        $('.slideTo a').on 'click', (e) ->
+        $('.slideTo').on 'click', 'a', (e) ->
             e.preventDefault()
+
+            console.log "HEY"
 
             href = $(this).attr 'href'
             elem = $(href)
             top = elem.offset().top
 
+            console.log href
+
             $('html, body').animate
                 scrollTop: top
             , 700
+
+            false
 
         $('.icon').hover ->
             content = $(this).attr('data-id').replace('#', '').toUpperCase()

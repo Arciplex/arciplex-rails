@@ -105,19 +105,6 @@ ActiveRecord::Schema.define(version: 20141210192140) do
     t.datetime "completed_at"
   end
 
-  create_table "permissions", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "company_id"
-    t.string   "action"
-    t.string   "subject_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "custom_subject"
-  end
-
-  add_index "permissions", ["company_id"], name: "index_permissions_on_company_id", using: :btree
-  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
-
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
     t.integer  "searchable_id"
