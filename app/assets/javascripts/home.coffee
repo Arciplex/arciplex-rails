@@ -25,13 +25,9 @@ ready = ->
         $('.slideTo').on 'click', 'a', (e) ->
             e.preventDefault()
 
-            console.log "HEY"
-
             href = $(this).attr 'href'
             elem = $(href)
             top = elem.offset().top
-
-            console.log href
 
             $('html, body').animate
                 scrollTop: top
