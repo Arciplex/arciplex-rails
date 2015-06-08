@@ -66,10 +66,11 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def notify
-    notify_corporate_admins
-    notify_company_contacts
-    notify_customer
-    notify_additional_contacts
+    false
+    # notify_corporate_admins
+    # notify_company_contacts
+    # notify_customer
+    # notify_additional_contacts
   end
 
   def notify_customer
