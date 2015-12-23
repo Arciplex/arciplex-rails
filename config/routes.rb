@@ -48,7 +48,7 @@ Arciplex::Application.routes.draw do
   resources :pages, only: [:show]
   resources :contacts, only: :create
 
-  match "2A55AEA42BF229CF108577FED1861D32.txt", to: 'home#ssl', via: :get
+  match "1327D73CAFF529BF483CCA3A87E33B1B.txt", to: 'home#ssl', via: :get
 
   mount ServiceRequests::API => '/api'
 

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     end
 
     def ssl
-        render file: 'public/2A55AEA42BF229CF108577FED1861D32.txt'
+        render file: 'public/1327D73CAFF529BF483CCA3A87E33B1B.txt'
     end
 
 end
